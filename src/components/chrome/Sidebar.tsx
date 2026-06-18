@@ -20,7 +20,7 @@ const items: Item[] = [
   { label: "Requests", icon: "feedback", href: "/admin" },
   { label: "Settings", icon: "settings", comingSoon: true },
   { label: "Easy Read", icon: "menu_book", href: "/support" },
-  { label: "Watch", icon: "play_circle", comingSoon: true },
+  { label: "Watch", icon: "play_circle", href: "/media" },
 ];
 
 export function Sidebar() {

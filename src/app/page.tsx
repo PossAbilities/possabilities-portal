@@ -1,17 +1,8 @@
 import Link from "next/link";
 import { getNews } from "@/lib/data";
+import { FEATURE_VIDEO, GALLERY } from "@/lib/media";
 import { Icon } from "@/components/Icon";
 import { NewsThumb } from "@/components/NewsThumb";
-
-const G = "https://lh3.googleusercontent.com/aida-public/";
-const FEATURE_VIDEO =
-  G +
-  "AB6AXuBlA2zWlEluR6U4BtN0jixhPH6pRFRVdQdnDVcv7HFZ7sfh3ueRoGjhvEAgnBqY9T8PC3r7jG_gGy3hPjEDXb6HhEGUCoHJy5AsSoR029yyiUDqesb3IU3WWPryKpJ3n8TavNKlB-sphpJPoNpMFiac__HgWdu6tIgJLRDB_o_zfc3FUSGr8AjXsGdF9IEUtFMNHeC4WnXShohWyp9rfnckXSUt4y1WHu5iV5NnT8n5C1BV7YveD8PMeYFtuLcJTOCfJAYv2ux35oZC";
-const GALLERY = [
-  G + "AB6AXuB2Kl7SnTD2vEnV-Y0_EXMZSaimE-3pP18ShXLrc9VSE2GgZew2hdEL4ZAMF4-IVCc6hpPR4Atgxjuul_7P9KhG6xb5xxin_O4b0PAxQkYa3pvNTf1laxaFguT2kyAJ9QKFgxTg7DbBQrTQP6RJxyCbeoUJVWHrK9bfy3n1Fj39JwEMF24240T8Hw1lIrlCYSF6KsKOOjY7TJ7zKFvpPMivndOR0yl9V2DB2E3r1PoLIePdSR0ypVtp13_U3qDcw8e25bdk9SCDzhnj",
-  G + "AB6AXuCRbHVFvzhgt-Br_OFBbU3ZAjnOWHxeCc_Ou3okHBgX4RKul7wZsNMZaS1FHGWwyqaxWCPUM3JMYVNMHZXIyGl93XIIa_kcSO7e6Eflw-3QDMIUglupnSTJPIak3jYxVJQw2rG7yRzd1_hKStrFCvNnA7aE4zBBi5JFW8Ua6qbeLgj0F1AFzm5xW2hiQquYmg8FnKP5px2GCDd5HyYsigolPLFa8KR_FauE_B_c566ehhkMTwD59dXlSALk49ib7KDSudNhQQyaTqrU",
-  G + "AB6AXuBSup3ru7UMGN1iNEZj1WVug229qpD9VRdeTYi11Y2l_GB58_p_B0TJtJAZdRjYbX8ivHbsK9_0FytvOLEo_XcEepIVxoSpKkK6oePi7tq29SXc47fukD2sd1n71BiQnipXsyahrQQTWPiDJlaj2KOCyLSjUMn2oB4m_MOF0xSnmKrv87O7ZpipfvSzOq-xZ5ftVRQFG8vX1QAbZpZ6pImQiIWcd0sUXuYcIwXxNnmVutdcrwL-eUUFFvF2tr0Quj0rCksn2-DIeOvm",
-];
 
 export default async function HomePage() {
   const news = await getNews();
@@ -118,17 +109,25 @@ export default async function HomePage() {
           Multimedia Hub
         </h2>
         <div className="flex flex-col lg:flex-row gap-gutter">
-          <div className="flex-[2] bg-primary rounded-3xl overflow-hidden border-4 border-brand-teal relative group min-h-[280px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity absolute inset-0" alt="Community showcase" src={FEATURE_VIDEO} />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <button className="w-24 h-24 bg-brand-teal rounded-full flex items-center justify-center text-primary-container active:scale-90 transition-transform shadow-lg" aria-label="Play video">
-                <Icon name="play_arrow" size={64} />
-              </button>
-            </div>
-            <div className="absolute bottom-0 left-0 w-full p-stack-sm bg-gradient-to-t from-black/80 to-transparent">
-              <h4 className="font-headline-md text-headline-md text-white">Community Highlights: 2024 Showcase</h4>
-            </div>
+          <div className="flex-[2] flex flex-col gap-stack-sm">
+            <Link href="/media#videos" className="relative flex-1 min-h-[280px] bg-primary rounded-3xl overflow-hidden border-4 border-brand-teal group block">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity absolute inset-0" alt="Community showcase" src={FEATURE_VIDEO} />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="w-24 h-24 bg-brand-teal rounded-full flex items-center justify-center text-primary-container group-active:scale-90 transition-transform shadow-lg">
+                  <Icon name="play_arrow" size={64} />
+                </span>
+              </div>
+              <div className="absolute bottom-0 left-0 w-full p-stack-sm bg-gradient-to-t from-black/80 to-transparent">
+                <h4 className="font-headline-md text-headline-md text-white">Community Highlights: 2024 Showcase</h4>
+              </div>
+            </Link>
+            <Link
+              href="/media#videos"
+              className="w-full min-h-touch-target-min flex items-center justify-center gap-2 bg-brand-teal text-on-tertiary-fixed font-label-bold text-label-bold rounded-xl hover:brightness-110 transition-all"
+            >
+              Check out more videos <Icon name="arrow_forward" />
+            </Link>
           </div>
           <div className="flex-1 flex flex-col gap-stack-sm">
             <div className="bg-surface-white/10 p-stack-sm rounded-2xl border-2 border-white/20">
@@ -148,10 +147,10 @@ export default async function HomePage() {
               </div>
             </div>
             <Link
-              href="/news"
-              className="w-full min-h-touch-target-min flex items-center justify-center bg-brand-pink text-white font-label-bold text-label-bold rounded-xl hover:bg-on-secondary-container transition-colors"
+              href="/media#photos"
+              className="w-full min-h-touch-target-min flex items-center justify-center gap-2 bg-brand-pink text-white font-label-bold text-label-bold rounded-xl hover:bg-on-secondary-container transition-colors"
             >
-              Open Multimedia Library
+              Check out more photos <Icon name="arrow_forward" />
             </Link>
           </div>
         </div>
