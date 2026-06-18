@@ -39,6 +39,8 @@ export function EasyReadLibrary({ items }: { items: LibraryItem[] }) {
             {p.pdfUrl ? (
               <Link
                 href={`/easy-reads/${p.id}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full min-h-[48px] bg-brand-purple text-white rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 hover:bg-primary active:scale-95 transition-all"
               >
                 <Icon name="auto_stories" />

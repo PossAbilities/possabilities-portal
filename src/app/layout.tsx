@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ToastProvider } from "@/components/Toast";
-import { TopNav } from "@/components/chrome/TopNav";
-import { Sidebar } from "@/components/chrome/Sidebar";
-import { MobileNav } from "@/components/chrome/MobileNav";
-import { Footer } from "@/components/chrome/Footer";
-import { Fab } from "@/components/chrome/Fab";
+import { AppShell } from "@/components/chrome/AppShell";
 
 export const metadata: Metadata = {
   title: "PossAbilities Community Portal — Live The Life You Choose",
@@ -32,12 +28,7 @@ export default function RootLayout({
       </head>
       <body className="bg-background text-on-surface min-h-full">
         <ToastProvider>
-          <TopNav />
-          <Sidebar />
-          <main className="md:pl-64 pt-24 pb-32 md:pb-0 min-h-screen">{children}</main>
-          <Footer />
-          <MobileNav />
-          <Fab />
+          <AppShell>{children}</AppShell>
         </ToastProvider>
       </body>
     </html>

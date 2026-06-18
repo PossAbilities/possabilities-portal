@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getEasyRead } from "@/lib/easyreads";
-import { PdfFlipbook } from "@/components/PdfFlipbook";
+import { BookReader } from "@/components/BookReader";
+import { FullscreenToggle } from "@/components/FullscreenToggle";
 import { Icon } from "@/components/Icon";
 
+// Standalone, chrome-free reader window (AppShell strips the portal chrome for
+// this route). Fills the viewport and adapts to the device.
 export default async function EasyReadViewerPage({
   params,
 }: {
@@ -14,41 +17,23 @@ export default async function EasyReadViewerPage({
   if (!item || !item.pdfUrl) notFound();
 
   return (
-    <div className="max-w-[1100px] mx-auto px-margin-side">
-      <Link
-        href="/easy-reads"
-        className="inline-flex items-center gap-2 mb-stack-sm text-brand-purple font-label-bold text-label-bold hover:underline min-h-touch-target-min"
-      >
-        <Icon name="arrow_back" />
-        Back to Easy Reads
-      </Link>
-
-      <section className="mb-stack-md">
-        <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-brand-purple mb-3">
+    <div className="h-[100dvh] flex flex-col bg-background">
+      <header className="flex items-center justify-between gap-4 px-4 md:px-6 h-16 shrink-0 border-b-2 border-outline-variant bg-surface-white">
+        <Link
+          href="/easy-reads"
+          className="inline-flex items-center gap-2 text-brand-purple font-label-bold text-label-bold hover:underline min-h-touch-target-min"
+        >
+          <Icon name="close" />
+          <span className="hidden sm:inline">Close</span>
+        </Link>
+        <h1 className="font-headline-md text-[18px] md:text-[24px] text-brand-purple truncate text-center flex-1">
           {item.title}
         </h1>
-        {item.description && (
-          <p className="text-statement-text font-statement-text text-on-surface-variant max-w-2xl">
-            {item.description}
-          </p>
-        )}
-      </section>
-
-      <section className="bg-surface-container-low rounded-2xl border-2 border-outline-variant p-stack-sm md:p-stack-md mb-stack-md">
-        <PdfFlipbook src={`/easy-reads/${id}/pdf`} />
-      </section>
-
-      {item.workshopUrl && (
-        <a
-          href={item.workshopUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 min-h-touch-target-min px-8 bg-brand-pink text-on-primary rounded-xl font-label-bold text-label-bold hover:bg-secondary active:scale-95 transition-all mb-stack-lg"
-        >
-          <Icon name="school" />
-          Join the workshop for this guide
-        </a>
-      )}
+        <FullscreenToggle />
+      </header>
+      <div className="flex-1 min-h-0">
+        <BookReader src={`/easy-reads/${id}/pdf`} title={item.title} />
+      </div>
     </div>
   );
 }
