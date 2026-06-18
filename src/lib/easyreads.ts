@@ -42,7 +42,9 @@ export async function getEasyReads(): Promise<LibraryItem[]> {
       return [];
     }
     const json = await res.json();
-    const rows: EasyReadApi[] = Array.isArray(json) ? json : json?.data ?? [];
+    // Accept a bare array, { data: [...] } (list) or { data: {...} } (single).
+    const raw = Array.isArray(json) ? json : json?.data;
+    const rows: EasyReadApi[] = Array.isArray(raw) ? raw : raw ? [raw] : [];
 
     return rows
       .slice()
