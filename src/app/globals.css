@@ -169,6 +169,43 @@ select:focus-visible,
   outline-offset: 2px;
 }
 
+@keyframes pageTurnNext {
+  from {
+    transform: rotateY(-88deg);
+    opacity: 0.55;
+  }
+  to {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+@keyframes pageTurnPrev {
+  from {
+    transform: rotateY(88deg);
+    opacity: 0.55;
+  }
+  to {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+.page-turn-next {
+  animation: pageTurnNext 0.45s ease-out;
+  transform-origin: left center;
+  backface-visibility: hidden;
+}
+.page-turn-prev {
+  animation: pageTurnPrev 0.45s ease-out;
+  transform-origin: right center;
+  backface-visibility: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-turn-next,
+  .page-turn-prev {
+    animation: none;
+  }
+}
+
 @keyframes toastIn {
   from {
     opacity: 0;
