@@ -23,15 +23,20 @@ export function BookReader({ src, title }: { src: string; title: string }) {
 
   const build = useCallback(async (startPage = 0) => {
     const stage = stageRef.current;
-    const container = containerRef.current;
-    if (!stage || !container || !PageFlipRef.current || !imagesRef.current.length) return;
+    const wrapper = containerRef.current;
+    if (!stage || !wrapper || !PageFlipRef.current || !imagesRef.current.length) return;
 
     try {
       flipRef.current?.destroy();
     } catch {
       /* ignore */
     }
-    container.innerHTML = "";
+    // StPageFlip mutates/detaches its mount node, so give it a throwaway child
+    // and keep React's wrapper untouched (so rebuilds on resize work).
+    wrapper.innerHTML = "";
+    const container = document.createElement("div");
+    container.className = "mx-auto";
+    wrapper.appendChild(container);
 
     const pdfRatio = ratioRef.current;
     const availW = stage.clientWidth - 16;
@@ -50,18 +55,21 @@ export function BookReader({ src, title }: { src: string; title: string }) {
     }
     bookW = Math.max(bookW, 240);
 
-    container.style.width = `${bookW}px`;
     const pageW = landscape ? Math.round(bookW / 2) : bookW;
+    const pageH = Math.round(pageW * pdfRatio);
+    container.style.width = `${bookW}px`;
+    container.style.height = `${pageH}px`;
 
     const flip = new PageFlipRef.current(container, {
       width: pageW,
-      height: Math.round(pageW * pdfRatio),
+      height: pageH,
       size: "stretch",
       minWidth,
       maxWidth: 3000,
       minHeight: 120,
       maxHeight: 3000,
       usePortrait: true,
+      autoSize: false,
       showCover: true,
       flippingTime: 700,
       maxShadowOpacity: 0.5,
@@ -91,7 +99,10 @@ export function BookReader({ src, title }: { src: string; title: string }) {
     (async () => {
       try {
         const pdfjs = await import("pdfjs-dist");
-        pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
+        pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+          "pdfjs-dist/build/pdf.worker.min.mjs",
+          import.meta.url,
+        ).toString();
         PageFlipRef.current = (await import("page-flip")).PageFlip;
         const pdf = await pdfjs.getDocument({ url: src }).promise;
         const imgs: string[] = [];
@@ -176,7 +187,7 @@ export function BookReader({ src, title }: { src: string; title: string }) {
             <p className="font-label-bold text-label-bold">Loading your guide…</p>
           </div>
         ) : (
-          <div ref={containerRef} className="mx-auto" aria-label={title} />
+          <div ref={containerRef} className="flex justify-center w-full" aria-label={title} />
         )}
       </div>
 
