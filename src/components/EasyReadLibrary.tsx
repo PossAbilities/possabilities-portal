@@ -1,14 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import type { LibraryItem } from "@/lib/types";
-import { useToast } from "@/components/Toast";
 import { Icon } from "@/components/Icon";
 
-/** Grid of easy-read / policy cards. Items with a pdfUrl open/download the PDF;
- *  items with a body (policy fallback) open a reader dialog. */
+/** Grid of easy-read / policy cards. Items with a pdfUrl open in the in-app
+ *  flipbook viewer (view-only); policy-fallback items open a reader dialog. */
 export function EasyReadLibrary({ items }: { items: LibraryItem[] }) {
-  const toast = useToast();
   const [reading, setReading] = useState<LibraryItem | null>(null);
 
   if (!items.length) {
@@ -37,30 +36,23 @@ export function EasyReadLibrary({ items }: { items: LibraryItem[] }) {
             </div>
             <h3 className="font-label-bold text-label-bold mb-2">{p.title}</h3>
             <p className="font-body-md text-body-md mb-6 opacity-80 flex-1">{p.description}</p>
-            <div className="flex gap-2">
-              {p.pdfUrl ? (
-                <a href={p.pdfUrl} target="_blank" rel="noopener noreferrer" className="flex-1 min-h-[48px] bg-white border-2 border-brand-purple text-brand-purple rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 hover:bg-brand-purple hover:text-white transition-colors">
-                  <Icon name="visibility" />
-                  Read
-                </a>
-              ) : (
-                <button onClick={() => setReading(p)} className="flex-1 min-h-[48px] bg-white border-2 border-brand-purple text-brand-purple rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 hover:bg-brand-purple hover:text-white transition-colors">
-                  <Icon name="visibility" />
-                  Read
-                </button>
-              )}
-              {p.pdfUrl ? (
-                <a href={p.pdfUrl} download className="flex-1 min-h-[48px] bg-brand-purple text-white rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 active:scale-95 transition-transform">
-                  <Icon name="download" />
-                  Save
-                </a>
-              ) : (
-                <button onClick={() => toast.show("Saved to your device")} className="flex-1 min-h-[48px] bg-brand-purple text-white rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 active:scale-95 transition-transform">
-                  <Icon name="download" />
-                  Save
-                </button>
-              )}
-            </div>
+            {p.pdfUrl ? (
+              <Link
+                href={`/easy-reads/${p.id}`}
+                className="w-full min-h-[48px] bg-brand-purple text-white rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 hover:bg-primary active:scale-95 transition-all"
+              >
+                <Icon name="auto_stories" />
+                View
+              </Link>
+            ) : (
+              <button
+                onClick={() => setReading(p)}
+                className="w-full min-h-[48px] bg-brand-purple text-white rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 hover:bg-primary active:scale-95 transition-all"
+              >
+                <Icon name="visibility" />
+                View
+              </button>
+            )}
             {p.workshopUrl && (
               <a href={p.workshopUrl} target="_blank" rel="noopener noreferrer" className="mt-3 text-brand-pink font-label-bold text-label-bold flex items-center justify-center gap-2 hover:underline min-h-[44px]">
                 <Icon name="school" />

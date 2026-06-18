@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Reference-only design bundle (not part of the app build).
     "design-source/**",
+    // Static assets (incl. the minified pdf.js worker).
+    "public/**",
   ]),
 ]);
 

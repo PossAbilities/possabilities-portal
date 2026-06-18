@@ -67,6 +67,43 @@ export async function getEasyReads(): Promise<LibraryItem[]> {
   }
 }
 
+function authHeaders(): Record<string, string> {
+  const headers: Record<string, string> = { Accept: "application/json" };
+  const key = process.env.EASY_READS_API_KEY;
+  if (key) {
+    headers["X-API-Key"] = key;
+    headers["Authorization"] = `Bearer ${key}`;
+  }
+  return headers;
+}
+
+/** Fetches a single easy read by id from the external platform. */
+export async function getEasyRead(id: string): Promise<LibraryItem | null> {
+  const base = process.env.EASY_READS_API_URL;
+  if (!base) return null;
+  try {
+    const res = await fetch(`${base}/${encodeURIComponent(id)}`, {
+      headers: authHeaders(),
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return null;
+    const json = await res.json();
+    const r: EasyReadApi | undefined = json?.data ?? (json?.id ? json : undefined);
+    if (!r) return null;
+    return {
+      id: r.id,
+      title: r.title || "",
+      description: r.description || "",
+      image: r.cover_image_url || "",
+      pdfUrl: r.pdf_url || undefined,
+      workshopUrl: r.workshop_url || undefined,
+      updatedAt: r.updated_at || undefined,
+    };
+  } catch {
+    return null;
+  }
+}
+
 /**
  * The library shown on the Support page and the Easy Reads page: API easy reads
  * when available, otherwise the Supabase policies so it's never empty.
