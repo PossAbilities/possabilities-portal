@@ -1,0 +1,354 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Community Portal Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&amp;family=Atkinson+Hyperlegible+Next:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e9e0e1",
+                        "text-rich-black": "#231f20",
+                        "on-secondary-fixed": "#3e0021",
+                        "surface-dim": "#e1d8d9",
+                        "on-primary-fixed-variant": "#6a2c7a",
+                        "background": "#fff8f8",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#002020",
+                        "on-tertiary-container": "#319f9f",
+                        "secondary-fixed-dim": "#ffb0cc",
+                        "on-primary-fixed": "#340043",
+                        "brand-pink": "#ec008c",
+                        "on-background": "#1e1b1c",
+                        "inverse-on-surface": "#f8efef",
+                        "tertiary-fixed-dim": "#71d6d6",
+                        "surface-bright": "#fff8f8",
+                        "outline": "#80737f",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fff8f8",
+                        "surface-container-low": "#fbf1f2",
+                        "tertiary-fixed": "#8ef3f3",
+                        "brand-purple": "#48065a",
+                        "on-surface": "#1e1b1c",
+                        "primary-fixed": "#fcd7ff",
+                        "tertiary": "#001819",
+                        "surface-tint": "#844594",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#002f2f",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#fffbff",
+                        "status-muted-pink": "#bc437d",
+                        "on-tertiary-fixed-variant": "#004f50",
+                        "surface-container": "#f5eced",
+                        "surface-white": "#ffffff",
+                        "surface-container-high": "#efe6e7",
+                        "primary-fixed-dim": "#f2afff",
+                        "on-primary-container": "#bb77ca",
+                        "primary-container": "#48065a",
+                        "secondary-fixed": "#ffd9e4",
+                        "outline-variant": "#d1c2cf",
+                        "inverse-primary": "#f2afff",
+                        "on-secondary-fixed-variant": "#8d0051",
+                        "brand-teal": "#66cccc",
+                        "inverse-surface": "#342f30",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#e00085",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#4e434e",
+                        "secondary": "#b30069",
+                        "surface-variant": "#e9e0e1",
+                        "primary": "#290036"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "2rem",
+                        "stack-lg": "4rem",
+                        "gutter": "1.5rem",
+                        "stack-sm": "1rem",
+                        "touch-target-min": "3rem",
+                        "margin-side": "2.5rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "statement-text": ["Atkinson Hyperlegible Next"],
+                        "caption": ["Atkinson Hyperlegible Next"],
+                        "body-md": ["Atkinson Hyperlegible Next"],
+                        "body-lg": ["Atkinson Hyperlegible Next"],
+                        "label-bold": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "900"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                        "statement-text": ["24px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                        "caption": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "body-md": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-bold": ["16px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+        body {
+            background-color: #fff8f8;
+            color: #1e1b1c;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .touch-target {
+            min-height: 48px;
+            min-width: 48px;
+        }
+        .easy-read-card {
+            border: 2px solid #48065a;
+            background: #ffffff;
+            box-shadow: none;
+        }
+        .easy-read-card:active {
+            border-color: #66cccc;
+            border-width: 4px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md text-body-md pb-32">
+<!-- TopAppBar -->
+<header class="bg-surface-white dark:bg-surface-dim border-b-2 border-outline-variant flex justify-between items-center w-full px-margin-side h-touch-target-min fixed top-0 z-50">
+<h1 class="text-xl font-black text-brand-purple dark:text-primary-fixed truncate">Community Portal</h1>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full" data-icon="help">help</button>
+<button class="material-symbols-outlined text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full relative" data-icon="notifications">
+                notifications
+                <span class="absolute top-1 right-1 w-2 h-2 bg-brand-pink rounded-full"></span>
+</button>
+</div>
+</header>
+<main class="mt-20 px-6 max-w-full overflow-x-hidden">
+<!-- Welcome Header -->
+<section class="mb-stack-md">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-brand-purple mb-2 mb-4">Hello, Admin!</h2>
+<p class="font-statement-text text-statement-text text-on-surface-variant mb-6">Manage your community activities and requests below.</p>
+</section>
+<!-- Summary Cards 2x2 Grid -->
+<section class="grid grid-cols-2 gap-4 mb-stack-md">
+<!-- News Posts -->
+<div class="easy-read-card rounded-xl p-4 flex flex-col justify-between active:scale-95 transition-transform duration-200">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-brand-purple text-3xl" data-icon="news">news</span>
+<span class="bg-brand-teal bg-opacity-10 text-on-tertiary-fixed-variant px-2 py-1 rounded-full font-label-bold text-caption">LIVE</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-brand-purple text-4xl">24</div>
+<div class="font-label-bold text-label-bold text-on-surface-variant">News Posts</div>
+</div>
+</div>
+<!-- Events -->
+<div class="easy-read-card rounded-xl p-4 flex flex-col justify-between active:scale-95 transition-transform duration-200">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-brand-pink text-3xl" data-icon="event">event</span>
+<span class="bg-brand-pink bg-opacity-10 text-brand-pink px-2 py-1 rounded-full font-label-bold text-caption">UPCOMING</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-brand-purple text-4xl">24</div>
+<div class="font-label-bold text-label-bold text-on-surface-variant">Events</div>
+</div>
+</div>
+<!-- Requests -->
+<div class="easy-read-card rounded-xl p-4 flex flex-col justify-between active:scale-95 transition-transform duration-200">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-brand-teal text-3xl" data-icon="feedback">feedback</span>
+<span class="bg-error-container text-on-error-container px-2 py-1 rounded-full font-label-bold text-caption">NEW</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-brand-purple text-4xl">24</div>
+<div class="font-label-bold text-label-bold text-on-surface-variant">Requests</div>
+</div>
+</div>
+<!-- Security -->
+<div class="easy-read-card rounded-xl p-4 flex flex-col justify-between active:scale-95 transition-transform duration-200">
+<div class="flex justify-between items-start mb-2">
+<span class="material-symbols-outlined text-on-surface-variant text-3xl" data-icon="shield">shield</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-brand-purple text-4xl">24</div>
+<div class="font-label-bold text-label-bold text-on-surface-variant">Portal Status</div>
+</div>
+</div>
+</section>
+<!-- Authorize Access Section -->
+<section class="mb-stack-md">
+<div class="bg-primary-container text-on-primary rounded-xl p-6 border-4 border-brand-teal">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-brand-teal text-4xl" data-icon="verified_user">verified_user</span>
+<h3 class="font-headline-md text-headline-md text-white">Authorize Access</h3>
+</div>
+<p class="font-body-md text-body-md text-on-primary-container mb-6">Quickly approve new community members to join the private portal.</p>
+<div class="flex flex-col gap-4">
+<button class="bg-brand-teal text-on-tertiary-fixed font-label-bold text-label-bold h-touch-target-min rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-transform h-16">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+                        Review 3 New Applications
+                    </button>
+<button class="bg-transparent border-2 border-on-primary-container text-on-primary-container font-label-bold text-label-bold h-touch-target-min rounded-xl active:scale-95 transition-transform h-16">
+                        Access Log
+                    </button>
+</div>
+</div>
+</section>
+<!-- Request Inbox List (Formerly Table) -->
+<section class="mb-stack-md">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline-md text-headline-md text-brand-purple">Recent Requests</h3>
+<button class="text-brand-pink font-label-bold text-label-bold">See All</button>
+</div>
+<div class="flex flex-col gap-4">
+<!-- Request Card 1 -->
+<div class="easy-read-card rounded-xl p-4 flex flex-col gap-3 relative">
+<div class="flex items-center gap-3">
+<img alt="Avatar" class="w-12 h-12 rounded-full border-2 border-brand-purple" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA6-0mT8_7-p6M-HznBQIinSGFZKoZnC70fCYB1mg78rq0EimlFpHygsbnh8C8ca01LoBF1EWVx0ua4rmTjSN22X6jEKFV2RKJZZolOvQFxirkIl1W5qc0-G0wjATukZwbiANxicnqMCkXpc1DQky6UCRe8_2191bM6GJ7qAH9ehoOuhs8fd8MiDAwG9yhx-0CVfpaYOIKNlLB7rig2i8cCC-ygCZG8PrlufE11dEjPC0EpUTQ1glI0bYHb5X4Ojr6zVIgthtWB41y">
+<div>
+<div class="font-label-bold text-label-bold text-brand-purple text-body-lg">John Doe</div>
+<div class="font-caption text-caption text-on-surface-variant">Maintenance Request</div>
+</div>
+</div>
+<div class="font-body-md text-body-md italic border-l-4 border-brand-teal pl-3 py-1 bg-surface-container-low rounded-r-lg text-body-lg">
+                        "The garden gate needs painting. Happy to help!"
+                    </div>
+<div class="flex justify-between items-center mt-2">
+<span class="font-caption text-caption text-outline">2 hours ago</span>
+<div class="flex gap-2">
+<button class="material-symbols-outlined text-brand-teal h-12 w-12 flex items-center justify-center border-2 border-brand-teal rounded-full h-16 w-16" data-icon="check_circle">check_circle</button>
+<button class="material-symbols-outlined text-error h-12 w-12 flex items-center justify-center border-2 border-error rounded-full h-16 w-16" data-icon="cancel">cancel</button>
+</div>
+</div>
+</div>
+<!-- Request Card 2 -->
+<div class="easy-read-card rounded-xl p-4 flex flex-col gap-3 relative">
+<div class="flex items-center gap-3">
+<img alt="Avatar" class="w-12 h-12 rounded-full border-2 border-brand-purple" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBh4yKi5X3ZiIattJVGbrRXQx5rFMSp6fm_njgJA-kOwitXr9MzngZgT9m0dpgyzquAo8E_-FSX5OgHrnAODJd9SO4_F73zWTA2yTap_v9J0Vn_aYTZ4qSeQ11qjdhW2U8XfQbfC7BgV7Lg69HpnIXynEuqW2OZ3oxA6IG-Z58WXqR8dUaIlT01AxCMJMPOBr-TpL0R2U_LrvvTfdIWwuh3NJkgImj_HTVbmZuJhuZXj_pGTp-rGZ23f0kTS3OvWp4Ylu-AckvVlfi">
+<div>
+<div class="font-label-bold text-label-bold text-brand-purple text-body-lg">Sarah Smith</div>
+<div class="font-caption text-caption text-on-surface-variant">New Event Proposal</div>
+</div>
+</div>
+<div class="font-body-md text-body-md italic border-l-4 border-brand-pink pl-3 py-1 bg-surface-container-low rounded-r-lg text-body-lg">
+                        "Can we organize a local bake sale next Saturday?"
+                    </div>
+<div class="flex justify-between items-center mt-2">
+<span class="font-caption text-caption text-outline">5 hours ago</span>
+<div class="flex gap-2">
+<button class="material-symbols-outlined text-brand-teal h-12 w-12 flex items-center justify-center border-2 border-brand-teal rounded-full h-16 w-16" data-icon="check_circle">check_circle</button>
+<button class="material-symbols-outlined text-error h-12 w-12 flex items-center justify-center border-2 border-error rounded-full h-16 w-16" data-icon="cancel">cancel</button>
+</div>
+</div>
+</div>
+<!-- Request Card 3 -->
+<div class="easy-read-card rounded-xl p-4 flex flex-col gap-3 relative opacity-75">
+<div class="flex items-center gap-3">
+<img alt="Avatar" class="w-12 h-12 rounded-full border-2 border-outline" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnjgxlLjCfJuHiX7MtNwKfvFa5lzOYXLwZKTigPZdD8Qy8fuVG_lFSvBP8WvJVfCntOdT_5ky_y_HQDPcQIy7pRE8KW5PNdcZGsEGmC4vSgWgYsDq72GMQ1SNBDqrMO3ENTWXsYHem0Y8n8LbW8m1ymTYKffR6l_1KWcDsZV8dEU3pxDRtVkMBQX7I-lvgjmF8RJ99uIcYiHWswV3eMbbb5_Ppqun5geisZLuLco6JZNfGDXJZoMDvuf0DiCs9lIqiVpXh5oyqOUry">
+<div>
+<div class="font-label-bold text-label-bold text-on-surface-variant">Technical Support</div>
+<div class="font-caption text-caption text-on-surface-variant">Website Update</div>
+</div>
+</div>
+<div class="flex justify-between items-center mt-2">
+<span class="font-caption text-caption text-outline">Yesterday</span>
+<span class="bg-surface-container-high text-on-surface-variant px-3 py-1 rounded-full font-label-bold text-caption">RESOLVED</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Visual Anchor: Large Decorative Image -->
+<section class="mb-stack-md rounded-2xl overflow-hidden border-2 border-brand-purple">
+<div class="relative h-48 w-full">
+<img class="w-full h-full object-cover" data-alt="A diverse group of smiling adults in a bright, modern community center workspace. They are collaborating around a large wooden table with colorful sticky notes and digital tablets. The environment is filled with natural sunlight, high-contrast furniture in shades of purple and teal, and inclusive design elements. The atmosphere is joyful, empowering, and professional, reflecting a person-centered administrative environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5aTgv9icLKYJx8W57bYXxlsc1caADr7u9IsL5gzooiMqBOm3gq14SMuTNcFV6PH5MxmsES8_nmzNEyyVeea2XmI-GJ8vpQtnTL4fkA3XJioOJNTJxgnc0NAtshZAwZCWS3XLGWtvkYJaiqpovy335r0-HCUZU47H-Nb0UEIZSZDObIfSJ7hIgF7sLuWW10csk8vY-jidcTQfN_lLImESqkym8732yxLBrQosddAbFQmCagLVH5shO7QptFT6cEW2Xr2JllxBOHF7f">
+<div class="absolute inset-0 bg-gradient-to-t from-brand-purple to-transparent opacity-60"></div>
+<div class="absolute bottom-4 left-4">
+<p class="text-white font-label-bold text-label-bold">Live The Life You Choose.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Mobile Simple) -->
+<footer class="w-full py-stack-md px-margin-side flex flex-col items-center text-center gap-stack-sm bg-primary dark:bg-surface-container-lowest border-t-8 border-brand-pink mb-24">
+<div class="font-headline-md text-headline-md font-black text-on-primary">Community Portal</div>
+<p class="font-body-md text-body-md text-on-primary opacity-90">© 2024 Community Portal. Live The Life You Choose.</p>
+<div class="flex gap-4">
+<a class="text-brand-teal underline font-label-bold text-label-bold" href="#">Privacy Policy</a>
+<a class="text-on-primary opacity-90 font-label-bold text-label-bold" href="#">Contact Us</a>
+</div>
+</footer>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-24 px-4 pb-4 md:hidden bg-surface-white dark:bg-surface-dim border-t-4 border-brand-purple z-50">
+<!-- Home (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 active:scale-90 transition-transform hover:bg-primary-fixed-dim rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-bold text-label-bold">Home</span>
+</a>
+<!-- Requests (Active) - Mapping Dashboard/Requests to Dashboard Intent -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-bold text-label-bold">Dash</span>
+</a>
+<!-- Events (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 active:scale-90 transition-transform hover:bg-primary-fixed-dim rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="event">event</span>
+<span class="font-label-bold text-label-bold">Events</span>
+</a>
+<!-- News (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 active:scale-90 transition-transform hover:bg-primary-fixed-dim rounded-xl" href="#">
+<span class="material-symbols-outlined" data-icon="news">news</span>
+<span class="font-label-bold text-label-bold">News</span>
+</a>
+</nav>
+<!-- FAB for Dashboard Actions -->
+<button class="fixed bottom-28 right-6 w-16 h-16 bg-brand-pink text-white rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform z-40 border-4 border-white">
+<span class="material-symbols-outlined text-4xl" data-icon="add">add</span>
+</button>
+<script>
+        // Simple Interaction: Ripple-like effect on cards
+        document.querySelectorAll('.easy-read-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.classList.add('ring-4', 'ring-brand-teal');
+                setTimeout(() => {
+                    this.classList.remove('ring-4', 'ring-brand-teal');
+                }, 300);
+            });
+        });
+
+        // Theme Toggle Support (Optional enhancement)
+        const checkDarkMode = () => {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                // document.documentElement.classList.add('dark');
+            }
+        }
+        checkDarkMode();
+    </script>
+
+
+
+
+
+
+</body></html>

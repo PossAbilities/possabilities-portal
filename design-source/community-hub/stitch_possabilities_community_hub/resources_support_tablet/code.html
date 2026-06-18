@@ -1,0 +1,320 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Resources &amp; Support - Community Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Atkinson+Hyperlegible+Next:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e9e0e1",
+                    "text-rich-black": "#231f20",
+                    "on-secondary-fixed": "#3e0021",
+                    "surface-dim": "#e1d8d9",
+                    "on-primary-fixed-variant": "#6a2c7a",
+                    "background": "#fff8f8",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#002020",
+                    "on-tertiary-container": "#319f9f",
+                    "secondary-fixed-dim": "#ffb0cc",
+                    "on-primary-fixed": "#340043",
+                    "brand-pink": "#ec008c",
+                    "on-background": "#1e1b1c",
+                    "inverse-on-surface": "#f8efef",
+                    "tertiary-fixed-dim": "#71d6d6",
+                    "surface-bright": "#fff8f8",
+                    "outline": "#80737f",
+                    "on-secondary": "#ffffff",
+                    "surface": "#fff8f8",
+                    "surface-container-low": "#fbf1f2",
+                    "tertiary-fixed": "#8ef3f3",
+                    "brand-purple": "#48065a",
+                    "on-surface": "#1e1b1c",
+                    "primary-fixed": "#fcd7ff",
+                    "tertiary": "#001819",
+                    "surface-tint": "#844594",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#002f2f",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#fffbff",
+                    "status-muted-pink": "#bc437d",
+                    "on-tertiary-fixed-variant": "#004f50",
+                    "surface-container": "#f5eced",
+                    "surface-white": "#ffffff",
+                    "surface-container-high": "#efe6e7",
+                    "primary-fixed-dim": "#f2afff",
+                    "on-primary-container": "#bb77ca",
+                    "primary-container": "#48065a",
+                    "secondary-fixed": "#ffd9e4",
+                    "outline-variant": "#d1c2cf",
+                    "inverse-primary": "#f2afff",
+                    "on-secondary-fixed-variant": "#8d0051",
+                    "brand-teal": "#66cccc",
+                    "inverse-surface": "#342f30",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#e00085",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#4e434e",
+                    "secondary": "#b30069",
+                    "surface-variant": "#e9e0e1",
+                    "primary": "#290036"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "2rem",
+                    "stack-lg": "4rem",
+                    "gutter": "1.5rem",
+                    "stack-sm": "1rem",
+                    "touch-target-min": "3rem",
+                    "margin-side": "2.5rem"
+            },
+            "fontFamily": {
+                    "headline-md": ["Montserrat"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "headline-lg": ["Montserrat"],
+                    "statement-text": ["Atkinson Hyperlegible Next"],
+                    "caption": ["Atkinson Hyperlegible Next"],
+                    "body-md": ["Atkinson Hyperlegible Next"],
+                    "body-lg": ["Atkinson Hyperlegible Next"],
+                    "label-bold": ["Montserrat"]
+            },
+            "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "900"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                    "statement-text": ["24px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                    "caption": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "body-md": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-bold": ["16px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .easy-read-focus:focus-within {
+            outline: 4px solid #66cccc;
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- Sidebar Navigation (Desktop/Tablet) -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 h-full border-r-2 bg-surface-container-low border-outline-variant w-64 z-50">
+<div class="p-6">
+<span class="font-headline-md text-headline-md font-black text-brand-purple">Community Portal</span>
+<div class="mt-4 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-brand-teal flex items-center justify-center text-on-tertiary-fixed font-bold">JD</div>
+<div>
+<p class="font-label-bold text-label-bold text-on-surface">Jane Doe</p>
+<p class="font-caption text-caption text-on-surface-variant">Manage Portal</p>
+</div>
+</div>
+</div>
+<div class="flex-1 mt-4">
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg m-2 px-4 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-label-bold text-label-bold">Dashboard</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg m-2 px-4 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined mr-3">edit_document</span>
+<span class="font-label-bold text-label-bold">Content</span>
+</a>
+<a class="flex items-center bg-brand-teal text-on-tertiary-fixed font-bold rounded-lg m-2 px-4 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined mr-3">feedback</span>
+<span class="font-label-bold text-label-bold">Requests</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg m-2 px-4 py-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-label-bold text-label-bold">Settings</span>
+</a>
+</div>
+<div class="p-4 border-t border-outline-variant">
+<button class="w-full bg-brand-purple text-on-primary font-label-bold text-label-bold py-3 rounded-xl hover:bg-primary-container transition-colors mb-4 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add</span>
+                New Post
+            </button>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg p-3 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined mr-3">logout</span>
+<span class="font-label-bold text-label-bold">Log Out</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="md:ml-64 pb-24 md:pb-12">
+<!-- Top App Bar (Mobile only visible header) -->
+<header class="flex justify-between items-center w-full px-margin-side h-touch-target-min bg-surface-white border-b-2 border-outline-variant sticky top-0 z-40">
+<h1 class="font-headline-md font-black text-brand-purple text-[24px]">Resources &amp; Support</h1>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-surface-container-high transition-colors rounded-full text-brand-purple">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="p-2 hover:bg-surface-container-high transition-colors rounded-full text-brand-purple">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<div class="max-w-5xl mx-auto px-6 md:px-margin-side pt-stack-md">
+<!-- Hero Statement -->
+<section class="mb-stack-md">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-brand-purple mb-4">We are here to help you.</h2>
+<p class="font-statement-text text-statement-text text-on-surface-variant max-w-2xl">
+                    Live the life you choose with the right information and support. Tell us how we are doing or find the help you need.
+                </p>
+</section>
+<!-- Support/Compliment Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-gutter mb-stack-lg">
+<!-- Compliment Card -->
+<div class="bg-surface-white border-2 border-brand-teal p-6 rounded-xl flex flex-col gap-4 active:scale-95 duration-200 cursor-pointer">
+<div class="w-16 h-16 bg-tertiary-fixed rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-on-tertiary-fixed" style="font-variation-settings: 'FILL' 1;">sentiment_satisfied</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-brand-purple">Send a Compliment</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Share something great that happened or thank a staff member.</p>
+</div>
+</div>
+<!-- Complaint/Support Card -->
+<div class="bg-surface-white border-2 border-brand-pink p-6 rounded-xl flex flex-col gap-4 active:scale-95 duration-200 cursor-pointer">
+<div class="w-16 h-16 bg-secondary-fixed rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl text-on-secondary-fixed" style="font-variation-settings: 'FILL' 1;">forum</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-brand-purple">Get Support</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Need help with something? Let us know and we'll fix it together.</p>
+</div>
+</div>
+</div>
+<!-- Policy Library (Bento Style Grid) -->
+<section class="mb-stack-lg">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-brand-purple text-4xl">menu_book</span>
+<h2 class="font-headline-md text-headline-md text-brand-purple">Policy Library</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-surface-white border-2 border-outline-variant p-6 rounded-xl hover:border-brand-teal transition-all group">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-brand-teal bg-opacity-10 text-on-tertiary-fixed-variant font-label-bold text-label-bold rounded-full">Safety</span>
+<span class="material-symbols-outlined text-outline group-hover:text-brand-teal transition-colors">download</span>
+</div>
+<h4 class="font-headline-md text-[24px] text-brand-purple">Keeping You Safe Policy</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">An easy-read guide on how we keep everyone safe in our community.</p>
+</div>
+<div class="bg-surface-white border-2 border-outline-variant p-6 rounded-xl hover:border-brand-teal transition-all group">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-brand-pink bg-opacity-10 text-on-secondary-fixed-variant font-label-bold text-label-bold rounded-full">Rights</span>
+<span class="material-symbols-outlined text-outline group-hover:text-brand-teal transition-colors">download</span>
+</div>
+<h4 class="font-headline-md text-[24px] text-brand-purple">Your Privacy Rights</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Learn how we look after your personal information and photos.</p>
+</div>
+<div class="bg-surface-white border-2 border-outline-variant p-6 rounded-xl hover:border-brand-teal transition-all group">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-brand-teal bg-opacity-10 text-on-tertiary-fixed-variant font-label-bold text-label-bold rounded-full">Community</span>
+<span class="material-symbols-outlined text-outline group-hover:text-brand-teal transition-colors">download</span>
+</div>
+<h4 class="font-headline-md text-[24px] text-brand-purple">Code of Conduct</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">How we treat each other with kindness and respect every day.</p>
+</div>
+<div class="bg-surface-white border-2 border-outline-variant p-6 rounded-xl hover:border-brand-teal transition-all group">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-brand-pink bg-opacity-10 text-on-secondary-fixed-variant font-label-bold text-label-bold rounded-full">Feedback</span>
+<span class="material-symbols-outlined text-outline group-hover:text-brand-teal transition-colors">download</span>
+</div>
+<h4 class="font-headline-md text-[24px] text-brand-purple">Complaints Guide</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">What happens when you tell us you are unhappy with something.</p>
+</div>
+</div>
+</section>
+<!-- Feedback Form -->
+<section class="bg-primary-container text-on-primary rounded-3xl p-8 md:p-12 mb-stack-lg relative overflow-hidden">
+<!-- Decorative background shader-like element -->
+<div class="absolute -right-24 -top-24 w-64 h-64 bg-brand-teal opacity-20 rounded-full blur-3xl"></div>
+<div class="absolute -left-24 -bottom-24 w-64 h-64 bg-brand-pink opacity-20 rounded-full blur-3xl"></div>
+<div class="relative z-10 max-w-2xl">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-white mb-6">Send us a message</h2>
+<form class="space-y-6">
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold text-white">How do you feel today?</label>
+<div class="flex gap-4">
+<button class="flex-1 h-20 bg-surface-white text-brand-purple rounded-xl flex items-center justify-center border-4 border-transparent hover:border-brand-teal focus:border-brand-teal transition-all group" type="button">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">mood</span>
+</button>
+<button class="flex-1 h-20 bg-surface-white text-brand-purple rounded-xl flex items-center justify-center border-4 border-transparent hover:border-brand-teal focus:border-brand-teal transition-all group" type="button">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">sentiment_neutral</span>
+</button>
+<button class="flex-1 h-20 bg-surface-white text-brand-purple rounded-xl flex items-center justify-center border-4 border-transparent hover:border-brand-teal focus:border-brand-teal transition-all group" type="button">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">mood_bad</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold text-white" for="feedback-text">Your message</label>
+<textarea class="w-full rounded-xl border-4 border-transparent focus:border-brand-teal text-rich-black p-4 font-body-md text-body-md outline-none" id="feedback-text" placeholder="Type your message here..." rows="4"></textarea>
+</div>
+<button class="w-full md:w-auto px-12 h-14 bg-brand-teal text-on-tertiary-fixed font-headline-md text-[20px] rounded-xl hover:scale-105 active:scale-95 transition-transform" type="submit">
+                            Send Feedback
+                        </button>
+</form>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="w-full py-stack-md px-margin-side flex flex-col items-center text-center gap-stack-sm bg-primary border-t-8 border-brand-pink mt-12">
+<span class="font-headline-md text-headline-md font-black text-on-primary">Community Portal</span>
+<div class="flex flex-wrap justify-center gap-6 mt-4">
+<a class="font-label-bold text-label-bold text-on-primary opacity-90 hover:text-brand-pink transition-colors" href="#">Contact Us</a>
+<a class="font-label-bold text-label-bold text-on-primary opacity-90 hover:text-brand-pink transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-bold text-label-bold text-brand-teal underline hover:text-brand-pink transition-colors" href="#">Complaints</a>
+</div>
+<p class="font-body-md text-body-md text-on-primary mt-6">© 2024 Community Portal. Live The Life You Choose.</p>
+</footer>
+</main>
+<!-- Mobile Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-24 px-4 pb-4 md:hidden bg-surface-white border-t-4 border-brand-purple z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-fixed-dim rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-bold text-[12px] mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-fixed-dim rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label-bold text-[12px] mt-1">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-fixed-dim rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined">news</span>
+<span class="font-label-bold text-[12px] mt-1">News</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+<span class="font-label-bold text-[12px] mt-1">Support</span>
+</a>
+</nav>
+<!-- Interaction Script -->
+<script>
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('click', (e) => {
+                // Micro-interaction logic can be added here
+                console.log('User interaction on:', el.textContent.trim());
+            });
+        });
+    </script>
+
+
+</body></html>

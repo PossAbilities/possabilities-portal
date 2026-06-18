@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PossAbilities Community Portal
 
-## Getting Started
+An accessible community portal for the people PossAbilities supports — built from the
+Google Stitch "Community Hub" design. Browse news and events, book tickets, find
+easy-read support and policies, send feedback or report a concern; admins manage it all
+from a dashboard.
 
-First, run the development server:
+**Stack:** Next.js 16 · Tailwind CSS v4 · Supabase (auth + database).
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app runs immediately using built-in seed content. To enable saving (form
+submissions, admin sign-in, live data) connect Supabase:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Create a project at [supabase.com](https://supabase.com).
+2. Copy `.env.local.example` to `.env.local` and fill in (Project Settings → API):
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=...
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+   ```
+3. Run `supabase/schema.sql` in the Supabase SQL Editor.
+4. Create an admin user under **Authentication → Users**, then sign in at `/login`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Screens
 
-## Learn More
+| Route | Description |
+| --- | --- |
+| `/` | Portal home — hero, quick actions, latest updates, multimedia & participation hubs |
+| `/events` | Community events with ticket booking + "suggest an event" |
+| `/support` | Report a concern, send a compliment, easy-read policies, feedback |
+| `/news` | Community news |
+| `/admin` | Admin dashboard — stats, request inbox, safeguarding, content library (sign-in required) |
 
-To learn more about Next.js, take a look at the following resources:
+## Project layout
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `src/app` — routes · `src/components/chrome` — nav/layout · `src/components/screens`
+  and `src/components/admin` — screen UIs
+- `src/lib` — `types`, `seed`, `data`, `actions`, `supabase/*`, `env`
+- `design-source/community-hub` — the original Stitch design (reference)
+- `supabase/schema.sql` — database schema + row-level security
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Checks
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npx tsc --noEmit && npm run lint && npm run build
+```

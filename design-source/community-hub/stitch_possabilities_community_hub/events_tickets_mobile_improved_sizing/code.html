@@ -1,0 +1,265 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Community Portal - Events &amp; Tickets</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&amp;family=Atkinson+Hyperlegible+Next:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+        .easy-read-line-height {
+            line-height: 1.8;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e9e0e1",
+                        "text-rich-black": "#231f20",
+                        "on-secondary-fixed": "#3e0021",
+                        "surface-dim": "#e1d8d9",
+                        "on-primary-fixed-variant": "#6a2c7a",
+                        "background": "#fff8f8",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#002020",
+                        "on-tertiary-container": "#319f9f",
+                        "secondary-fixed-dim": "#ffb0cc",
+                        "on-primary-fixed": "#340043",
+                        "brand-pink": "#ec008c",
+                        "on-background": "#1e1b1c",
+                        "inverse-on-surface": "#f8efef",
+                        "tertiary-fixed-dim": "#71d6d6",
+                        "surface-bright": "#fff8f8",
+                        "outline": "#80737f",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fff8f8",
+                        "surface-container-low": "#fbf1f2",
+                        "tertiary-fixed": "#8ef3f3",
+                        "brand-purple": "#48065a",
+                        "on-surface": "#1e1b1c",
+                        "primary-fixed": "#fcd7ff",
+                        "tertiary": "#001819",
+                        "surface-tint": "#844594",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#002f2f",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#fffbff",
+                        "status-muted-pink": "#bc437d",
+                        "on-tertiary-fixed-variant": "#004f50",
+                        "surface-container": "#f5eced",
+                        "surface-white": "#ffffff",
+                        "surface-container-high": "#efe6e7",
+                        "primary-fixed-dim": "#f2afff",
+                        "on-primary-container": "#bb77ca",
+                        "primary-container": "#48065a",
+                        "secondary-fixed": "#ffd9e4",
+                        "outline-variant": "#d1c2cf",
+                        "inverse-primary": "#f2afff",
+                        "on-secondary-fixed-variant": "#8d0051",
+                        "brand-teal": "#66cccc",
+                        "inverse-surface": "#342f30",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#e00085",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#4e434e",
+                        "secondary": "#b30069",
+                        "surface-variant": "#e9e0e1",
+                        "primary": "#290036"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "2rem",
+                        "stack-lg": "4rem",
+                        "gutter": "1.5rem",
+                        "stack-sm": "1rem",
+                        "touch-target-min": "3rem",
+                        "margin-side": "2.5rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "statement-text": ["Atkinson Hyperlegible Next"],
+                        "caption": ["Atkinson Hyperlegible Next"],
+                        "body-md": ["Atkinson Hyperlegible Next"],
+                        "body-lg": ["Atkinson Hyperlegible Next"],
+                        "label-bold": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "900"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                        "statement-text": ["24px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                        "caption": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "body-md": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-bold": ["16px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md antialiased min-h-screen pb-32">
+<!-- Top AppBar -->
+<header class="bg-surface-white dark:bg-surface-dim border-b-2 border-outline-variant fixed top-0 w-full z-50 flex justify-between items-center px-margin-side h-touch-target-min">
+<h1 class="font-black text-brand-purple dark:text-primary-fixed truncate text-xl" style="opacity: 0;">Community Portal</h1>
+<div class="flex items-center gap-4">
+<button aria-label="Help" class="material-symbols-outlined text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full">help</button>
+<button aria-label="Notifications" class="material-symbols-outlined text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full">notifications</button>
+</div>
+</header>
+<!-- Content Canvas -->
+<main class="pt-20 px-6 max-w-md mx-auto">
+<!-- Header Section -->
+<section class="mt-stack-md mb-stack-md">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-brand-purple mb-2">Events &amp; Tickets</h2>
+<p class="font-statement-text text-statement-text text-on-surface-variant easy-read-line-height">Find fun things to do and join your community!</p>
+</section>
+<!-- Event List -->
+<div class="flex flex-col gap-stack-sm mb-stack-lg gap-stack-md">
+<!-- Event Card: Spring Art Workshop -->
+<article class="bg-surface-white border-2 border-brand-purple rounded-xl overflow-hidden shadow-none active:scale-95 transition-transform">
+<div class="h-48 w-full bg-surface-container-highest relative">
+<img alt="Spring Art Workshop" class="w-full h-full object-cover" data-alt="A bright and happy art workshop setting for adults with learning disabilities. Large wooden tables are covered in vibrant paints, brushes, and colorful canvases. The lighting is warm and natural, pouring in from large windows. The overall atmosphere is inclusive, cheerful, and creative, featuring a palette of brand purple and teal accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe6HqClsLXFOKu0IRTmycQzLPQx6PzEDOStjsnmMq8UpEoFwaUucwsMkcHWm2Al6uH72-erwsmogUdJW6_Q0eLMgk8OoxBjg6731q2RG0f9nJ4xLiyn9ke2_TG6NbFExKQ7VtXAwreynkRdDRKfpFV8PnpOqPVP807rRJnk-lzzPuPoPgZHrtrsM73qVDoiW9FRL6lCMphiofAiosbtUOyDJVeiYoicj2UPxBIifZY5ohNLoF-yo6z3J_A3EGkLHqkynEaUiKv35vq">
+<div class="absolute top-4 right-4 bg-brand-teal text-on-tertiary-fixed font-label-bold text-label-bold px-3 py-1 rounded-full border-2 border-on-tertiary-fixed text-statement-text">
+                        £5.00
+                    </div>
+</div>
+<div class="p-6">
+<h3 class="font-headline-md text-headline-md text-brand-purple mb-2 text-4xl">Spring Art Workshop</h3>
+<div class="flex items-center gap-2 mb-4 text-on-surface-variant">
+<span class="material-symbols-outlined text-brand-pink">calendar_today</span>
+<span class="font-label-bold text-label-bold">Tuesday, April 12th</span>
+</div>
+<p class="easy-read-line-height mb-6 text-body-lg">Come and learn how to paint beautiful flowers with our friendly local artists. No experience needed!</p>
+<button class="w-full bg-brand-purple text-on-primary font-label-bold text-label-bold h-touch-target-min rounded-lg flex items-center justify-center gap-2 active:scale-95 transition-all text-body-lg">
+<span class="material-symbols-outlined">confirmation_number</span>
+                        Book Ticket
+                    </button>
+</div>
+</article>
+<!-- Event Card: Music Night -->
+<article class="bg-surface-white border-2 border-brand-purple rounded-xl overflow-hidden shadow-none active:scale-95 transition-transform">
+<div class="h-48 w-full bg-surface-container-highest relative">
+<img alt="Music Night" class="w-full h-full object-cover" data-alt="An energetic and safe indoor music venue stage with soft stage lights in shades of pink and purple. A clear, large space in front of the stage is designed for easy movement and dancing. The mood is joyful, celebratory, and safe for all community members, emphasizing a person-centered and happy environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP2MwlTqmv6nhUxZ3J5GWJ67X1aS827act_43c5osBsdg5O0GDojeCyRUDpVEBJxr3RK7u5TXhDMNWEhJit2sdKpP2krHRv-WNz5WTAgrodEfKrVLUI5HxpT_Vsyr5sxMkex8pPgWfMHHtTxQa-HUPCjcDwHOgPoXQVHDGGyttZMMeb5me7-Th97iMa7Me6cVZ8YCQ2DvYUblrvr2tvGSd2HsCuWGQ0V_gLz72t1XoNJtfw1qStrV9Z-pHBioK90bv3dnwYcTKpQJt">
+<div class="absolute top-4 right-4 bg-brand-pink text-on-primary font-label-bold text-label-bold px-3 py-1 rounded-full border-2 border-on-primary text-statement-text">
+                        FREE
+                    </div>
+</div>
+<div class="p-6">
+<h3 class="font-headline-md text-headline-md text-brand-purple mb-2 text-4xl">Music Night</h3>
+<div class="flex items-center gap-2 mb-4 text-on-surface-variant">
+<span class="material-symbols-outlined text-brand-pink">schedule</span>
+<span class="font-label-bold text-label-bold">Friday, April 15th • 6PM</span>
+</div>
+<p class="easy-read-line-height mb-6 text-body-lg">Dance and sing along to your favorite songs! A fun evening with snacks and great company.</p>
+<button class="w-full border-4 border-brand-teal text-on-surface font-label-bold text-label-bold h-touch-target-min rounded-lg flex items-center justify-center gap-2 active:scale-95 transition-all text-body-lg">
+<span class="material-symbols-outlined">how_to_reg</span>
+                        Save My Spot
+                    </button>
+</div>
+</article>
+<!-- Event Card: Park Walk -->
+<article class="bg-surface-white border-2 border-brand-purple rounded-xl overflow-hidden shadow-none active:scale-95 transition-transform">
+<div class="h-48 w-full bg-surface-container-highest relative">
+<img alt="Park Walk" class="w-full h-full object-cover" data-alt="A serene and accessible wide gravel path through a lush green park during a sunny morning. The path is flat and clear, perfect for walking. Soft sunlight filters through large oak trees. The scene is calm, safe, and inviting, with high-contrast colors and a focus on nature and physical well-being." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUea4haztIgnW3yDdLmYXSpoTp3mo34841BFzZq9ja2z1KOjuvK3OrQ7gidgyId9hkXx-eIfiRQ58njS64vo5jxhXymG7JI27rt150tEds4azq5HmN6Ko-FxbBivKIDuDo-MRe7tXO29ZsBXHot_nrTu9osh3Ot5tFQ8df2EjYe-iRnyiO_3sMngx7j1PCBUQd3787SxKCSIDY1KLcixgQdpUDSZ1h-XtDCE1phPid9J9umKO35L_c8NTgZdP9TOvnsBsWLaPin3x-">
+<div class="absolute top-4 right-4 bg-brand-pink text-on-primary font-label-bold text-label-bold px-3 py-1 rounded-full border-2 border-on-primary text-statement-text">
+                        FREE
+                    </div>
+</div>
+<div class="p-6">
+<h3 class="font-headline-md text-headline-md text-brand-purple mb-2 text-4xl">Park Walk</h3>
+<div class="flex items-center gap-2 mb-4 text-on-surface-variant">
+<span class="material-symbols-outlined text-brand-pink">location_on</span>
+<span class="font-label-bold text-label-bold">Sunday, April 17th • 10AM</span>
+</div>
+<p class="easy-read-line-height mb-6 text-body-lg">A gentle walk through the central park to enjoy the fresh air and see the spring flowers.</p>
+<button class="w-full border-4 border-brand-teal text-on-surface font-label-bold text-label-bold h-touch-target-min rounded-lg flex items-center justify-center gap-2 active:scale-95 transition-all text-body-lg">
+<span class="material-symbols-outlined">group</span>
+                        Join Us
+                    </button>
+</div>
+</article>
+</div>
+<!-- Form Section -->
+<section class="bg-surface-container-low p-6 rounded-xl border-2 border-outline-variant mb-stack-lg" id="add-event">
+<h2 class="font-headline-md text-headline-md text-brand-purple mb-4">Tell us about an event</h2>
+<p class="easy-read-line-height mb-8 text-on-surface-variant">Do you have an idea for a fun activity? Fill out this simple form to let us know!</p>
+<form class="flex flex-col gap-6">
+<div>
+<label class="block font-label-bold text-label-bold text-rich-black mb-2 text-body-lg" for="event-name">Event Name</label>
+<input class="w-full h-touch-target-min border-2 border-rich-black rounded-lg px-4 focus:ring-4 focus:ring-brand-teal focus:border-brand-teal transition-all text-body-lg" id="event-name" placeholder="What is it called?" type="text">
+</div>
+<div>
+<label class="block font-label-bold text-label-bold text-rich-black mb-2 text-body-lg" for="event-date">When is it?</label>
+<input class="w-full h-touch-target-min border-2 border-rich-black rounded-lg px-4 focus:ring-4 focus:ring-brand-teal focus:border-brand-teal transition-all text-body-lg" id="event-date" type="date">
+</div>
+<div>
+<label class="block font-label-bold text-label-bold text-rich-black mb-2 text-body-lg" for="event-desc">About the Event</label>
+<textarea class="w-full border-2 border-rich-black rounded-lg px-4 py-3 focus:ring-4 focus:ring-brand-teal focus:border-brand-teal transition-all text-body-lg" id="event-desc" placeholder="Tell us what will happen..." rows="4"></textarea>
+</div>
+<button class="w-full bg-brand-pink text-on-primary font-label-bold text-label-bold h-touch-target-min rounded-lg shadow-none active:scale-95 transition-transform" type="submit">
+                    Send Idea
+                </button>
+</form>
+</section>
+<!-- Footer -->
+<footer class="w-full py-stack-md flex flex-col items-center text-center gap-stack-sm border-t-8 border-brand-pink bg-primary text-on-primary">
+<div class="font-headline-md text-headline-md font-black text-on-primary">Community Portal</div>
+<div class="flex flex-wrap justify-center gap-4 px-4">
+<a class="font-label-bold text-label-bold text-on-primary opacity-90 hover:text-brand-pink transition-colors" href="#">Contact Us</a>
+<a class="font-label-bold text-label-bold text-on-primary opacity-90 hover:text-brand-pink transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-bold text-label-bold text-on-primary opacity-90 hover:text-brand-pink transition-colors" href="#">Complaints</a>
+</div>
+<p class="font-body-md text-body-md px-6 mt-4">© 2024 Community Portal. Live The Life You Choose.</p>
+</footer>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-24 px-4 pb-4 md:hidden bg-surface-white dark:bg-surface-dim border-t-4 border-brand-purple z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-fixed-dim active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-bold text-label-bold">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">event</span>
+<span class="font-label-bold text-label-bold">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-fixed-dim active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">news</span>
+<span class="font-label-bold text-label-bold">News</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-fixed-dim active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-label-bold text-label-bold">Support</span>
+</a>
+</nav>
+<!-- Floating Action Button for Events Context -->
+<button class="fixed bottom-28 right-6 w-16 h-16 bg-brand-teal text-on-tertiary-fixed rounded-full shadow-lg flex items-center justify-center border-4 border-brand-purple active:scale-90 transition-transform z-40" onclick="document.getElementById('add-event').scrollIntoView({behavior: 'smooth'})">
+<span class="material-symbols-outlined text-4xl">add</span>
+</button>
+
+
+
+
+
+
+</body></html>

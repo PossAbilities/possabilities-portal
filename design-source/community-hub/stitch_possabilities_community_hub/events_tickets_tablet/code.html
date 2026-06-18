@@ -1,0 +1,356 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Events &amp; Tickets - Community Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Atkinson+Hyperlegible+Next:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e9e0e1",
+                        "text-rich-black": "#231f20",
+                        "on-secondary-fixed": "#3e0021",
+                        "surface-dim": "#e1d8d9",
+                        "on-primary-fixed-variant": "#6a2c7a",
+                        "background": "#fff8f8",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#002020",
+                        "on-tertiary-container": "#319f9f",
+                        "secondary-fixed-dim": "#ffb0cc",
+                        "on-primary-fixed": "#340043",
+                        "brand-pink": "#ec008c",
+                        "on-background": "#1e1b1c",
+                        "inverse-on-surface": "#f8efef",
+                        "tertiary-fixed-dim": "#71d6d6",
+                        "surface-bright": "#fff8f8",
+                        "outline": "#80737f",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fff8f8",
+                        "surface-container-low": "#fbf1f2",
+                        "tertiary-fixed": "#8ef3f3",
+                        "brand-purple": "#48065a",
+                        "on-surface": "#1e1b1c",
+                        "primary-fixed": "#fcd7ff",
+                        "tertiary": "#001819",
+                        "surface-tint": "#844594",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#002f2f",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#fffbff",
+                        "status-muted-pink": "#bc437d",
+                        "on-tertiary-fixed-variant": "#004f50",
+                        "surface-container": "#f5eced",
+                        "surface-white": "#ffffff",
+                        "surface-container-high": "#efe6e7",
+                        "primary-fixed-dim": "#f2afff",
+                        "on-primary-container": "#bb77ca",
+                        "primary-container": "#48065a",
+                        "secondary-fixed": "#ffd9e4",
+                        "outline-variant": "#d1c2cf",
+                        "inverse-primary": "#f2afff",
+                        "on-secondary-fixed-variant": "#8d0051",
+                        "brand-teal": "#66cccc",
+                        "inverse-surface": "#342f30",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#e00085",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#4e434e",
+                        "secondary": "#b30069",
+                        "surface-variant": "#e9e0e1",
+                        "primary": "#290036"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "2rem",
+                        "stack-lg": "4rem",
+                        "gutter": "1.5rem",
+                        "stack-sm": "1rem",
+                        "touch-target-min": "3rem",
+                        "margin-side": "2.5rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "statement-text": ["Atkinson Hyperlegible Next"],
+                        "caption": ["Atkinson Hyperlegible Next"],
+                        "body-md": ["Atkinson Hyperlegible Next"],
+                        "body-lg": ["Atkinson Hyperlegible Next"],
+                        "label-bold": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "900"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                        "statement-text": ["24px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                        "caption": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "body-md": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-bold": ["16px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #fff8f8;
+            color: #1e1b1c;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+            vertical-align: middle;
+        }
+        .easy-read-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(72, 6, 90, 0.1);
+        }
+        .active-nav-border {
+            border-left: 6px solid #66cccc;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- Shell Layout Container -->
+<div class="flex min-h-screen">
+<!-- SideNavBar (Tablet/Desktop View) -->
+<aside class="hidden md:flex flex-col fixed left-0 top-0 h-full border-r-2 border-outline-variant bg-surface-container-low w-64 z-40">
+<div class="p-6">
+<span class="font-headline-md text-headline-md font-black text-brand-purple">Community Portal</span>
+<div class="mt-8 flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-brand-teal flex items-center justify-center text-on-tertiary-fixed font-bold border-2 border-brand-purple overflow-hidden">
+<img alt="Admin User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADKJKxJfk-fXC4spDb2pa51byOseyEGaT8HMwWFXNTOUPpdj9ISVJ2kEIAKlp-u5KuTw3L2MTguH1CPCtQ2Lr_wtbQIxPYepITJ-U1V2AYzpBoNsY_gEoY651-BspJS9zf1_cN4XSTexiqiZyMWi9KGvSgVp-m1biWdcYfVfIvUBMf8MrzNmc1b9voTCr9vQlzoQYncXGYZq--i82LLHXJW0exKPXzAKThc7XquwFTvNToJecfChUG_D0Sq8xgd4XSnxoloMPWP8jl">
+</div>
+<div>
+<p class="font-label-bold text-label-bold text-brand-purple leading-tight">Admin Panel</p>
+<p class="font-caption text-caption text-on-surface-variant">Manage Portal</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 mt-4">
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg m-2 px-4 py-3 font-label-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span> Dashboard
+                </a>
+<a class="flex items-center bg-brand-teal text-on-tertiary-fixed font-bold rounded-lg m-2 px-4 py-3 transition-all duration-200 shadow-sm" href="#">
+<span class="material-symbols-outlined mr-3" style="font-variation-settings: 'FILL' 1;">event</span> Events
+                </a>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg m-2 px-4 py-3 font-label-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">news</span> News
+                </a>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high rounded-lg m-2 px-4 py-3 font-label-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">settings</span> Settings
+                </a>
+</nav>
+<div class="p-4 border-t-2 border-outline-variant">
+<button class="w-full bg-brand-purple text-on-primary font-label-bold py-4 rounded-xl flex items-center justify-center gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">add_circle</span> New Post
+                </button>
+<button class="w-full mt-4 flex items-center justify-center text-on-surface-variant font-label-bold py-3 opacity-90 hover:opacity-100">
+<span class="material-symbols-outlined mr-2">logout</span> Log Out
+                </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 bg-background min-h-screen">
+<!-- Top Header -->
+<header class="sticky top-0 z-30 bg-surface-white border-b-2 border-outline-variant px-margin-side h-touch-target-min flex justify-between items-center w-full">
+<h1 class="font-headline-md font-black text-brand-purple text-label-bold">Events &amp; Tickets</h1>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-brand-purple">search</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors relative">
+<span class="material-symbols-outlined text-brand-purple">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-brand-pink rounded-full"></span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-brand-purple">help</span>
+</button>
+</div>
+</header>
+<!-- Content Area -->
+<div class="px-margin-side py-stack-md max-w-[1024px] mx-auto">
+<!-- Hero Highlight / Featured Event -->
+<section class="mb-stack-lg relative rounded-xl overflow-hidden border-2 border-brand-purple min-h-[320px] flex items-end">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="A joyful and inclusive outdoor community festival scene during the golden hour. Diverse groups of people are laughing and dancing in a grassy park setting under strings of warm fairy lights. The lighting is vibrant and high-contrast, featuring deep brand-purple shadows and bright brand-teal highlights, reflecting a passionate and person-centered atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvwjK-2ttfcdc0BBCHHHKplCDtTBqPErlPsW1OwRVx7A4QA7PdyLwbh0IGjksR5iCfZZpcy87nBaDscA-HD24wpBTk1vWW1oWPA_Tb3d1v6W4yjdunx7vK4_C764BT_ZmS-HNX2ymsvw9LXHkRlb2JRuqwr_R-J9Mj1KFuumJzrJGK0Yq1YQPXKuflhSZFsmJaW5RSevO0H-8FfxIsA_T730ItG1GA1il4PYkM5VjcxBUfBjLo5wAr1L2_iTh0mPl5vVk6d4CS9W5G">
+<div class="absolute inset-0 bg-gradient-to-t from-brand-purple via-transparent to-transparent opacity-80"></div>
+</div>
+<div class="relative z-10 p-8 text-on-primary">
+<span class="bg-brand-teal text-on-tertiary-fixed px-4 py-1 rounded-full font-label-bold text-caption uppercase tracking-wider mb-4 inline-block">Featured Today</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile mb-2">Summer Garden Party 2024</h2>
+<p class="font-body-lg text-body-lg max-w-2xl mb-6 opacity-90">Join us for a day of music, games, and great food in the Heartlands Park. Everyone is welcome!</p>
+<button class="bg-brand-pink text-white font-label-bold py-4 px-8 rounded-xl active:scale-95 transition-all flex items-center gap-2 h-touch-target-min">
+<span class="material-symbols-outlined">confirmation_number</span> Get Free Tickets
+                        </button>
+</div>
+</section>
+<!-- 2-Column Event Grid -->
+<div class="mb-stack-lg">
+<div class="flex justify-between items-end mb-stack-sm">
+<h3 class="font-headline-md text-headline-md text-brand-purple">Upcoming Events</h3>
+<button class="text-brand-pink font-label-bold hover:underline">See All Calendar</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Event Card 1 -->
+<div class="bg-surface-white border-2 border-outline-variant rounded-xl overflow-hidden hover:border-brand-teal transition-all group active:scale-98 cursor-pointer flex flex-col h-full">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform group-hover:scale-105" data-alt="Close-up of a diverse group of happy young adults participating in a creative workshop. They are sitting around a table with bright art supplies, working on a collaborative project. The scene is lit with bright, natural indoor light, creating a clean, high-contrast look with pops of brand-teal and brand-pink accents throughout the creative studio space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRnvCFh6JFNmP-bJSVbXiShZD5xVdZdkIO0rKbU9ASyvD_tvAP1Nid0W6EVq__9qGmljPsDJ9WtghgNgxM-AFeA6GzKWxyOu0W7qJnop4V-SV1yINxGIvo66kX_3NSXVOPnvBkoWIjGvcyPisDqhZvr7iVOo_F_xkK5UEL_iqRiMNS6ue9-6c2YJoTgUb2sixDaEIxnVmNC7dcstUlv2oyIcMJjAavmyjpJV8s6YW70-LRG0pfxMQIpTFxXP244Yx2cpu3Pz3wnrJ3">
+<div class="absolute top-4 left-4 bg-surface-white rounded-lg p-2 text-center border border-outline-variant min-w-[60px]">
+<p class="font-label-bold text-brand-pink leading-none">JUL</p>
+<p class="text-headline-md font-black text-brand-purple leading-none mt-1">15</p>
+</div>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<h4 class="font-headline-md text-brand-purple mb-2">Creative Arts Workshop</h4>
+<div class="space-y-2 mb-6 opacity-80">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-brand-teal" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<p class="font-body-md">Community Hub Hall</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-brand-teal" style="font-variation-settings: 'FILL' 1;">schedule</span>
+<p class="font-body-md">2:00 PM - 4:00 PM</p>
+</div>
+</div>
+<div class="mt-auto flex gap-3">
+<button class="flex-1 bg-brand-purple text-on-primary font-label-bold py-3 rounded-lg active:scale-95 transition-all">Register</button>
+<button class="p-3 border-2 border-outline-variant rounded-lg text-brand-purple hover:bg-surface-container-high">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Event Card 2 -->
+<div class="bg-surface-white border-2 border-outline-variant rounded-xl overflow-hidden hover:border-brand-teal transition-all group active:scale-98 cursor-pointer flex flex-col h-full">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform group-hover:scale-105" data-alt="A bright and airy outdoor fitness session on a lush green field. An instructor is leading a group through gentle stretching exercises. The lighting is crisp and cheerful, emphasizing a healthy, person-centered lifestyle. The global palette uses a sophisticated blend of brand-purple shadows and bright white highlight areas for maximum clarity and high-contrast accessibility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuRDsrVp5EGgX9khD2YTfm-sDhH-UcSoo1x1kw70UwBv3JmZnPnjpZW0ylKjqbPk45sMQAD455LtNfyH6euCoaneAlCBORIqmgFZrewsRip76MwswIq2AkUoQCBs5epRVoWoFLaGc7hw2rWkQZPhJXm-3Kc5epS8SY9uF3Ivkvw75TPAJkATy0Sz6TB5YSV7rGEg-nNKx-1EJvpJnHz2aMCNeAYwAEXLmMjVz_VUJXZ291CIo-Pzeiww2q6OZ2M4lu-wGSJL9mqIyF">
+<div class="absolute top-4 left-4 bg-surface-white rounded-lg p-2 text-center border border-outline-variant min-w-[60px]">
+<p class="font-label-bold text-brand-pink leading-none">JUL</p>
+<p class="text-headline-md font-black text-brand-purple leading-none mt-1">18</p>
+</div>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<h4 class="font-headline-md text-brand-purple mb-2">Morning Fitness &amp; Fun</h4>
+<div class="space-y-2 mb-6 opacity-80">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-brand-teal" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<p class="font-body-md">Riverside Park Gate 2</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-brand-teal" style="font-variation-settings: 'FILL' 1;">schedule</span>
+<p class="font-body-md">10:00 AM - 11:30 AM</p>
+</div>
+</div>
+<div class="mt-auto flex gap-3">
+<button class="flex-1 bg-brand-purple text-on-primary font-label-bold py-3 rounded-lg active:scale-95 transition-all">Register</button>
+<button class="p-3 border-2 border-outline-variant rounded-lg text-brand-purple hover:bg-surface-container-high">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Form Section: Tell us about an event -->
+<section class="bg-surface-container-low border-2 border-brand-purple rounded-3xl p-stack-md">
+<div class="max-w-2xl mx-auto">
+<div class="text-center mb-10">
+<div class="inline-flex items-center justify-center w-16 h-16 bg-brand-teal text-on-tertiary-fixed rounded-full mb-4">
+<span class="material-symbols-outlined text-[32px]">campaign</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-brand-purple">Tell us about an event</h3>
+<p class="font-body-lg text-body-lg mt-2 text-on-surface-variant">Do you have an idea for a fun activity or workshop? We want to hear from you!</p>
+</div>
+<form class="space-y-8" onsubmit="event.preventDefault();">
+<div class="space-y-2">
+<label class="font-label-bold text-label-bold text-brand-purple block" for="event-title">What is the event called?</label>
+<input class="w-full h-touch-target-min px-4 rounded-xl border-2 border-text-rich-black focus:border-brand-teal focus:ring-4 focus:ring-brand-teal/20 transition-all text-body-md bg-surface-white" id="event-title" placeholder="e.g. Baking Together" type="text">
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-bold text-label-bold text-brand-purple block" for="event-date">When is it?</label>
+<input class="w-full h-touch-target-min px-4 rounded-xl border-2 border-text-rich-black focus:border-brand-teal focus:ring-4 focus:ring-brand-teal/20 transition-all text-body-md bg-surface-white" id="event-date" type="date">
+</div>
+<div class="space-y-2">
+<label class="font-label-bold text-label-bold text-brand-purple block" for="event-type">What type of event is it?</label>
+<select class="w-full h-touch-target-min px-4 rounded-xl border-2 border-text-rich-black focus:border-brand-teal focus:ring-4 focus:ring-brand-teal/20 transition-all text-body-md bg-surface-white" id="event-type">
+<option value="workshop">Workshop</option>
+<option value="party">Party / Social</option>
+<option value="sports">Sports</option>
+<option value="other">Something Else</option>
+</select>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-bold text-label-bold text-brand-purple block" for="event-desc">Tell us more about it</label>
+<textarea class="w-full px-4 py-4 rounded-xl border-2 border-text-rich-black focus:border-brand-teal focus:ring-4 focus:ring-brand-teal/20 transition-all text-body-md bg-surface-white" id="event-desc" placeholder="Describe your idea here..." rows="4"></textarea>
+</div>
+<div class="flex items-center gap-4 p-4 bg-brand-teal/10 rounded-xl border border-brand-teal">
+<span class="material-symbols-outlined text-brand-teal">info</span>
+<p class="font-caption text-on-surface-variant">We'll review your idea and get back to you within 2 days.</p>
+</div>
+<button class="w-full bg-brand-purple text-on-primary font-headline-md py-6 rounded-2xl active:scale-95 transition-all shadow-lg hover:bg-opacity-90 flex items-center justify-center gap-3" type="submit">
+<span class="material-symbols-outlined">send</span> Send My Idea
+                            </button>
+</form>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="w-full py-stack-md px-margin-side flex flex-col items-center text-center gap-stack-sm bg-primary border-t-8 border-brand-pink text-on-primary">
+<span class="font-headline-md text-headline-md font-black text-on-primary">Community Portal</span>
+<p class="font-body-md text-body-md max-w-lg opacity-90">© 2024 Community Portal. Live The Life You Choose.</p>
+<div class="flex flex-wrap justify-center gap-6 mt-4">
+<a class="font-label-bold text-on-primary opacity-90 hover:text-brand-pink transition-colors" href="#">Contact Us</a>
+<a class="font-label-bold text-on-primary opacity-90 hover:text-brand-pink transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-bold text-on-primary opacity-90 hover:text-brand-pink transition-colors" href="#">Complaints</a>
+</div>
+</footer>
+</main>
+</div>
+<!-- Mobile Bottom NavBar (Hidden on tablet/desktop as per requirement) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center h-24 px-4 pb-4 bg-surface-white border-t-4 border-brand-purple z-50">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 font-label-bold" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl p-2 font-label-bold" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">event</span>
+<span class="">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 font-label-bold" href="#">
+<span class="material-symbols-outlined">news</span>
+<span class="">News</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 font-label-bold" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="">Support</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for form focus states
+        document.querySelectorAll('input, select, textarea').forEach(el => {
+            el.addEventListener('focus', () => {
+                el.parentElement.querySelector('label')?.classList.add('text-brand-pink');
+            });
+            el.addEventListener('blur', () => {
+                el.parentElement.querySelector('label')?.classList.remove('text-brand-pink');
+            });
+        });
+    </script>
+
+
+</body></html>

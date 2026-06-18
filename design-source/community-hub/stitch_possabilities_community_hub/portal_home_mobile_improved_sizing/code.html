@@ -1,0 +1,310 @@
+<!DOCTYPE html><html class="light" lang="en" style="" data-lt-installed="true"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Community Portal - Home</title>
+<!-- Tailwind CSS with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts: Montserrat (Headlines) & Atkinson Hyperlegible Next (Body/Accessibility) -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&amp;family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,700;1,400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e9e0e1",
+                        "text-rich-black": "#231f20",
+                        "on-secondary-fixed": "#3e0021",
+                        "surface-dim": "#e1d8d9",
+                        "on-primary-fixed-variant": "#6a2c7a",
+                        "background": "#fff8f8",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#002020",
+                        "on-tertiary-container": "#319f9f",
+                        "secondary-fixed-dim": "#ffb0cc",
+                        "on-primary-fixed": "#340043",
+                        "brand-pink": "#ec008c",
+                        "on-background": "#1e1b1c",
+                        "inverse-on-surface": "#f8efef",
+                        "tertiary-fixed-dim": "#71d6d6",
+                        "surface-bright": "#fff8f8",
+                        "outline": "#80737f",
+                        "on-secondary": "#ffffff",
+                        "surface": "#fff8f8",
+                        "surface-container-low": "#fbf1f2",
+                        "tertiary-fixed": "#8ef3f3",
+                        "brand-purple": "#48065a",
+                        "on-surface": "#1e1b1c",
+                        "primary-fixed": "#fcd7ff",
+                        "tertiary": "#001819",
+                        "surface-tint": "#844594",
+                        "on-error-container": "#93000a",
+                        "tertiary-container": "#002f2f",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#fffbff",
+                        "status-muted-pink": "#bc437d",
+                        "on-tertiary-fixed-variant": "#004f50",
+                        "surface-container": "#f5eced",
+                        "surface-white": "#ffffff",
+                        "surface-container-high": "#efe6e7",
+                        "primary-fixed-dim": "#f2afff",
+                        "on-primary-container": "#bb77ca",
+                        "primary-container": "#48065a",
+                        "secondary-fixed": "#ffd9e4",
+                        "outline-variant": "#d1c2cf",
+                        "inverse-primary": "#f2afff",
+                        "on-secondary-fixed-variant": "#8d0051",
+                        "brand-teal": "#66cccc",
+                        "inverse-surface": "#342f30",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#e00085",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#4e434e",
+                        "secondary": "#b30069",
+                        "surface-variant": "#e9e0e1",
+                        "primary": "#290036"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "2rem",
+                        "stack-lg": "4rem",
+                        "gutter": "1.5rem",
+                        "stack-sm": "1rem",
+                        "touch-target-min": "3rem",
+                        "margin-side": "2.5rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "statement-text": ["Atkinson Hyperlegible Next"],
+                        "caption": ["Atkinson Hyperlegible Next"],
+                        "body-md": ["Atkinson Hyperlegible Next"],
+                        "body-lg": ["Atkinson Hyperlegible Next"],
+                        "label-bold": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "900"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                        "statement-text": ["24px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                        "caption": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "body-md": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-bold": ["16px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+        body {
+            background-color: #fff8f8;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .easy-read-list-item {
+            line-height: 1.8;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-surface-white dark:bg-surface-dim border-b-2 border-outline-variant flex justify-between items-center w-full px-margin-side h-touch-target-min sticky top-0 z-50">
+<div class="font-label-bold font-black text-brand-purple dark:text-primary-fixed tracking-tighter text-xl">
+            Community Portal
+        </div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-high transition-colors active:scale-95 duration-200" data-icon="help">help</button>
+<button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-high transition-colors active:scale-95 duration-200" data-icon="notifications">notifications</button>
+</div>
+</header>
+<main class="pb-32">
+<!-- Hero Section -->
+<section class="relative w-full py-stack-md px-margin-side bg-primary-container text-on-primary">
+<div class="flex flex-col gap-stack-sm relative z-10">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-primary-fixed uppercase tracking-tighter">
+                    Live The Life You Choose
+                </h1>
+<p class="font-statement-text text-statement-text text-on-primary opacity-90 max-w-sm text-body-lg">
+                    Empowering your journey with accessible resources and community support.
+                </p>
+<div class="mt-4">
+<button class="bg-brand-teal text-on-tertiary-fixed font-label-bold text-label-bold px-8 h-touch-target-min rounded-xl border-4 border-transparent active:border-brand-teal transition-all flex items-center gap-2 text-statement-text">
+<span class="">Get Started</span>
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Background Image Decor -->
+<div class="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
+<img alt="Diverse group smiling" class="w-full h-full object-cover" data-alt="A diverse group of happy young adults with and without visible disabilities laughing together in a brightly lit modern community center. The atmosphere is joyful and person-centered, utilizing soft natural light and a vibrant color palette that aligns with the professional yet friendly brand aesthetic. High-contrast details and clean compositions emphasize accessibility and inclusivity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANieVQ4Hkssiu23-k9HwyrEIVnabeoeF6a70P1canUwQvAlHV5TxMeY4xgx6ccbEYNhmGX9x99q4gZE2wYiKCqgD2-SvGFGT7X89WhAWvBl4HxWsoL0oIoSEqyAqVwebZdjgLqDOMxCmG5cCUOfS_wAgu1C-V6wWbIWB5B-dJ8_CgTLfUAk2vM_tJf21fA_JF9ai1nErdev4Pyw9C4JIQx55t31u53d8rQD-C3BnLYxL2S33XbuHQarM9VzAxBTO9jPvRqWr4BDxPH">
+</div>
+</section>
+<!-- Participation Hub -->
+<section class="px-margin-side py-stack-md flex flex-col gap-stack-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-brand-pink text-4xl" data-icon="groups">groups</span>
+<h2 class="font-headline-md text-headline-md text-primary">Participation Hub</h2>
+</div>
+<div class="grid grid-cols-1 gap-stack-sm">
+<!-- Bento Item 1 -->
+<div class="bg-surface-white border-2 border-brand-purple rounded-xl p-6 flex flex-col gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-brand-teal text-5xl" data-icon="forum">forum</span>
+<h3 class="font-label-bold text-label-bold text-brand-purple">Community Forums</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-body-lg">Share your voice and connect with others.</p>
+</div>
+<!-- Bento Item 2 -->
+<div class="bg-surface-container-low border-2 border-outline-variant rounded-xl p-6 flex flex-col gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-brand-pink text-5xl" data-icon="volunteer_activism">volunteer_activism</span>
+<h3 class="font-label-bold text-label-bold text-brand-purple">Volunteer Roles</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-body-lg">Find ways to help out in your local area.</p>
+</div>
+</div>
+</section>
+<!-- Latest Updates -->
+<section class="px-margin-side py-stack-md bg-surface-container-low flex flex-col gap-stack-sm">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md text-primary">Latest News</h2>
+<button class="text-brand-pink font-label-bold text-label-bold underline">See All</button>
+</div>
+<div class="flex flex-col gap-stack-md">
+<!-- Update Card 1 -->
+<article class="bg-surface-white border-2 border-outline-variant rounded-xl overflow-hidden active:bg-surface-container-high transition-colors">
+<img alt="New accessibility tools" class="w-full h-48 object-cover" data-alt="Close-up of hands using a modern tablet device with an accessible, high-contrast interface designed for users with learning disabilities. The setting is a bright, sunlit workspace with clean lines and soft colors like brand purple and teal in the background. The visual style is crisp and corporate modern, emphasizing ease of use and professional digital tools." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0KN9Ihizz6dwGSPrEgEmMOQ_PPZ8JVY39BLOknNmNH2pCo9j0cV8rosm46mU77NVBXotgYd87MrUUlkt97lpIsumDbvdDKq47afwZVMolENMzG3VbTMHJVDzjcEfK0rGaI31gODZb4IL3D_urts96IkLMd4PenCMhafS3gUsr8Mic1cWRmy7tUkLy1b0c3upu4ur8WXegpoMPcafarIqk7ybtI47dhNLYp7yAtxmRrUPkNzNc1mDSk-bC4To1034e_Mi2zjLSBI_a">
+<div class="p-6 py-stack-md">
+<span class="inline-block bg-brand-teal/10 text-brand-teal font-label-bold text-caption px-2 py-1 rounded-full mb-2">Technology</span>
+<h3 class="font-label-bold text-label-bold text-brand-purple mb-2">New Accessibility Tools Launched</h3>
+<p class="font-body-md text-body-md text-on-surface-variant easy-read-list-item text-body-lg">Learn how our new dashboard makes finding events easier than ever.</p>
+</div>
+</article>
+<!-- Update Card 2 -->
+<article class="bg-surface-white border-2 border-outline-variant rounded-xl overflow-hidden active:bg-surface-container-high transition-colors">
+<img alt="Community workshop" class="w-full h-48 object-cover" data-alt="A focused group of people participating in a hands-on creative workshop around a large white table. The room is decorated with vibrant, happy colors and clean geometric shapes. The lighting is even and welcoming, capturing a sense of partnership and inclusion. The style is person-centered and passionate, echoing the core values of community support." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2DvX9SCj-pIW_7_tYXqaFTW1tIvn9Yzbdtc6toOLSnrSmzXPwzbNm9_HxDaklrb0vkVAdzzfM4Mf3Pj4EWzngMfDj07zPBeIqNca6tamr5IAPRk2cqBgbU5Il9lbH0dvIuXN2LAb_0li4g2l8E0ZBFJspJds5ezCCgGRMPPT7syUQia2dtyouEs49-Fur9PNrGqVAdbRyE-6UjcT-Ep0VfY2WRe92AHH3Sw0vtB2BJFT-aeYPOZ-TP8aeCzZa-oL7dTBiVz6Ssm9b">
+<div class="p-6 py-stack-md">
+<span class="inline-block bg-brand-pink/10 text-brand-pink font-label-bold text-caption px-2 py-1 rounded-full mb-2">Events</span>
+<h3 class="font-label-bold text-label-bold text-brand-purple mb-2">Workshop: Living Independently</h3>
+<p class="font-body-md text-body-md text-on-surface-variant easy-read-list-item text-body-lg">Join us next Tuesday for a practical guide to choice and control.</p>
+</div>
+</article>
+</div>
+</section>
+<!-- Multimedia Hub -->
+<section class="px-margin-side py-stack-md flex flex-col gap-stack-sm">
+<h2 class="font-headline-md text-headline-md text-primary">Multimedia Hub</h2>
+<div class="grid grid-cols-1 gap-gutter">
+<!-- Video Item -->
+<div class="relative rounded-xl overflow-hidden aspect-video border-2 border-rich-black">
+<img alt="Video thumbnail" class="w-full h-full object-cover" data-alt="A bright and friendly host presenting an educational video in a modern studio with soft purple and teal lighting. The background features geometric patterns and clear, legible icons. The lighting is bright and cheerful, designed to be visually accessible and engaging for viewers. The overall aesthetic is professional, modern, and very high-contrast for readability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYA6TplSUy4BFkxZlnbk4Bsrr-zA8kdK1ldv7xergigE5rrOgfAMYO_lgSuhF0gSuN7UCSE6fbC-sJbvULOrMGn7NNilTxdn_RvB31tAZDJ0Nswlebrm06Rm7GICjJuI5Mr17EwGG54U9Qcgc6tLmLx2Ygbmv0NM3NG6cZWp2YX8rhN5BdwXQKcWuVtnPSduPCKjiLt2pzBrg92txpJx0CSf9XnyLVVRofMZ-Bck-xi6Wk8yDjJasJ4kYOal0NC8AUFsbUIsoyD_u6">
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<button class="bg-brand-pink text-white w-16 h-16 rounded-full flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+<p class="text-white font-label-bold text-label-bold">Story: "My Journey to Employment"</p>
+</div>
+</div>
+<!-- Easy Read List -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-4 bg-surface-white border-2 border-outline-variant p-4 rounded-xl">
+<span class="material-symbols-outlined text-brand-purple text-3xl" data-icon="description">description</span>
+<div class="flex-1">
+<h4 class="font-label-bold text-label-bold text-brand-purple">Easy-Read Guide.pdf</h4>
+<p class="text-caption font-caption text-on-surface-variant">Size: 2.4 MB</p>
+</div>
+<span class="material-symbols-outlined text-brand-teal" data-icon="download">download</span>
+</div>
+<div class="flex items-center gap-4 bg-surface-white border-2 border-outline-variant p-4 rounded-xl">
+<span class="material-symbols-outlined text-brand-purple text-3xl" data-icon="audio_file">audio_file</span>
+<div class="flex-1">
+<h4 class="font-label-bold text-label-bold text-brand-purple">Portal Podcast #12</h4>
+<p class="text-caption font-caption text-on-surface-variant">Length: 15 mins</p>
+</div>
+<span class="material-symbols-outlined text-brand-teal" data-icon="play_circle">play_circle</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full bg-surface-white dark:bg-surface-dim border-t-4 border-brand-purple flex justify-around items-center h-24 px-4 pb-4 md:hidden z-50">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-bold text-label-bold">Home</span>
+</a>
+<!-- Events -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-fixed-dim active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="event">event</span>
+<span class="font-label-bold text-label-bold">Events</span>
+</a>
+<!-- News -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-fixed-dim active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="news">news</span>
+<span class="font-label-bold text-label-bold">News</span>
+</a>
+<!-- Support -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-fixed-dim active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="support_agent">support_agent</span>
+<span class="font-label-bold text-label-bold">Support</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="w-full py-stack-md px-margin-side flex flex-col items-center text-center gap-stack-sm bg-primary dark:bg-surface-container-lowest border-t-8 border-brand-pink mb-24">
+<div class="font-headline-md text-headline-md font-black text-on-primary">
+            Community Portal
+        </div>
+<div class="flex flex-wrap justify-center gap-4">
+<a class="text-on-primary opacity-90 font-label-bold text-label-bold hover:text-brand-pink transition-colors" href="#">Contact Us</a>
+<a class="text-on-primary opacity-90 font-label-bold text-label-bold hover:text-brand-pink transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-primary opacity-90 font-label-bold text-label-bold hover:text-brand-pink transition-colors" href="#">Complaints</a>
+</div>
+<p class="font-body-md text-body-md text-on-primary opacity-80 mt-4">
+            © 2024 Community Portal. Live The Life You Choose.
+        </p>
+</footer>
+<script>
+        // Simple micro-interaction for active states
+        const navItems = document.querySelectorAll('nav a');
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                navItems.forEach(i => {
+                    i.classList.remove('bg-primary-container', 'text-on-primary-container', 'rounded-xl');
+                    i.classList.add('text-on-surface-variant');
+                    const icon = i.querySelector('.material-symbols-outlined');
+                    if (icon) icon.style.fontVariationSettings = "'FILL' 0";
+                });
+                item.classList.add('bg-primary-container', 'text-on-primary-container', 'rounded-xl');
+                item.classList.remove('text-on-surface-variant');
+                const icon = item.querySelector('.material-symbols-outlined');
+                if (icon) icon.style.fontVariationSettings = "'FILL' 1";
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+</body></html>

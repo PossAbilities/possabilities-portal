@@ -1,0 +1,434 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Community Portal Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&amp;family=Atkinson+Hyperlegible+Next:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e9e0e1",
+                    "text-rich-black": "#231f20",
+                    "on-secondary-fixed": "#3e0021",
+                    "surface-dim": "#e1d8d9",
+                    "on-primary-fixed-variant": "#6a2c7a",
+                    "background": "#fff8f8",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#002020",
+                    "on-tertiary-container": "#319f9f",
+                    "secondary-fixed-dim": "#ffb0cc",
+                    "on-primary-fixed": "#340043",
+                    "brand-pink": "#ec008c",
+                    "on-background": "#1e1b1c",
+                    "inverse-on-surface": "#f8efef",
+                    "tertiary-fixed-dim": "#71d6d6",
+                    "surface-bright": "#fff8f8",
+                    "outline": "#80737f",
+                    "on-secondary": "#ffffff",
+                    "surface": "#fff8f8",
+                    "surface-container-low": "#fbf1f2",
+                    "tertiary-fixed": "#8ef3f3",
+                    "brand-purple": "#48065a",
+                    "on-surface": "#1e1b1c",
+                    "primary-fixed": "#fcd7ff",
+                    "tertiary": "#001819",
+                    "surface-tint": "#844594",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#002f2f",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#fffbff",
+                    "status-muted-pink": "#bc437d",
+                    "on-tertiary-fixed-variant": "#004f50",
+                    "surface-container": "#f5eced",
+                    "surface-white": "#ffffff",
+                    "surface-container-high": "#efe6e7",
+                    "primary-fixed-dim": "#f2afff",
+                    "on-primary-container": "#bb77ca",
+                    "primary-container": "#48065a",
+                    "secondary-fixed": "#ffd9e4",
+                    "outline-variant": "#d1c2cf",
+                    "inverse-primary": "#f2afff",
+                    "on-secondary-fixed-variant": "#8d0051",
+                    "brand-teal": "#66cccc",
+                    "inverse-surface": "#342f30",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#e00085",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#4e434e",
+                    "secondary": "#b30069",
+                    "surface-variant": "#e9e0e1",
+                    "primary": "#290036"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "2rem",
+                    "stack-lg": "4rem",
+                    "gutter": "1.5rem",
+                    "stack-sm": "1rem",
+                    "touch-target-min": "3rem",
+                    "margin-side": "2.5rem"
+            },
+            "fontFamily": {
+                    "headline-md": ["Montserrat"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "headline-lg": ["Montserrat"],
+                    "statement-text": ["Atkinson Hyperlegible Next"],
+                    "caption": ["Atkinson Hyperlegible Next"],
+                    "body-md": ["Atkinson Hyperlegible Next"],
+                    "body-lg": ["Atkinson Hyperlegible Next"],
+                    "label-bold": ["Montserrat"]
+            },
+            "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "900"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                    "statement-text": ["24px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                    "caption": ["14px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "body-md": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-lg": ["20px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-bold": ["16px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+        body {
+            background-color: #fff8f8;
+            color: #1e1b1c;
+            -webkit-font-smoothing: antialiased;
+        }
+        .easy-read-list {
+            line-height: 1.8;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- Top AppBar (Mobile/Tablet visible, Desktop handled by Sidebar) -->
+<header class="bg-surface-white dark:bg-surface-dim border-b-2 border-outline-variant flex justify-between items-center w-full px-margin-side h-touch-target-min fixed top-0 z-50 md:hidden">
+<h1 class="font-label-bold text-label-bold font-black text-brand-purple">Community Portal</h1>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary">help</span>
+<span class="material-symbols-outlined text-primary">notifications</span>
+</div>
+</header>
+<!-- SideNavBar (Authority: SideNavBar JSON) -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 h-full border-r-2 bg-surface-container-low border-outline-variant w-64 z-50">
+<div class="p-6">
+<h2 class="font-headline-md text-headline-md font-black text-brand-purple mb-8">Admin Panel</h2>
+<div class="flex items-center gap-4 mb-10 p-2 bg-surface-white rounded-xl border-2 border-outline-variant">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-purple">
+<img alt="Admin User Avatar" data-alt="A professional portrait of a smiling middle-aged man with short hair, wearing a clean white shirt. The background is a soft, solid pastel blue, emphasizing a friendly and approachable corporate professional aesthetic. The lighting is warm and even, creating a clear and high-contrast image suitable for a person-centered community portal dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfn7049xa7ZlOOgldQoAh5WUmd7Ui5BPJK5zZIDbu-cUE8mLDhW2fQ6X3pTXChmMiSsUxR0DLw9eReMq0UdHOhBy8JarFwGp6SF2uswOVJgNqOwNi9TsH5HfnF39YCo1ocOIauox_CVRJdASl6OgKd_HfncYQsbuZIvRTTfQWOHD8Pw8tY-_AA40TVEDOUpJdPXw36ZyKWS596himBoKOcxPjUiLaS1fzMBQNPo23cIBym4F9511JrBEmvz7dpnQ8jBPvksqFUsHwj">
+</div>
+<div>
+<p class="font-label-bold text-label-bold text-brand-purple">Sarah Jenkins</p>
+<p class="font-body-md text-caption opacity-70">Manage Portal</p>
+</div>
+</div>
+<div class="space-y-2">
+<a class="flex items-center gap-3 bg-brand-teal text-on-tertiary-fixed font-bold rounded-lg px-4 py-3 transition-all duration-200 ease-in-out active:scale-95" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-bold text-label-bold">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high hover:border-4 hover:border-brand-teal rounded-lg px-4 py-3 transition-all duration-200 ease-in-out active:scale-95" href="#">
+<span class="material-symbols-outlined">edit_document</span>
+<span class="font-label-bold text-label-bold">Content</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high hover:border-4 hover:border-brand-teal rounded-lg px-4 py-3 transition-all duration-200 ease-in-out active:scale-95" href="#">
+<span class="material-symbols-outlined">feedback</span>
+<span class="font-label-bold text-label-bold">Requests</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high hover:border-4 hover:border-brand-teal rounded-lg px-4 py-3 transition-all duration-200 ease-in-out active:scale-95" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-bold text-label-bold">Settings</span>
+</a>
+</div>
+<button class="w-full mt-10 bg-brand-purple text-on-primary font-label-bold text-label-bold py-4 rounded-xl border-2 border-brand-purple hover:border-brand-teal transition-colors active:scale-95">
+                New Post
+            </button>
+</div>
+<div class="mt-auto p-6 border-t-2 border-outline-variant">
+<a class="flex items-center gap-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-bold text-label-bold">Log Out</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-24 md:pt-10 px-margin-side pb-stack-lg min-h-screen">
+<!-- Welcome Header -->
+<div class="mb-stack-md">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-brand-purple mb-2">Hello, Sarah!</h2>
+<p class="font-statement-text text-statement-text text-on-surface-variant">Here is what is happening in the community today.</p>
+</div>
+<!-- Dashboard Stats Grid (Authority: 2x2 or 4x1 mandate) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter mb-stack-lg">
+<!-- Stat 1 -->
+<div class="bg-surface-white border-2 border-brand-purple p-6 rounded-xl flex flex-col gap-2">
+<span class="material-symbols-outlined text-brand-pink text-4xl" style="font-variation-settings: 'FILL' 1;">groups</span>
+<p class="font-label-bold text-label-bold text-on-surface-variant">Total Members</p>
+<p class="font-headline-md text-headline-md text-brand-purple">1,284</p>
+<div class="h-1 bg-surface-container-high w-full mt-2">
+<div class="h-full bg-brand-teal w-3/4"></div>
+</div>
+</div>
+<!-- Stat 2 -->
+<div class="bg-surface-white border-2 border-brand-purple p-6 rounded-xl flex flex-col gap-2">
+<span class="material-symbols-outlined text-brand-pink text-4xl" style="font-variation-settings: 'FILL' 1;">event_available</span>
+<p class="font-label-bold text-label-bold text-on-surface-variant">Active Events</p>
+<p class="font-headline-md text-headline-md text-brand-purple">12</p>
+<div class="h-1 bg-surface-container-high w-full mt-2">
+<div class="h-full bg-brand-pink w-1/2"></div>
+</div>
+</div>
+<!-- Stat 3 -->
+<div class="bg-surface-white border-2 border-brand-purple p-6 rounded-xl flex flex-col gap-2">
+<span class="material-symbols-outlined text-brand-pink text-4xl" style="font-variation-settings: 'FILL' 1;">pending_actions</span>
+<p class="font-label-bold text-label-bold text-on-surface-variant">Open Requests</p>
+<p class="font-headline-md text-headline-md text-brand-purple">43</p>
+<div class="h-1 bg-surface-container-high w-full mt-2">
+<div class="h-full bg-brand-teal w-2/3"></div>
+</div>
+</div>
+<!-- Stat 4 -->
+<div class="bg-surface-white border-2 border-brand-purple p-6 rounded-xl flex flex-col gap-2">
+<span class="material-symbols-outlined text-brand-pink text-4xl" style="font-variation-settings: 'FILL' 1;">newspaper</span>
+<p class="font-label-bold text-label-bold text-on-surface-variant">News Articles</p>
+<p class="font-headline-md text-headline-md text-brand-purple">215</p>
+<div class="h-1 bg-surface-container-high w-full mt-2">
+<div class="h-full bg-brand-pink w-full"></div>
+</div>
+</div>
+</section>
+<!-- Bento Grid for Tablet: Request Inbox & Quick Actions -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter mb-stack-lg">
+<!-- Request Inbox (Authority: Scrollable/Simplified Table) -->
+<div class="lg:col-span-2 bg-surface-white border-2 border-outline-variant rounded-xl p-8 overflow-hidden flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-brand-purple">Request Inbox</h3>
+<button class="text-brand-pink font-label-bold text-label-bold flex items-center gap-1">
+                        View All <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto hide-scrollbar">
+<table class="w-full border-collapse">
+<thead>
+<tr class="text-left border-b-2 border-surface-container-highest">
+<th class="pb-4 font-label-bold text-label-bold">User</th>
+<th class="pb-4 font-label-bold text-label-bold">Topic</th>
+<th class="pb-4 font-label-bold text-label-bold">Status</th>
+<th class="pb-4 font-label-bold text-label-bold">Action</th>
+</tr>
+</thead>
+<tbody class="easy-read-list">
+<tr class="border-b border-surface-container">
+<td class="py-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center font-bold text-primary">JD</div>
+<span class="font-body-md">John Doe</span>
+</td>
+<td class="py-6 font-body-md">Housing Support</td>
+<td class="py-6">
+<span class="px-3 py-1 bg-tertiary-fixed-dim text-on-tertiary-fixed rounded-full text-caption font-bold">NEW</span>
+</td>
+<td class="py-6">
+<button class="h-12 w-12 rounded-full border-2 border-brand-teal flex items-center justify-center text-brand-teal active:scale-90 transition-transform">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</td>
+</tr>
+<tr class="border-b border-surface-container">
+<td class="py-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center font-bold text-on-secondary-fixed">MS</div>
+<span class="font-body-md">Mary Smith</span>
+</td>
+<td class="py-6 font-body-md">Event Registration</td>
+<td class="py-6">
+<span class="px-3 py-1 bg-surface-container-highest text-on-surface-variant rounded-full text-caption font-bold">PENDING</span>
+</td>
+<td class="py-6">
+<button class="h-12 w-12 rounded-full border-2 border-brand-teal flex items-center justify-center text-brand-teal active:scale-90 transition-transform">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</td>
+</tr>
+<tr>
+<td class="py-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-fixed-dim flex items-center justify-center font-bold text-primary">RK</div>
+<span class="font-body-md">Robert King</span>
+</td>
+<td class="py-6 font-body-md">Personal Budget</td>
+<td class="py-6">
+<span class="px-3 py-1 bg-tertiary-fixed-dim text-on-tertiary-fixed rounded-full text-caption font-bold">NEW</span>
+</td>
+<td class="py-6">
+<button class="h-12 w-12 rounded-full border-2 border-brand-teal flex items-center justify-center text-brand-teal active:scale-90 transition-transform">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Quick Actions Card -->
+<div class="bg-brand-purple p-8 rounded-xl flex flex-col gap-6 text-on-primary border-4 border-brand-teal">
+<h3 class="font-headline-md text-headline-md">Admin Tools</h3>
+<div class="flex flex-col gap-4">
+<button class="flex items-center gap-4 bg-white/10 hover:bg-white/20 p-4 rounded-lg transition-colors text-left min-h-[56px]">
+<span class="material-symbols-outlined text-brand-teal">person_add</span>
+<span class="font-label-bold text-label-bold">Add New Member</span>
+</button>
+<button class="flex items-center gap-4 bg-white/10 hover:bg-white/20 p-4 rounded-lg transition-colors text-left min-h-[56px]">
+<span class="material-symbols-outlined text-brand-teal">campaign</span>
+<span class="font-label-bold text-label-bold">Broadcast Alert</span>
+</button>
+<button class="flex items-center gap-4 bg-white/10 hover:bg-white/20 p-4 rounded-lg transition-colors text-left min-h-[56px]">
+<span class="material-symbols-outlined text-brand-teal">file_download</span>
+<span class="font-label-bold text-label-bold">Monthly Report</span>
+</button>
+</div>
+<div class="mt-auto">
+<p class="font-caption text-caption opacity-80 mb-2">Need Help?</p>
+<button class="w-full bg-brand-teal text-on-tertiary-fixed py-3 rounded-lg font-label-bold text-label-bold">Contact Support</button>
+</div>
+</div>
+</div>
+<!-- Content Library Grid (Authority: Adapted for tablet) -->
+<section>
+<div class="flex justify-between items-end mb-stack-sm">
+<div>
+<h3 class="font-headline-md text-headline-md text-brand-purple">Content Library</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Drafts and published resources.</p>
+</div>
+<div class="flex gap-2">
+<button class="p-3 bg-surface-container-high rounded-lg hover:bg-brand-teal transition-colors active:scale-95">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<button class="p-3 bg-white border-2 border-outline-variant rounded-lg hover:bg-brand-teal transition-colors active:scale-95">
+<span class="material-symbols-outlined">list</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Content Card 1 -->
+<div class="bg-surface-white border-2 border-outline-variant rounded-xl overflow-hidden hover:border-brand-teal transition-all group">
+<div class="h-48 bg-surface-container-high relative overflow-hidden">
+<img alt="Cooking Workshop Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A vibrant and colorful photograph of a diverse group of adults with varying abilities participating in a cooking workshop. They are smiling and engaged in chopping fresh vegetables like bright red peppers and green zucchini on clean wooden boards. The kitchen is modern and brightly lit with warm, natural sunlight, creating an atmosphere of joy, learning, and inclusion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw8Ok_wiUgEo6eLi8Y4b05Hqtxiv-5xC39c9-JCyHD6MbAKuL7s2mEX-n3fOpqZF2xUVib7opsXlTJwrk_kE51q9eqVA1CjoroiEYhPu9pl51SJ6aXBxTvTeNps-4xCa9daA4dw-LhtPIVk_8ByUGp8afAjikfODx_2QOUa4TRYchWVQJEHqOOk3PYhg5AolzNe2Qcwo_DnL1KJZft1aJ9jmhZGUhyumbMFqQqVkHunSRH8Ga4hgbcMEzl0JZKeKAFZabiJFT4mQng">
+<span class="absolute top-4 right-4 bg-brand-teal text-on-tertiary-fixed px-3 py-1 rounded-full text-caption font-bold">PUBLISHED</span>
+</div>
+<div class="p-6">
+<p class="font-label-bold text-label-bold text-brand-pink mb-2">EVENT</p>
+<h4 class="font-statement-text text-statement-text text-brand-purple mb-4">Healthy Cooking Workshop</h4>
+<div class="flex justify-between items-center">
+<span class="font-caption text-caption text-on-surface-variant">Modified 2h ago</span>
+<button class="text-brand-purple hover:text-brand-pink">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Content Card 2 -->
+<div class="bg-surface-white border-2 border-outline-variant rounded-xl overflow-hidden hover:border-brand-teal transition-all group">
+<div class="h-48 bg-surface-container-high relative overflow-hidden">
+<img alt="Self Advocacy Guide Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An artistic and symbolic image representing self-advocacy, featuring a high-contrast close-up of a megaphone styled in vibrant brand purple and teal colors. The background is a clean, neutral grey studio setting with soft lighting. The image conveys power, voice, and empowerment, consistent with the person-centered mission of a happy and passionate community brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuQG27vNwV5B-jM_P7YcXkyNP3Tu4eYJRXXFIq0H4KhHDadlff2QLu0CSEG1vf93pVdHmJMRNf6_xAJX3XsuKOEYnFPioacAVaLAJ0SG05T3qx7bm2AnRcxsuVXgbu2eJsjMLypRROIJaV98ajucDU0HHRJVmLhxGACvSioTjuz80HSY9hxi12Y6CTYMiRXJAvCdbc6dH43MZve-C-k-olI9FVQgyFMilQc-m8Hof4A3DugG8n7yRkVCkw6_Huuo935ViLr9Fq93gB">
+<span class="absolute top-4 right-4 bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full text-caption font-bold">DRAFT</span>
+</div>
+<div class="p-6">
+<p class="font-label-bold text-label-bold text-brand-pink mb-2">NEWS</p>
+<h4 class="font-statement-text text-statement-text text-brand-purple mb-4">Self-Advocacy: Speak Up!</h4>
+<div class="flex justify-between items-center">
+<span class="font-caption text-caption text-on-surface-variant">Modified 1d ago</span>
+<button class="text-brand-purple hover:text-brand-pink">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Content Card 3 -->
+<div class="bg-surface-white border-2 border-outline-variant rounded-xl overflow-hidden hover:border-brand-teal transition-all group">
+<div class="h-48 bg-surface-container-high relative overflow-hidden">
+<img alt="Community Meeting Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A brightly lit, airy meeting room where a small team of colleagues is sitting in a circle, engaged in a positive discussion. The walls are decorated with colorful inclusive posters. Large windows let in plenty of natural light. The overall mood is professional yet warm and person-centered, showing an inclusive workplace environment with clear visibility and high-contrast color accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClcUISvrkHANNazwexbFmLaaBgEbIKujabPhLmg24VXwfNZop0hywc066ReUKJ94Eay-kk5Vl-1QLRy5Kc0-QuJ-SZgntJhdKLg2eeBMlCAhDqn7w-c4AcBdlMa7jw4jKZ6lNDuKg9MKCfBT67SxS11jCS0OQuGHUJyOmRC-QwN7XJDJeRe01r4i5XJtUDLmtbjGq4bm-IpE0nQWs_aiwbvToL4-mtdBPfTBTzoRhV6XKgcSkWh0grOm7RY1t-D8iHRNr7cLAVgvHR">
+<span class="absolute top-4 right-4 bg-brand-teal text-on-tertiary-fixed px-3 py-1 rounded-full text-caption font-bold">PUBLISHED</span>
+</div>
+<div class="p-6">
+<p class="font-label-bold text-label-bold text-brand-pink mb-2">NEWS</p>
+<h4 class="font-statement-text text-statement-text text-brand-purple mb-4">Spring Community Meeting</h4>
+<div class="flex justify-between items-center">
+<span class="font-caption text-caption text-on-surface-variant">Modified 3d ago</span>
+<button class="text-brand-purple hover:text-brand-pink">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center h-24 px-4 pb-4 md:hidden bg-surface-white border-t-4 border-brand-purple z-50 rounded-t-xl">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-bold text-label-bold">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-fixed-dim active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label-bold text-label-bold">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-fixed-dim active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">news</span>
+<span class="font-label-bold text-label-bold">News</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-primary-fixed-dim active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-label-bold text-label-bold">Support</span>
+</a>
+</nav>
+<!-- Footer (Authority: Footer JSON) -->
+<footer class="md:ml-64 w-auto py-stack-md px-margin-side flex flex-col items-center text-center gap-stack-sm bg-primary border-t-8 border-brand-pink">
+<h3 class="font-headline-md text-headline-md font-black text-on-primary">Community Portal</h3>
+<p class="font-body-md text-body-md text-on-primary opacity-90 max-w-lg">© 2024 Community Portal. Live The Life You Choose.</p>
+<div class="flex flex-wrap justify-center gap-6 mt-2">
+<a class="font-label-bold text-label-bold text-on-primary hover:text-brand-pink transition-colors" href="#">Contact Us</a>
+<a class="font-label-bold text-label-bold text-on-primary hover:text-brand-pink transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-bold text-label-bold text-on-primary hover:text-brand-pink transition-colors" href="#">Complaints</a>
+</div>
+</footer>
+<script>
+        // Micro-interactions for button active states
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.classList.add('scale-95');
+            });
+            el.addEventListener('mouseup', () => {
+                el.classList.remove('scale-95');
+            });
+            el.addEventListener('mouseleave', () => {
+                el.classList.remove('scale-95');
+            });
+        });
+    </script>
+
+
+</body></html>
