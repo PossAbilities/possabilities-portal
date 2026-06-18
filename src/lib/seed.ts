@@ -11,6 +11,7 @@ export function seedNews(): NewsPost[] {
   return [
     {
       id: "news_garden",
+      gradient: "",
       category: "Community",
       title: "New Gardening Project Starts Monday!",
       excerpt:
@@ -21,6 +22,7 @@ export function seedNews(): NewsPost[] {
     },
     {
       id: "news_art",
+      gradient: "",
       category: "Events",
       title: "Weekly Art Workshop Is Back",
       excerpt:
@@ -31,6 +33,7 @@ export function seedNews(): NewsPost[] {
     },
     {
       id: "news_digital",
+      gradient: "",
       category: "Success",
       title: "Digital Skills Training Success",
       excerpt:

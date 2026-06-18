@@ -5,7 +5,8 @@ export interface NewsPost {
   category: string;
   title: string;
   excerpt: string;
-  image: string;
+  image: string; // image URL (empty when a gradient is used instead)
+  gradient: string; // CSS gradient string (empty when an image URL is used)
 }
 
 export interface CommunityEvent {

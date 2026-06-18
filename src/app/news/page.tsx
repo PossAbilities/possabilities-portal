@@ -1,5 +1,6 @@
 import { getNews } from "@/lib/data";
 import { Icon } from "@/components/Icon";
+import { NewsThumb } from "@/components/NewsThumb";
 
 export default async function NewsPage() {
   const news = await getNews();
@@ -18,10 +19,7 @@ export default async function NewsPage() {
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-stack-md">
         {news.map((n) => (
           <article key={n.id} className="bg-surface-white border-2 border-brand-purple rounded-2xl overflow-hidden group flex flex-col">
-            <div className="aspect-video w-full overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt={n.title} src={n.image} />
-            </div>
+            <NewsThumb post={n} />
             <div className="p-stack-sm flex flex-col gap-4 flex-1">
               <span className="text-brand-pink font-label-bold text-label-bold uppercase">{n.category}</span>
               <h2 className="font-headline-md text-headline-md leading-tight">{n.title}</h2>

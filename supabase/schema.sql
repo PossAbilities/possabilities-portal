@@ -1,50 +1,10 @@
 -- PossAbilities Community Hub — Supabase schema
 -- Run in your Supabase project: SQL Editor → New query → Run.
-
--- =====================  NEWS POSTS  =====================
-create table if not exists news_posts (
-  id          text primary key,
-  category    text not null default '',
-  title       text not null default '',
-  excerpt     text not null default '',
-  image       text not null default '',
-  created_at  timestamptz not null default now()
-);
-alter table news_posts enable row level security;
-create policy "news public read"  on news_posts for select using (true);
-create policy "news admin write"  on news_posts for all
-  using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
-
--- =====================  EVENTS  =====================
-create table if not exists events (
-  id           text primary key,
-  title        text not null default '',
-  description  text not null default '',
-  "dateLabel"  text not null default '',
-  "timeLabel"  text not null default '',
-  image        text not null default '',
-  free         boolean not null default false,
-  price        text not null default 'Free',
-  created_at   timestamptz not null default now()
-);
-alter table events enable row level security;
-create policy "events public read" on events for select using (true);
-create policy "events admin write" on events for all
-  using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
-
--- =====================  POLICIES  =====================
-create table if not exists policies (
-  id          text primary key,
-  title       text not null default '',
-  description text not null default '',
-  image       text not null default '',
-  body        text not null default '',
-  created_at  timestamptz not null default now()
-);
-alter table policies enable row level security;
-create policy "policies public read" on policies for select using (true);
-create policy "policies admin write" on policies for all
-  using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+--
+-- NOTE: your project already has `news_posts` and `events` tables with content,
+-- and the app reads them as-is (news_posts.featured_image may be a URL or a
+-- Tailwind gradient class; events use a single ISO `date`). This script only
+-- adds the two MISSING tables the app needs: `requests` and `policies`.
 
 -- =====================  REQUESTS (admin inbox)  =====================
 -- Receives every public submission: suggested events, feedback, concerns
@@ -65,9 +25,20 @@ create policy "requests public insert" on requests for insert with check (true);
 create policy "requests admin read"   on requests for select using (auth.role() = 'authenticated');
 create policy "requests admin update" on requests for update using (auth.role() = 'authenticated');
 
--- =====================  NOTES  =====================
--- 1. Create an admin user under Authentication → Users; sign in at /login.
--- 2. news_posts / events / policies are optional to populate — the app falls
---    back to built-in seed content until these tables have rows.
--- 3. The "requests" table is the live one: public forms write here and the
---    admin dashboard reads/updates it.
+-- =====================  POLICIES (Easy-Read library)  =====================
+-- Optional — until populated, the Support page shows built-in seed policies.
+create table if not exists policies (
+  id          text primary key,
+  title       text not null default '',
+  description text not null default '',
+  image       text not null default '',
+  body        text not null default '',
+  created_at  timestamptz not null default now()
+);
+alter table policies enable row level security;
+create policy "policies public read" on policies for select using (true);
+create policy "policies admin write" on policies for all
+  using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+
+-- =====================  ADMIN SIGN-IN  =====================
+-- Create an admin user under Authentication → Users, then sign in at /login.
