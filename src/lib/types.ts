@@ -28,6 +28,19 @@ export interface Policy {
   body: string;
 }
 
+// Unified item for the Support "Easy-Read" library — covers both the external
+// API easy reads (pdfUrl/workshopUrl) and the Supabase policy fallback (body).
+export interface LibraryItem {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  pdfUrl?: string;
+  workshopUrl?: string;
+  body?: string;
+  updatedAt?: string;
+}
+
 export type RequestKind = "NEWS" | "EVENT" | "FEEDBACK" | "CONCERN" | "COMPLIMENT";
 export type RequestStatus = "Pending" | "Investigating" | "Resolved";
 

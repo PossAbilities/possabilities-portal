@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { createRequest } from "@/lib/actions";
-import type { Policy } from "@/lib/types";
+import type { LibraryItem } from "@/lib/types";
 import { useToast } from "@/components/Toast";
 import { Icon } from "@/components/Icon";
 
@@ -16,12 +16,12 @@ const MOODS = [
 const dialogInput =
   "w-full min-h-[56px] px-4 rounded-xl border-2 border-text-rich-black bg-white outline-none focus:ring-4 focus:ring-brand-teal";
 
-export function SupportScreen({ policies }: { policies: Policy[] }) {
+export function SupportScreen({ library }: { library: LibraryItem[] }) {
   const toast = useToast();
   const [pending, startTransition] = useTransition();
 
   const [dialog, setDialog] = useState<null | "concern" | "compliment">(null);
-  const [readPolicy, setReadPolicy] = useState<Policy | null>(null);
+  const [readPolicy, setReadPolicy] = useState<LibraryItem | null>(null);
   const [dName, setDName] = useState("");
   const [dMsg, setDMsg] = useState("");
 
@@ -127,30 +127,70 @@ export function SupportScreen({ policies }: { policies: Policy[] }) {
           <h2 className="font-headline-md text-headline-md text-brand-purple">Easy-Read Policy Library</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-          {policies.map((p) => (
-            <div key={p.id} className="bg-surface-container-low p-6 rounded-xl border border-outline-variant hover:border-brand-teal transition-all">
+          {library.map((p) => (
+            <div key={p.id} className="bg-surface-container-low p-6 rounded-xl border border-outline-variant hover:border-brand-teal transition-all flex flex-col">
               <div className="w-full aspect-video bg-surface-variant rounded-lg mb-4 overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className="w-full h-full object-cover" alt={p.title} src={p.image} />
+                {p.image ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img className="w-full h-full object-cover" alt={p.title} src={p.image} />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-brand-purple/40">
+                    <Icon name="menu_book" size={48} />
+                  </div>
+                )}
               </div>
               <h3 className="font-label-bold text-label-bold mb-2">{p.title}</h3>
-              <p className="font-body-md text-body-md mb-6 opacity-80">{p.description}</p>
+              <p className="font-body-md text-body-md mb-6 opacity-80 flex-1">{p.description}</p>
               <div className="flex gap-2">
-                <button
-                  onClick={() => setReadPolicy(p)}
-                  className="flex-1 min-h-[48px] bg-white border-2 border-brand-purple text-brand-purple rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 hover:bg-brand-purple hover:text-white transition-colors"
-                >
-                  <Icon name="visibility" />
-                  Read
-                </button>
-                <button
-                  onClick={() => toast.show("Saved to your device")}
-                  className="flex-1 min-h-[48px] bg-brand-purple text-white rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 active:scale-95 transition-transform"
-                >
-                  <Icon name="download" />
-                  Save
-                </button>
+                {p.pdfUrl ? (
+                  <a
+                    href={p.pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 min-h-[48px] bg-white border-2 border-brand-purple text-brand-purple rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 hover:bg-brand-purple hover:text-white transition-colors"
+                  >
+                    <Icon name="visibility" />
+                    Read
+                  </a>
+                ) : (
+                  <button
+                    onClick={() => setReadPolicy(p)}
+                    className="flex-1 min-h-[48px] bg-white border-2 border-brand-purple text-brand-purple rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 hover:bg-brand-purple hover:text-white transition-colors"
+                  >
+                    <Icon name="visibility" />
+                    Read
+                  </button>
+                )}
+                {p.pdfUrl ? (
+                  <a
+                    href={p.pdfUrl}
+                    download
+                    className="flex-1 min-h-[48px] bg-brand-purple text-white rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 active:scale-95 transition-transform"
+                  >
+                    <Icon name="download" />
+                    Save
+                  </a>
+                ) : (
+                  <button
+                    onClick={() => toast.show("Saved to your device")}
+                    className="flex-1 min-h-[48px] bg-brand-purple text-white rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 active:scale-95 transition-transform"
+                  >
+                    <Icon name="download" />
+                    Save
+                  </button>
+                )}
               </div>
+              {p.workshopUrl && (
+                <a
+                  href={p.workshopUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 text-brand-pink font-label-bold text-label-bold flex items-center justify-center gap-2 hover:underline min-h-[44px]"
+                >
+                  <Icon name="school" />
+                  Join the workshop
+                </a>
+              )}
             </div>
           ))}
         </div>

@@ -1,4 +1,5 @@
 import { getContent, getEvents, getNews, getRequests } from "@/lib/data";
+import { getEasyReads, isEasyReadsConfigured } from "@/lib/easyreads";
 import { Icon } from "@/components/Icon";
 import { AdminInbox } from "@/components/admin/AdminInbox";
 import { ContentLibrary } from "@/components/admin/ContentLibrary";
@@ -8,8 +9,14 @@ function pad2(n: number) {
 }
 
 export default async function AdminDashboardPage() {
-  const [news, events, requests] = await Promise.all([getNews(), getEvents(), getRequests()]);
+  const [news, events, requests, easyReads] = await Promise.all([
+    getNews(),
+    getEvents(),
+    getRequests(),
+    getEasyReads(),
+  ]);
   const content = getContent();
+  const easyReadsConfigured = isEasyReadsConfigured();
 
   const pendingCount = requests.filter((r) => r.status !== "Resolved").length;
   const alertCount = requests.filter((r) => r.kind === "CONCERN").length;
@@ -118,6 +125,61 @@ export default async function AdminDashboardPage() {
           </div>
         </div>
       </div>
+
+      {/* Easy Reads (read-only — managed on the external platform) */}
+      <section className="mt-stack-lg">
+        <div className="flex items-end justify-between gap-gutter mb-6">
+          <div>
+            <h3 className="font-headline-md text-headline-md text-brand-purple flex items-center gap-3">
+              <Icon name="menu_book" className="text-brand-teal" />
+              Easy Reads
+            </h3>
+            <p className="font-body-md text-body-md text-on-surface-variant">
+              Easy-read guides synced from your Easy Reads platform.
+            </p>
+          </div>
+          <span className="bg-brand-purple text-on-primary font-headline-md text-[24px] px-5 py-2 rounded-xl">
+            {easyReads.length}
+          </span>
+        </div>
+        <div className="bg-surface-white rounded-xl border-2 border-outline-variant overflow-hidden">
+          {easyReads.length > 0 ? (
+            <ul className="divide-y-2 divide-outline-variant">
+              {easyReads.map((er) => (
+                <li key={er.id} className="flex items-center gap-4 p-4">
+                  <span className="w-10 h-10 rounded-lg bg-brand-teal/15 text-brand-teal flex items-center justify-center flex-shrink-0">
+                    <Icon name="picture_as_pdf" />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-label-bold text-label-bold truncate">{er.title}</p>
+                    <p className="text-caption text-on-surface-variant truncate">{er.description}</p>
+                  </div>
+                  {er.pdfUrl && (
+                    <a
+                      href={er.pdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-surface-container-high p-2 rounded-lg hover:bg-brand-teal hover:text-on-tertiary-fixed transition-all flex flex-shrink-0"
+                      aria-label={`Open ${er.title}`}
+                    >
+                      <Icon name="open_in_new" />
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div className="p-8 text-center">
+              <Icon name="cloud_off" size={40} className="text-outline" />
+              <p className="font-body-md text-body-md text-on-surface-variant mt-2">
+                {easyReadsConfigured
+                  ? "No easy reads returned from the API yet."
+                  : "Easy Reads API not connected — add EASY_READS_API_URL to show guides here."}
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
 
       <ContentLibrary items={content} />
     </div>
