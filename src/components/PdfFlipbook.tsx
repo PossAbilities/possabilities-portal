@@ -45,18 +45,21 @@ export function PdfFlipbook({ src }: { src: string }) {
 
         if (cancelled || !containerRef.current) return;
 
-        const baseW = 520;
-        const baseH = Math.round(baseW * ratio);
+        // Single-page (portrait) flipbook: one clear page at a time, turning
+        // one page per flip. Fixed size + usePortrait avoids the two-page
+        // "spread" (which mispaired the cover and looked broken mid-turn) and
+        // the resize-measurement loop that stalled the stretch layout.
+        const vw = typeof window !== "undefined" ? window.innerWidth : 800;
+        const displayW = Math.max(300, Math.min(560, Math.floor(vw * 0.92)));
+        const displayH = Math.round(displayW * ratio);
         flip = new PageFlip(containerRef.current, {
-          width: baseW,
-          height: baseH,
-          size: "stretch",
-          minWidth: 280,
-          maxWidth: 700,
-          minHeight: 380,
-          maxHeight: 1000,
-          showCover: true,
-          maxShadowOpacity: 0.5,
+          width: displayW,
+          height: displayH,
+          size: "fixed",
+          showCover: false,
+          usePortrait: true,
+          flippingTime: 700,
+          maxShadowOpacity: 0.4,
           mobileScrollSupport: false,
           useMouseEvents: true,
         });
