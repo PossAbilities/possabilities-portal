@@ -1,0 +1,9 @@
+# Build the Next.js app on Netlify. This file overrides the old static-site
+# build command/publish dir that were set in the Netlify UI.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+# Official Next.js runtime — handles SSR, middleware (proxy) and routing.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
