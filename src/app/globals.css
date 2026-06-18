@@ -68,15 +68,17 @@
   --color-error-container: #ffdad6;
   --color-on-error-container: #93000a;
 
-  /* Fonts */
-  --font-headline-lg: var(--font-montserrat), "Montserrat", sans-serif;
-  --font-headline-lg-mobile: var(--font-montserrat), "Montserrat", sans-serif;
-  --font-headline-md: var(--font-montserrat), "Montserrat", sans-serif;
-  --font-label-bold: var(--font-montserrat), "Montserrat", sans-serif;
-  --font-body-lg: var(--font-atkinson), "Atkinson Hyperlegible Next", sans-serif;
-  --font-body-md: var(--font-atkinson), "Atkinson Hyperlegible Next", sans-serif;
-  --font-statement-text: var(--font-atkinson), "Atkinson Hyperlegible Next", sans-serif;
-  --font-caption: var(--font-atkinson), "Atkinson Hyperlegible Next", sans-serif;
+  /* Fonts — Montserrat for headings, Atkinson Hyperlegible Next for body
+     (loaded via <link> in layout). No next/font vars: an undefined var()
+     with no inline fallback invalidates the whole font-family declaration. */
+  --font-headline-lg: "Montserrat", system-ui, sans-serif;
+  --font-headline-lg-mobile: "Montserrat", system-ui, sans-serif;
+  --font-headline-md: "Montserrat", system-ui, sans-serif;
+  --font-label-bold: "Montserrat", system-ui, sans-serif;
+  --font-body-lg: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
+  --font-body-md: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
+  --font-statement-text: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
+  --font-caption: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
 
   /* Type scale (size + line-height + weight + tracking) */
   --text-headline-lg: 48px;
