@@ -5,6 +5,7 @@ import { createRequest } from "@/lib/actions";
 import type { LibraryItem } from "@/lib/types";
 import { useToast } from "@/components/Toast";
 import { Icon } from "@/components/Icon";
+import { EasyReadLibrary } from "@/components/EasyReadLibrary";
 
 const MOODS = [
   { key: "Great", icon: "sentiment_very_satisfied", color: "text-status-muted-pink" },
@@ -21,7 +22,6 @@ export function SupportScreen({ library }: { library: LibraryItem[] }) {
   const [pending, startTransition] = useTransition();
 
   const [dialog, setDialog] = useState<null | "concern" | "compliment">(null);
-  const [readPolicy, setReadPolicy] = useState<LibraryItem | null>(null);
   const [dName, setDName] = useState("");
   const [dMsg, setDMsg] = useState("");
 
@@ -126,74 +126,7 @@ export function SupportScreen({ library }: { library: LibraryItem[] }) {
           <Icon name="menu_book" size={36} className="text-brand-pink" />
           <h2 className="font-headline-md text-headline-md text-brand-purple">Easy-Read Policy Library</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-          {library.map((p) => (
-            <div key={p.id} className="bg-surface-container-low p-6 rounded-xl border border-outline-variant hover:border-brand-teal transition-all flex flex-col">
-              <div className="w-full aspect-video bg-surface-variant rounded-lg mb-4 overflow-hidden">
-                {p.image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img className="w-full h-full object-cover" alt={p.title} src={p.image} />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-brand-purple/40">
-                    <Icon name="menu_book" size={48} />
-                  </div>
-                )}
-              </div>
-              <h3 className="font-label-bold text-label-bold mb-2">{p.title}</h3>
-              <p className="font-body-md text-body-md mb-6 opacity-80 flex-1">{p.description}</p>
-              <div className="flex gap-2">
-                {p.pdfUrl ? (
-                  <a
-                    href={p.pdfUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 min-h-[48px] bg-white border-2 border-brand-purple text-brand-purple rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 hover:bg-brand-purple hover:text-white transition-colors"
-                  >
-                    <Icon name="visibility" />
-                    Read
-                  </a>
-                ) : (
-                  <button
-                    onClick={() => setReadPolicy(p)}
-                    className="flex-1 min-h-[48px] bg-white border-2 border-brand-purple text-brand-purple rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 hover:bg-brand-purple hover:text-white transition-colors"
-                  >
-                    <Icon name="visibility" />
-                    Read
-                  </button>
-                )}
-                {p.pdfUrl ? (
-                  <a
-                    href={p.pdfUrl}
-                    download
-                    className="flex-1 min-h-[48px] bg-brand-purple text-white rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 active:scale-95 transition-transform"
-                  >
-                    <Icon name="download" />
-                    Save
-                  </a>
-                ) : (
-                  <button
-                    onClick={() => toast.show("Saved to your device")}
-                    className="flex-1 min-h-[48px] bg-brand-purple text-white rounded-lg font-label-bold text-label-bold flex items-center justify-center gap-2 active:scale-95 transition-transform"
-                  >
-                    <Icon name="download" />
-                    Save
-                  </button>
-                )}
-              </div>
-              {p.workshopUrl && (
-                <a
-                  href={p.workshopUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-3 text-brand-pink font-label-bold text-label-bold flex items-center justify-center gap-2 hover:underline min-h-[44px]"
-                >
-                  <Icon name="school" />
-                  Join the workshop
-                </a>
-              )}
-            </div>
-          ))}
-        </div>
+        <EasyReadLibrary items={library} />
       </section>
 
       {/* Feedback */}
@@ -291,27 +224,6 @@ export function SupportScreen({ library }: { library: LibraryItem[] }) {
                 {pending ? "Sending…" : "Send"}
               </button>
             </form>
-          </div>
-        </div>
-      )}
-
-      {/* Read policy dialog */}
-      {readPolicy && (
-        <div onClick={() => setReadPolicy(null)} className="fixed inset-0 bg-primary/50 z-[300] flex items-center justify-center p-5">
-          <div onClick={(e) => e.stopPropagation()} className="bg-white rounded-2xl max-w-lg w-full p-8 border-4 border-brand-purple max-h-[90vh] overflow-y-auto">
-            <div className="flex items-start justify-between mb-4">
-              <h3 className="font-headline-md text-headline-md text-brand-purple">{readPolicy.title}</h3>
-              <button onClick={() => setReadPolicy(null)} aria-label="Close" className="p-2 hover:bg-surface-container-high rounded-full">
-                <Icon name="close" size={28} />
-              </button>
-            </div>
-            <p className="font-body-lg text-body-lg leading-[1.8]">{readPolicy.body}</p>
-            <button
-              onClick={() => setReadPolicy(null)}
-              className="mt-6 w-full min-h-[56px] bg-brand-teal text-on-tertiary-fixed rounded-xl font-label-bold text-label-bold active:scale-95 transition-all"
-            >
-              Close
-            </button>
           </div>
         </div>
       )}

@@ -19,7 +19,7 @@ const items: Item[] = [
   { label: "Content", icon: "edit_document", href: "/admin" },
   { label: "Requests", icon: "feedback", href: "/admin" },
   { label: "Settings", icon: "settings", comingSoon: true },
-  { label: "Easy Read", icon: "menu_book", href: "/support" },
+  { label: "Easy Read", icon: "menu_book", href: "/easy-reads" },
   { label: "Watch", icon: "play_circle", href: "/media" },
 ];
 
@@ -50,7 +50,11 @@ export function Sidebar() {
       </div>
       <nav className="flex-1 space-y-2">
         {items.map((it) => {
-          const active = it.href === "/admin" && pathname.startsWith("/admin") && it.label === "Dashboard";
+          const active = it.href
+            ? it.href === "/admin"
+              ? pathname.startsWith("/admin") && it.label === "Dashboard"
+              : pathname.startsWith(it.href)
+            : false;
           const cls = active
             ? "bg-brand-teal text-on-tertiary-fixed font-bold rounded-lg m-2 px-4 py-3 flex items-center gap-3"
             : "text-on-surface-variant hover:bg-surface-container-high rounded-lg m-2 px-4 py-3 flex items-center gap-3 transition-all";

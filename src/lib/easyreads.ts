@@ -1,5 +1,6 @@
 import "server-only";
 import type { LibraryItem } from "./types";
+import { getPolicies } from "./data";
 
 export type { LibraryItem };
 
@@ -62,4 +63,21 @@ export async function getEasyReads(): Promise<LibraryItem[]> {
     console.error("getEasyReads:", e);
     return [];
   }
+}
+
+/**
+ * The library shown on the Support page and the Easy Reads page: API easy reads
+ * when available, otherwise the Supabase policies so it's never empty.
+ */
+export async function getLibrary(): Promise<LibraryItem[]> {
+  const easyReads = await getEasyReads();
+  if (easyReads.length) return easyReads;
+  const policies = await getPolicies();
+  return policies.map((p) => ({
+    id: p.id,
+    title: p.title,
+    description: p.description,
+    image: p.image,
+    body: p.body,
+  }));
 }
