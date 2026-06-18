@@ -33,8 +33,10 @@ export async function getEasyReads(): Promise<LibraryItem[]> {
     const headers: Record<string, string> = { Accept: "application/json" };
     const key = process.env.EASY_READS_API_KEY;
     if (key) {
+      // The platform accepts either; X-API-Key avoids clashing with the
+      // Supabase Edge Function gateway's own Authorization handling.
+      headers["X-API-Key"] = key;
       headers["Authorization"] = `Bearer ${key}`;
-      headers["apikey"] = key; // harmless if unused; covers Supabase-style APIs
     }
 
     const res = await fetch(url, { headers, next: { revalidate: 300 } });
