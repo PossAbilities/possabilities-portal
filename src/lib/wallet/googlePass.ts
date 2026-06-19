@@ -49,11 +49,16 @@ export function buildGoogleSaveUrl(t: GooglePassInput): string {
     hexBackgroundColor: "#48065A",
   };
 
+  // Google's DateTime parser rejects millisecond precision — trim to seconds.
+  const startDate =
+    t.startISO && !isNaN(Date.parse(t.startISO))
+      ? new Date(t.startISO).toISOString().replace(/\.\d{3}Z$/, "Z")
+      : undefined;
+
   const eventTicketObject = {
     id: objectId,
     classId,
     state: "ACTIVE",
-    hexBackgroundColor: "#48065A",
     ticketHolderName: t.attendee,
     ticketNumber: t.reference,
     barcode: {
@@ -62,12 +67,10 @@ export function buildGoogleSaveUrl(t: GooglePassInput): string {
       alternateText: t.reference,
     },
     textModulesData: [
-      { id: "when", header: "When", body: `${t.dateLabel}${t.timeLabel ? ` · ${t.timeLabel}` : ""}` },
+      { id: "when", header: "When", body: `${t.dateLabel}${t.timeLabel ? ` at ${t.timeLabel}` : ""}` },
       { id: "ticket", header: "Ticket", body: t.free ? "Free entry" : t.price },
     ],
-    ...(t.startISO
-      ? { validTimeInterval: { start: { date: t.startISO } } }
-      : {}),
+    ...(startDate ? { validTimeInterval: { start: { date: startDate } } } : {}),
   };
 
   const header = { alg: "RS256", typ: "JWT" };
