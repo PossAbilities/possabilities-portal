@@ -48,3 +48,6 @@ next-env.d.ts
 
 # Claude Code local run configs (machine-specific paths)
 .claude/launch.json
+
+# Wallet signing material (never commit)
+.secrets/

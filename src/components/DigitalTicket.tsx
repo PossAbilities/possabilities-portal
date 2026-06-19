@@ -25,8 +25,42 @@ function toCalStamp(d: Date) {
   );
 }
 
-export function DigitalTicket({ ticket, onClose }: { ticket: TicketData; onClose: () => void }) {
+export function DigitalTicket({
+  ticket,
+  onClose,
+  appleWallet = false,
+}: {
+  ticket: TicketData;
+  onClose: () => void;
+  appleWallet?: boolean;
+}) {
   const [qr, setQr] = useState<string>("");
+  const [walletPending, setWalletPending] = useState(false);
+
+  async function addToAppleWallet() {
+    setWalletPending(true);
+    try {
+      const res = await fetch("/api/wallet/apple", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(ticket),
+      });
+      if (!res.ok) throw new Error("pass failed");
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `possabilities-${ticket.reference}.pkpass`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch {
+      alert("Sorry, the wallet pass could not be created. Please try again.");
+    } finally {
+      setWalletPending(false);
+    }
+  }
 
   useEffect(() => {
     let active = true;
@@ -173,6 +207,20 @@ export function DigitalTicket({ ticket, onClose }: { ticket: TicketData; onClose
           </div>
         )}
 
+        {/* Wallet */}
+        {appleWallet && (
+          <div className="mt-stack-sm flex justify-center print:hidden">
+            <button
+              onClick={addToAppleWallet}
+              disabled={walletPending}
+              className="btn min-h-touch-target-min px-6 bg-black text-white rounded-xl font-label-bold text-label-bold hover:opacity-90 active:scale-95 disabled:opacity-60"
+            >
+              <Icon name="account_balance_wallet" />
+              {walletPending ? "Preparing…" : "Add to Apple Wallet"}
+            </button>
+          </div>
+        )}
+
         {/* Actions */}
         <div className="flex flex-wrap gap-3 justify-center mt-stack-sm print:hidden">
           <button
@@ -189,7 +237,7 @@ export function DigitalTicket({ ticket, onClose }: { ticket: TicketData; onClose
           </button>
         </div>
         <p className="text-caption font-caption text-on-surface-variant text-center mt-3 print:hidden">
-          Add to Apple Wallet &amp; Google Wallet coming soon.
+          {appleWallet ? "Google Wallet coming soon." : "Wallet passes coming soon."}
         </p>
       </div>
     </section>

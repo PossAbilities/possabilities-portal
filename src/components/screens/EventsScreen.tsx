@@ -24,7 +24,7 @@ function ticketRef() {
   return "PA-" + Math.random().toString(36).slice(2, 7).toUpperCase() + Math.random().toString(36).slice(2, 5).toUpperCase();
 }
 
-export function EventsScreen({ events }: { events: CommunityEvent[] }) {
+export function EventsScreen({ events, appleWallet }: { events: CommunityEvent[]; appleWallet: boolean }) {
   const toast = useToast();
   const [pending, startTransition] = useTransition();
   const [booking, setBooking] = useState<Booking | null>(null);
@@ -258,7 +258,7 @@ export function EventsScreen({ events }: { events: CommunityEvent[] }) {
       )}
 
       {/* Digital ticket (after booking) */}
-      {ticket && <DigitalTicket ticket={ticket} onClose={() => setTicket(null)} />}
+      {ticket && <DigitalTicket ticket={ticket} onClose={() => setTicket(null)} appleWallet={appleWallet} />}
 
       {/* Suggest an event */}
       <section className="mb-stack-lg">
