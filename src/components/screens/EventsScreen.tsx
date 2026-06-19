@@ -27,8 +27,10 @@ export function EventsScreen({ events }: { events: CommunityEvent[] }) {
     setTimeout(() => bookingRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 30);
   }
 
-  const ticketPrice = booking ? (booking.price === "Free" ? 0 : parseFloat(booking.price.replace("£", "")) || 0) : 0;
-  const total = (ticketPrice + 0.5).toFixed(2);
+  const isFree = booking?.price === "Free";
+  const ticketPrice = booking && !isFree ? parseFloat(booking.price.replace("£", "")) || 0 : 0;
+  const bookingFee = isFree ? 0 : 0.5;
+  const total = (ticketPrice + bookingFee).toFixed(2);
 
   function pay() {
     if (!booking) return;
@@ -128,67 +130,75 @@ export function EventsScreen({ events }: { events: CommunityEvent[] }) {
           <div className="bg-surface-white border-4 border-brand-teal rounded-2xl p-8 easy-read-shadow">
             <div className="flex justify-between items-start mb-6">
               <div>
-                <h2 className="font-headline-md text-headline-md text-brand-purple mb-1">Buy Your Ticket</h2>
+                <h2 className="font-headline-md text-headline-md text-brand-purple mb-1">
+                  {isFree ? "Get Your Free Ticket" : "Buy Your Ticket"}
+                </h2>
                 <p className="text-statement-text font-bold text-brand-pink">{booking.title}</p>
               </div>
               <button onClick={() => setBooking(null)} className="p-2 hover:bg-surface-container-high rounded-full" aria-label="Close">
                 <Icon name="close" size={30} />
               </button>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-stack-md">
-              <div className="space-y-stack-sm">
-                <h3 className="font-label-bold text-[20px] flex items-center gap-2">
-                  <Icon name="lock" className="text-brand-teal" />
-                  Safe Payment
-                </h3>
-                <div className="space-y-4">
-                  <div>
-                    <label className="block font-label-bold text-label-bold mb-2 text-on-surface">Cardholder Name</label>
-                    <input className={payInput} placeholder="Name on your card" type="text" />
-                  </div>
-                  <div>
-                    <label className="block font-label-bold text-label-bold mb-2 text-on-surface">Card Number</label>
-                    <input className={payInput} placeholder="0000 0000 0000 0000" type="text" inputMode="numeric" />
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
+            <div className={`grid grid-cols-1 ${isFree ? "" : "lg:grid-cols-2"} gap-stack-md`}>
+              {!isFree && (
+                <div className="space-y-stack-sm">
+                  <h3 className="font-label-bold text-[20px] flex items-center gap-2">
+                    <Icon name="lock" className="text-brand-teal" />
+                    Safe Payment
+                  </h3>
+                  <div className="space-y-4">
                     <div>
-                      <label className="block font-label-bold text-label-bold mb-2 text-on-surface">Expiry Date</label>
-                      <input className={payInput} placeholder="MM / YY" type="text" />
+                      <label className="block font-label-bold text-label-bold mb-2 text-on-surface">Cardholder Name</label>
+                      <input className={payInput} placeholder="Name on your card" type="text" />
                     </div>
                     <div>
-                      <label className="block font-label-bold text-label-bold mb-2 text-on-surface">Security Code (CVV)</label>
-                      <input className={payInput} placeholder="123" type="text" inputMode="numeric" />
+                      <label className="block font-label-bold text-label-bold mb-2 text-on-surface">Card Number</label>
+                      <input className={payInput} placeholder="0000 0000 0000 0000" type="text" inputMode="numeric" />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block font-label-bold text-label-bold mb-2 text-on-surface">Expiry Date</label>
+                        <input className={payInput} placeholder="MM / YY" type="text" />
+                      </div>
+                      <div>
+                        <label className="block font-label-bold text-label-bold mb-2 text-on-surface">Security Code (CVV)</label>
+                        <input className={payInput} placeholder="123" type="text" inputMode="numeric" />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
               <div className="bg-surface-container-low rounded-xl p-6 flex flex-col justify-between border-2 border-outline-variant">
                 <div>
                   <h3 className="font-label-bold text-label-bold mb-4">Ticket Summary</h3>
                   <div className="flex justify-between py-2 border-b border-outline-variant">
                     <span>1x Ticket</span>
-                    <span className="font-bold">{booking.price === "Free" ? "£0.00" : booking.price}</span>
+                    <span className="font-bold">{isFree ? "Free" : booking.price}</span>
                   </div>
-                  <div className="flex justify-between py-2 border-b border-outline-variant">
-                    <span>Booking Fee</span>
-                    <span className="font-bold">£0.50</span>
-                  </div>
+                  {!isFree && (
+                    <div className="flex justify-between py-2 border-b border-outline-variant">
+                      <span>Booking Fee</span>
+                      <span className="font-bold">£0.50</span>
+                    </div>
+                  )}
                   <div className="flex justify-between py-4 text-[24px] font-headline-md text-brand-purple">
-                    <span>Total to Pay</span>
-                    <span>£{total}</span>
+                    <span>{isFree ? "Total" : "Total to Pay"}</span>
+                    <span>{isFree ? "Free" : `£${total}`}</span>
                   </div>
                 </div>
                 <div className="space-y-4 mt-6">
                   <div className="flex items-center gap-3 p-3 bg-brand-teal/10 border-2 border-brand-teal rounded-lg">
                     <Icon name="verified_user" fill className="text-brand-teal" />
-                    <p className="text-caption font-bold">Your information is safe with us.</p>
+                    <p className="text-caption font-bold">
+                      {isFree ? "No payment needed — this event is free." : "Your information is safe with us."}
+                    </p>
                   </div>
                   <button
                     onClick={pay}
                     disabled={pending}
                     className="w-full h-[64px] bg-brand-purple text-on-primary rounded-xl font-headline-md text-[20px] hover:scale-[1.02] active:scale-95 transition-all shadow-lg"
                   >
-                    {pending ? "Booking…" : "PAY NOW"}
+                    {pending ? "Booking…" : isFree ? "Get my free ticket" : "Pay now"}
                   </button>
                 </div>
               </div>
