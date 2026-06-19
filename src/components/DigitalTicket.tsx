@@ -11,6 +11,18 @@ export interface TicketData {
   attendee: string;
   free: boolean;
   price: string;
+  startISO?: string;
+}
+
+function pad(n: number) {
+  return String(n).padStart(2, "0");
+}
+// ICS/Google use UTC basic format: YYYYMMDDTHHMMSSZ
+function toCalStamp(d: Date) {
+  return (
+    `${d.getUTCFullYear()}${pad(d.getUTCMonth() + 1)}${pad(d.getUTCDate())}` +
+    `T${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}${pad(d.getUTCSeconds())}Z`
+  );
 }
 
 export function DigitalTicket({ ticket, onClose }: { ticket: TicketData; onClose: () => void }) {
@@ -32,6 +44,41 @@ export function DigitalTicket({ ticket, onClose }: { ticket: TicketData; onClose
       active = false;
     };
   }, [ticket.reference, ticket.event]);
+
+  const start = ticket.startISO ? new Date(ticket.startISO) : null;
+  const hasDate = !!start && !isNaN(start.getTime());
+  const end = hasDate ? new Date(start!.getTime() + 2 * 60 * 60 * 1000) : null;
+  const details = `Your PossAbilities ticket for ${ticket.event}. Reference: ${ticket.reference}`;
+  const gcalUrl =
+    hasDate && end
+      ? `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+          ticket.event,
+        )}&dates=${toCalStamp(start!)}/${toCalStamp(end)}&details=${encodeURIComponent(details)}`
+      : null;
+
+  function downloadIcs() {
+    if (!hasDate || !end) return;
+    const ics = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//PossAbilities//Community Portal//EN",
+      "BEGIN:VEVENT",
+      `UID:${ticket.reference}@possabilities`,
+      `DTSTAMP:${toCalStamp(new Date())}`,
+      `DTSTART:${toCalStamp(start!)}`,
+      `DTEND:${toCalStamp(end)}`,
+      `SUMMARY:${ticket.event}`,
+      `DESCRIPTION:${details}`,
+      "END:VEVENT",
+      "END:VCALENDAR",
+    ].join("\r\n");
+    const url = URL.createObjectURL(new Blob([ics], { type: "text/calendar" }));
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${ticket.event.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}.ics`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
 
   return (
     <section className="mb-stack-lg">
@@ -100,6 +147,31 @@ export function DigitalTicket({ ticket, onClose }: { ticket: TicketData; onClose
             </p>
           </div>
         </div>
+
+        {/* Add to calendar */}
+        {hasDate && (
+          <div className="mt-stack-sm print:hidden">
+            <p className="font-label-bold text-caption text-on-surface-variant text-center mb-2 uppercase">
+              Add to calendar
+            </p>
+            <div className="flex flex-wrap gap-3 justify-center">
+              <a
+                href={gcalUrl!}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn min-h-touch-target-min px-5 bg-brand-teal text-on-tertiary-fixed rounded-xl font-label-bold text-label-bold hover:brightness-110"
+              >
+                <Icon name="event" /> Google Calendar
+              </a>
+              <button
+                onClick={downloadIcs}
+                className="btn min-h-touch-target-min px-5 bg-white border-2 border-brand-teal text-on-tertiary-container rounded-xl font-label-bold text-label-bold hover:bg-brand-teal hover:text-on-tertiary-fixed"
+              >
+                <Icon name="calendar_add_on" /> Apple / Other (.ics)
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Actions */}
         <div className="flex flex-wrap gap-3 justify-center mt-stack-sm print:hidden">

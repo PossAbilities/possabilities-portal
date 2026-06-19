@@ -17,6 +17,7 @@ interface Booking {
   price: string;
   dateLabel: string;
   timeLabel: string;
+  startISO?: string;
 }
 
 function ticketRef() {
@@ -41,7 +42,7 @@ export function EventsScreen({ events }: { events: CommunityEvent[] }) {
     setTicket(null);
     setAttendee("");
     setEmail("");
-    setBooking({ title: ev.title, price: ev.free ? "Free" : ev.price, dateLabel: ev.dateLabel, timeLabel: ev.timeLabel });
+    setBooking({ title: ev.title, price: ev.free ? "Free" : ev.price, dateLabel: ev.dateLabel, timeLabel: ev.timeLabel, startISO: ev.startISO });
     setTimeout(() => bookingRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 30);
   }
 
@@ -74,6 +75,7 @@ export function EventsScreen({ events }: { events: CommunityEvent[] }) {
           attendee: attendee.trim(),
           free: !!isFree,
           price: booking.price,
+          startISO: booking.startISO,
         };
         setBooking(null);
         setTicket(issued);

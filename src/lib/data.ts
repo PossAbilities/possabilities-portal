@@ -87,6 +87,7 @@ function rowToEvent(r: EventRow): CommunityEvent {
     image: resolveImage(r.image).url || "",
     free,
     price: free ? "Free" : r.price || "Free",
+    startISO: r.date,
   };
 }
 

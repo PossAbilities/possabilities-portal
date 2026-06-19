@@ -18,6 +18,7 @@ export interface CommunityEvent {
   image: string;
   free: boolean;
   price: string; // e.g. "£5.00" or "Free"
+  startISO?: string; // raw ISO start (from Supabase) for calendar export
 }
 
 export interface Policy {
