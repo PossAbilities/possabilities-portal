@@ -29,13 +29,16 @@ export function DigitalTicket({
   ticket,
   onClose,
   appleWallet = false,
+  googleWallet = false,
 }: {
   ticket: TicketData;
   onClose: () => void;
   appleWallet?: boolean;
+  googleWallet?: boolean;
 }) {
   const [qr, setQr] = useState<string>("");
   const [walletPending, setWalletPending] = useState(false);
+  const [googlePending, setGooglePending] = useState(false);
 
   async function addToAppleWallet() {
     setWalletPending(true);
@@ -59,6 +62,24 @@ export function DigitalTicket({
       alert("Sorry, the wallet pass could not be created. Please try again.");
     } finally {
       setWalletPending(false);
+    }
+  }
+
+  async function addToGoogleWallet() {
+    setGooglePending(true);
+    try {
+      const res = await fetch("/api/wallet/google", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(ticket),
+      });
+      if (!res.ok) throw new Error("pass failed");
+      const { url } = await res.json();
+      window.open(url, "_blank", "noopener,noreferrer");
+    } catch {
+      alert("Sorry, the wallet pass could not be created. Please try again.");
+    } finally {
+      setGooglePending(false);
     }
   }
 
@@ -208,16 +229,28 @@ export function DigitalTicket({
         )}
 
         {/* Wallet */}
-        {appleWallet && (
-          <div className="mt-stack-sm flex justify-center print:hidden">
-            <button
-              onClick={addToAppleWallet}
-              disabled={walletPending}
-              className="btn min-h-touch-target-min px-6 bg-black text-white rounded-xl font-label-bold text-label-bold hover:opacity-90 active:scale-95 disabled:opacity-60"
-            >
-              <Icon name="account_balance_wallet" />
-              {walletPending ? "Preparing…" : "Add to Apple Wallet"}
-            </button>
+        {(appleWallet || googleWallet) && (
+          <div className="mt-stack-sm flex flex-wrap gap-3 justify-center print:hidden">
+            {appleWallet && (
+              <button
+                onClick={addToAppleWallet}
+                disabled={walletPending}
+                className="btn min-h-touch-target-min px-6 bg-black text-white rounded-xl font-label-bold text-label-bold hover:opacity-90 active:scale-95 disabled:opacity-60"
+              >
+                <Icon name="account_balance_wallet" />
+                {walletPending ? "Preparing…" : "Add to Apple Wallet"}
+              </button>
+            )}
+            {googleWallet && (
+              <button
+                onClick={addToGoogleWallet}
+                disabled={googlePending}
+                className="btn min-h-touch-target-min px-6 bg-black text-white rounded-xl font-label-bold text-label-bold hover:opacity-90 active:scale-95 disabled:opacity-60"
+              >
+                <Icon name="account_balance_wallet" />
+                {googlePending ? "Preparing…" : "Add to Google Wallet"}
+              </button>
+            )}
           </div>
         )}
 
@@ -236,9 +269,11 @@ export function DigitalTicket({
             <Icon name="check" /> Done
           </button>
         </div>
-        <p className="text-caption font-caption text-on-surface-variant text-center mt-3 print:hidden">
-          {appleWallet ? "Google Wallet coming soon." : "Wallet passes coming soon."}
-        </p>
+        {!appleWallet && !googleWallet && (
+          <p className="text-caption font-caption text-on-surface-variant text-center mt-3 print:hidden">
+            Wallet passes coming soon.
+          </p>
+        )}
       </div>
     </section>
   );

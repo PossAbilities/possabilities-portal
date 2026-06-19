@@ -17,3 +17,8 @@ export function isAppleWalletConfigured(): boolean {
     process.env.APPLE_WWDR_B64
   );
 }
+
+/** True when the Google Wallet service account + issuer ID are present. */
+export function isGoogleWalletConfigured(): boolean {
+  return !!(process.env.GOOGLE_WALLET_ISSUER_ID && process.env.GOOGLE_WALLET_SA_B64);
+}
