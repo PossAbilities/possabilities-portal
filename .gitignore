@@ -45,3 +45,6 @@ next-env.d.ts
 
 # Local Netlify folder
 .netlify
+
+# Claude Code local run configs (machine-specific paths)
+.claude/launch.json
