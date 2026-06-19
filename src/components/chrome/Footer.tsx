@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export function Footer() {
   return (
     <footer className="w-full py-stack-md px-margin-side flex flex-col items-center text-center gap-stack-sm bg-primary border-t-8 border-brand-pink text-on-primary md:pl-[calc(16rem+2.5rem)]">
@@ -8,12 +10,12 @@ export function Footer() {
         <a className="text-on-primary opacity-90 font-label-bold text-label-bold hover:text-brand-pink transition-colors" href="mailto:Digital@PossAbilities.org.uk">
           Contact Us
         </a>
-        <a className="text-on-primary opacity-90 font-label-bold text-label-bold hover:text-brand-pink transition-colors" href="#">
+        <Link className="text-on-primary opacity-90 font-label-bold text-label-bold hover:text-brand-pink transition-colors" href="/privacy">
           Privacy Policy
-        </a>
-        <a className="text-on-primary opacity-90 font-label-bold text-label-bold hover:text-brand-pink transition-colors" href="#">
+        </Link>
+        <Link className="text-on-primary opacity-90 font-label-bold text-label-bold hover:text-brand-pink transition-colors" href="/complaints">
           Complaints
-        </a>
+        </Link>
       </div>
       <p className="font-body-md text-body-md opacity-90">
         © {new Date().getFullYear()} Community Portal. Live The Life You Choose.

@@ -16,9 +16,9 @@ interface Item {
 
 const items: Item[] = [
   { label: "Dashboard", icon: "dashboard", href: "/admin" },
-  { label: "Content", icon: "edit_document", href: "/admin" },
-  { label: "Requests", icon: "feedback", href: "/admin" },
-  { label: "Settings", icon: "settings", comingSoon: true },
+  { label: "Content", icon: "edit_document", href: "/admin#content-library" },
+  { label: "Requests", icon: "feedback", href: "/admin#request-inbox" },
+  { label: "Settings", icon: "settings", href: "/admin/settings" },
   { label: "Easy Read", icon: "menu_book", href: "/easy-reads" },
   { label: "Watch", icon: "play_circle", href: "/media" },
 ];
@@ -40,21 +40,21 @@ export function Sidebar() {
             <p className="text-caption font-caption text-on-surface-variant">Explore Community</p>
           </div>
         </div>
-        <button
-          onClick={() => toast.show("Coming soon")}
+        <Link
+          href="/admin/new"
           className="w-full bg-brand-purple text-on-primary py-3 px-4 rounded-xl font-label-bold text-label-bold flex items-center justify-center gap-2 hover:bg-primary transition-all active:scale-95"
         >
           <Icon name="add_circle" />
           New Post
-        </button>
+        </Link>
       </div>
       <nav className="flex-1 space-y-2">
         {items.map((it) => {
-          const active = it.href
-            ? it.href === "/admin"
-              ? pathname.startsWith("/admin") && it.label === "Dashboard"
-              : pathname.startsWith(it.href)
-            : false;
+          const base = (it.href ?? "").split("#")[0];
+          const active =
+            it.label === "Dashboard"
+              ? pathname === "/admin"
+              : !!base && base !== "/admin" && pathname.startsWith(base);
           const cls = active
             ? "bg-brand-teal text-on-tertiary-fixed font-bold rounded-lg m-2 px-4 py-3 flex items-center gap-3"
             : "text-on-surface-variant hover:bg-surface-container-high rounded-lg m-2 px-4 py-3 flex items-center gap-3 transition-all";

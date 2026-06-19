@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Icon } from "@/components/Icon";
+import { useToast } from "@/components/Toast";
 
 const links = [
   { href: "/", label: "Home" },
@@ -13,6 +14,7 @@ const links = [
 
 export function TopNav() {
   const pathname = usePathname();
+  const toast = useToast();
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
@@ -54,6 +56,7 @@ export function TopNav() {
         </Link>
         <button
           aria-label="Notifications"
+          onClick={() => toast.show("You're all caught up — no new notifications")}
           className="text-primary p-2 hover:bg-surface-container-high rounded-full flex"
         >
           <Icon name="notifications" />

@@ -3,6 +3,7 @@ import { getEasyReads, isEasyReadsConfigured } from "@/lib/easyreads";
 import { Icon } from "@/components/Icon";
 import { AdminInbox } from "@/components/admin/AdminInbox";
 import { ContentLibrary } from "@/components/admin/ContentLibrary";
+import { AuthorizeButton } from "@/components/admin/AuthorizeButton";
 
 function pad2(n: number) {
   return n < 10 ? `0${n}` : String(n);
@@ -81,7 +82,7 @@ export default async function AdminDashboardPage() {
 
       {/* Inbox + Safeguarding */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-stack-lg">
-        <div className="lg:col-span-2 flex flex-col gap-stack-sm">
+        <div id="request-inbox" className="lg:col-span-2 flex flex-col gap-stack-sm scroll-mt-24">
           <div className="flex justify-between items-end mb-4">
             <h3 className="font-headline-md text-headline-md text-brand-purple">Request Inbox</h3>
           </div>
@@ -117,10 +118,7 @@ export default async function AdminDashboardPage() {
                   </div>
                 </div>
               </div>
-              <button className="mt-8 w-full bg-brand-pink text-surface-white font-label-bold text-label-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:opacity-90 transition-all active:scale-95 shadow-md">
-                <Icon name="key" />
-                Authorize Access
-              </button>
+              <AuthorizeButton />
             </div>
           </div>
         </div>

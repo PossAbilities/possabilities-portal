@@ -9,7 +9,7 @@ export function ContentLibrary({ items }: { items: ContentItem[] }) {
   const soon = () => toast.show("Coming soon");
 
   return (
-    <section className="mt-stack-lg">
+    <section id="content-library" className="mt-stack-lg scroll-mt-24">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-gutter mb-8">
         <div>
           <h3 className="font-headline-md text-headline-md text-brand-purple">Content Library</h3>
