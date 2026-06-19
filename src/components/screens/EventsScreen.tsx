@@ -5,16 +5,31 @@ import { createRequest } from "@/lib/actions";
 import type { CommunityEvent } from "@/lib/types";
 import { useToast } from "@/components/Toast";
 import { Icon } from "@/components/Icon";
+import { DigitalTicket, type TicketData } from "@/components/DigitalTicket";
 
 const fieldInput =
   "w-full h-touch-target-min border-2 border-text-rich-black rounded-lg px-4 font-body-md focus:border-brand-pink outline-none";
 const payInput =
   "w-full h-touch-target-min border-2 border-text-rich-black rounded-lg px-4 font-body-md focus:border-brand-teal outline-none";
 
+interface Booking {
+  title: string;
+  price: string;
+  dateLabel: string;
+  timeLabel: string;
+}
+
+function ticketRef() {
+  return "PA-" + Math.random().toString(36).slice(2, 7).toUpperCase() + Math.random().toString(36).slice(2, 5).toUpperCase();
+}
+
 export function EventsScreen({ events }: { events: CommunityEvent[] }) {
   const toast = useToast();
   const [pending, startTransition] = useTransition();
-  const [booking, setBooking] = useState<{ title: string; price: string } | null>(null);
+  const [booking, setBooking] = useState<Booking | null>(null);
+  const [attendee, setAttendee] = useState("");
+  const [email, setEmail] = useState("");
+  const [ticket, setTicket] = useState<TicketData | null>(null);
   const bookingRef = useRef<HTMLDivElement>(null);
 
   // suggest-event form
@@ -23,7 +38,10 @@ export function EventsScreen({ events }: { events: CommunityEvent[] }) {
   const [evAbout, setEvAbout] = useState("");
 
   function openBooking(ev: CommunityEvent) {
-    setBooking({ title: ev.title, price: ev.free ? "Free" : ev.price });
+    setTicket(null);
+    setAttendee("");
+    setEmail("");
+    setBooking({ title: ev.title, price: ev.free ? "Free" : ev.price, dateLabel: ev.dateLabel, timeLabel: ev.timeLabel });
     setTimeout(() => bookingRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 30);
   }
 
@@ -34,14 +52,33 @@ export function EventsScreen({ events }: { events: CommunityEvent[] }) {
 
   function pay() {
     if (!booking) return;
+    if (!attendee.trim()) {
+      toast.show("Please add the name for the ticket");
+      return;
+    }
+    const reference = ticketRef();
     startTransition(async () => {
-      const res = await createRequest("EVENT", `Ticket: ${booking.title}`, "Community member", {
+      const res = await createRequest("EVENT", `Ticket: ${booking.title}`, attendee.trim(), {
         event: booking.title,
         price: booking.price,
+        date: booking.dateLabel,
+        email,
+        reference,
       });
       if (res.ok) {
-        toast.show("Success! Your ticket is booked.");
+        const issued: TicketData = {
+          reference,
+          event: booking.title,
+          dateLabel: booking.dateLabel,
+          timeLabel: booking.timeLabel,
+          attendee: attendee.trim(),
+          free: !!isFree,
+          price: booking.price,
+        };
         setBooking(null);
+        setTicket(issued);
+        toast.show(isFree ? "Your free ticket is ready!" : "Payment complete — ticket ready!");
+        setTimeout(() => document.getElementById("digital-ticket")?.scrollIntoView({ behavior: "smooth", block: "start" }), 60);
       } else {
         toast.show(res.error || "Booking failed");
       }
@@ -139,6 +176,17 @@ export function EventsScreen({ events }: { events: CommunityEvent[] }) {
                 <Icon name="close" size={30} />
               </button>
             </div>
+            {/* Who is the ticket for */}
+            <div className="mb-stack-md grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block font-label-bold text-label-bold mb-2 text-on-surface">Name on the ticket</label>
+                <input className={fieldInput} value={attendee} onChange={(e) => setAttendee(e.target.value)} placeholder="Who is coming?" required />
+              </div>
+              <div>
+                <label className="block font-label-bold text-label-bold mb-2 text-on-surface">Email (optional)</label>
+                <input className={fieldInput} value={email} onChange={(e) => setEmail(e.target.value)} placeholder="your@email.com" type="email" />
+              </div>
+            </div>
             <div className={`grid grid-cols-1 ${isFree ? "" : "lg:grid-cols-2"} gap-stack-md`}>
               {!isFree && (
                 <div className="space-y-stack-sm">
@@ -206,6 +254,9 @@ export function EventsScreen({ events }: { events: CommunityEvent[] }) {
           </div>
         </section>
       )}
+
+      {/* Digital ticket (after booking) */}
+      {ticket && <DigitalTicket ticket={ticket} onClose={() => setTicket(null)} />}
 
       {/* Suggest an event */}
       <section className="mb-stack-lg">
