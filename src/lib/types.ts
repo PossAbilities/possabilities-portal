@@ -5,6 +5,7 @@ export interface NewsPost {
   category: string;
   title: string;
   excerpt: string;
+  body?: string; // full article text (paragraphs split on blank lines); falls back to excerpt
   image: string; // image URL (empty when a gradient is used instead)
   gradient: string; // CSS gradient string (empty when an image URL is used)
 }

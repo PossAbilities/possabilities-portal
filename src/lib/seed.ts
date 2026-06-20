@@ -16,6 +16,11 @@ export function seedNews(): NewsPost[] {
       title: "New Gardening Project Starts Monday!",
       excerpt:
         "Come and join us as we plant new flowers and vegetables in our shared community space. No experience needed!",
+      body:
+        "We are starting a brand new gardening project and you are invited!\n\n" +
+        "Every Monday morning we will meet at the community garden. Together we will plant flowers, grow vegetables, and look after the plants. It is a lovely way to spend time outside and make new friends.\n\n" +
+        "You do not need any experience. Our friendly staff will show you what to do. We have gloves, tools, and everything you need.\n\n" +
+        "Wear clothes that can get a little muddy, and bring a water bottle. We cannot wait to see you there!",
       image:
         G +
         "AB6AXuC4KgILsZgA08JD-JYi89LqpmplRGYZ_Urnumsc_176tm69h3VKtkIjofdAUrhfV3KUWcFAcQWqUAAIatc3EtXp3knA4zAlFEOLOlmEZpFI7esR_l1OFsbgMTQWSiKmY0-dhZUaQlZLj3Wtwic68eraKq16QNaypupMqjNPPdaUi3Hwb6Tsluh6jtwkzUojhnnIN3LrTETFh-YJxkBsl9RuTjRncPePaBxsr4EGiLHh1ltn0gyrdgA45obavt0qESeojZlnnOiQ41nx",
@@ -27,6 +32,11 @@ export function seedNews(): NewsPost[] {
       title: "Weekly Art Workshop Is Back",
       excerpt:
         "Our popular creative session returns this week. Bring your ideas and let's get painting together!",
+      body:
+        "Good news — our weekly art workshop is back!\n\n" +
+        "This is a happy, relaxed session where everyone is welcome. You can paint, draw, or make a collage. There is no right or wrong way to make art. We just want you to have fun and feel proud of what you make.\n\n" +
+        "All the materials are free. We have paints, brushes, paper, and lots of colours to choose from. Our team is always there to help if you need it.\n\n" +
+        "The workshop runs every week. Come along, bring your ideas, and let's get creative together!",
       image:
         G +
         "AB6AXuDaM4YCSu0b5OBUl9kzCOZpUdpUOaC7Q7mRCXsdp7wM49mo0M2vqR48cTBrpOhpMJGTO9HFhyl0uTwjUWc9fW5Bxr1MrE-UsVHMzs6n9gHw6vaH5ZX2g6UrAuHfc3YuiEZ2M7yW7XXrSEN2bYmzPyAhv1BlHjaA6mRI2jeZx9-6M2ASQptrdr9PgIIsKKWDngklZQsqaaT3hu1k9UY6FPlTKcEIZuWXdlXpKET4O4QEpw1oBk4uHKThz1ynr1lLw-iG0TNVtBXtd9z8",
@@ -38,6 +48,11 @@ export function seedNews(): NewsPost[] {
       title: "Digital Skills Training Success",
       excerpt:
         "See how our latest graduates are using their new computer skills to stay connected with friends and family.",
+      body:
+        "We are so proud of everyone who finished our digital skills course!\n\n" +
+        "Over the last few weeks, people learned how to use a computer and a tablet. They learned how to send messages, make video calls, and stay safe online.\n\n" +
+        "Now they are using these new skills every day. Some people video call their family. Others send photos to their friends. One person even started their own blog!\n\n" +
+        "Learning something new can feel scary at first. But our learners showed that with a little help and a lot of practice, anyone can do it. Well done to everyone!",
       image:
         G +
         "AB6AXuDTE3cHy42YMrHkMkvP94bEkiSQ3NGGQwa3t_n9zZHz5IO3BItSVkeflJE93s7VEpiQ5VyCCNpX9eMDBVVxNzERUVvQawrmEudW9X9RMwP1yffFTzdzo5vTJoxY3dDFkUZAE4ZkeUWoy3xiPNmkR7NLLaLha5_4zApdywJHPAE-eglBbtViC9vgaJwq5LdWAE1-r-emDRbVYGTAsgt9z8QDLxMQU3IHWeL08toh7AdrDzqP1LyoqCjQfR3g6kliWlAcev6AVS9FmQAU",

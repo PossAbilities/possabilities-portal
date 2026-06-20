@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getNews } from "@/lib/data";
 import { Icon } from "@/components/Icon";
 import { NewsThumb } from "@/components/NewsThumb";
@@ -25,17 +26,21 @@ export default async function NewsPage() {
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-stack-md">
         {news.map((n) => (
-          <article key={n.id} className="bg-surface-white border-2 border-brand-purple rounded-2xl overflow-hidden group flex flex-col">
+          <Link
+            key={n.id}
+            href={`/news/${n.id}`}
+            className="bg-surface-white border-2 border-brand-purple rounded-2xl overflow-hidden group flex flex-col hover:border-brand-teal transition-colors"
+          >
             <NewsThumb post={n} />
             <div className="p-stack-sm flex flex-col gap-4 flex-1">
               <span className="text-brand-pink font-label-bold text-label-bold uppercase">{n.category}</span>
               <h2 className="font-headline-md text-headline-md leading-tight">{n.title}</h2>
               <p className="font-body-md text-body-md text-on-surface-variant flex-1">{n.excerpt}</p>
-              <div className="flex items-center gap-2 text-brand-purple font-label-bold text-label-bold">
-                <Icon name="schedule" size={18} /> Just now
+              <div className="flex items-center gap-2 text-brand-purple font-label-bold text-label-bold group-hover:gap-3 transition-all">
+                Read the full story <Icon name="arrow_forward" size={20} />
               </div>
             </div>
-          </article>
+          </Link>
         ))}
       </section>
     </div>

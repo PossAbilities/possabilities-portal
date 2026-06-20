@@ -29,6 +29,8 @@ interface NewsRow {
   id: string;
   title?: string;
   excerpt?: string;
+  body?: string;
+  content?: string;
   category?: string;
   featured_image?: string;
   image?: string;
@@ -42,6 +44,7 @@ function rowToNews(r: NewsRow): NewsPost {
     category: r.category || "News",
     title: r.title || "",
     excerpt: r.excerpt || "",
+    body: r.body || r.content || "",
     image: resolved.url || "",
     gradient: resolved.gradient || "",
   };
@@ -59,6 +62,18 @@ export async function getNews(): Promise<NewsPost[]> {
     return (data as NewsRow[]).filter((r) => r.published !== false).map(rowToNews);
   } catch {
     return seedNews();
+  }
+}
+
+export async function getNewsPost(id: string): Promise<NewsPost | null> {
+  if (!isSupabaseConfigured()) return seedNews().find((n) => n.id === id) ?? null;
+  try {
+    const supabase = await createClient();
+    const { data, error } = await supabase.from("news_posts").select("*").eq("id", id).single();
+    if (error || !data) return seedNews().find((n) => n.id === id) ?? null;
+    return rowToNews(data as NewsRow);
+  } catch {
+    return seedNews().find((n) => n.id === id) ?? null;
   }
 }
 
