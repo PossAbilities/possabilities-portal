@@ -6,6 +6,7 @@ import type { CommunityEvent } from "@/lib/types";
 import { useToast } from "@/components/Toast";
 import { Icon } from "@/components/Icon";
 import { DigitalTicket, type TicketData } from "@/components/DigitalTicket";
+import { PageHeader } from "@/components/PageHeader";
 
 const fieldInput =
   "w-full h-touch-target-min border-2 border-text-rich-black rounded-lg px-4 font-body-md focus:border-brand-pink";
@@ -115,14 +116,12 @@ export function EventsScreen({
 
   return (
     <div className="max-w-[1200px] mx-auto px-margin-side">
-      <section className="mb-stack-lg">
-        <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-brand-purple mb-4">
-          Community Events
-        </h1>
-        <p className="text-statement-text font-statement-text text-on-surface-variant max-w-2xl">
-          Find fun things to do near you. Meet new friends, learn new things, and have a great time!
-        </p>
-      </section>
+      <PageHeader
+        tone="purple"
+        icon="celebration"
+        title="Community Events"
+        subtitle="Find fun things to do near you. Meet new friends, learn new things, and have a great time!"
+      />
 
       <section className="mb-stack-lg">
         <h2 className="font-headline-md text-headline-md text-brand-purple mb-stack-sm flex items-center gap-2">
@@ -131,7 +130,7 @@ export function EventsScreen({
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
           {events.map((ev) => (
-            <div key={ev.id} className="bg-surface-white border-2 border-brand-purple rounded-xl overflow-hidden easy-read-shadow flex flex-col">
+            <div key={ev.id} className="lift shadow-offset-purple bg-surface-white border-2 border-brand-purple rounded-2xl overflow-hidden flex flex-col">
               <div className="h-48 w-full bg-surface-container relative">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img alt={ev.title} className="w-full h-full object-cover" src={ev.image} />

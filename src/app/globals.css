@@ -192,6 +192,12 @@ body {
   animation: floaty 9s ease-in-out infinite;
 }
 
+/* Playful dotted texture for decorative overlays (set a text color + low opacity) */
+.dot-grid {
+  background-image: radial-gradient(currentColor 2.5px, transparent 2.5px);
+  background-size: 26px 26px;
+}
+
 input::placeholder,
 textarea::placeholder {
   /* on-surface-variant (~7:1 on white) — outline failed WCAG AA at ~3:1 */

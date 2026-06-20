@@ -32,7 +32,7 @@ export function EasyReadLibrary({ items }: { items: LibraryItem[] }) {
     <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
         {items.map((p) => (
-          <div key={p.id} className="bg-surface-container-low p-6 rounded-xl border border-outline-variant hover:border-brand-teal transition-all flex flex-col">
+          <div key={p.id} className="lift shadow-offset-purple bg-surface-white p-6 rounded-2xl border-2 border-brand-purple flex flex-col">
             <div className="w-full aspect-video bg-surface-variant rounded-lg mb-4 overflow-hidden">
               {p.image ? (
                 // eslint-disable-next-line @next/next/no-img-element

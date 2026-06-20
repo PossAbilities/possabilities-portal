@@ -6,6 +6,7 @@ import type { LibraryItem } from "@/lib/types";
 import { useToast } from "@/components/Toast";
 import { Icon } from "@/components/Icon";
 import { EasyReadLibrary } from "@/components/EasyReadLibrary";
+import { PageHeader } from "@/components/PageHeader";
 
 const MOODS = [
   { key: "Great", icon: "sentiment_very_satisfied", color: "text-status-muted-pink" },
@@ -71,14 +72,12 @@ export function SupportScreen({ library }: { library: LibraryItem[] }) {
 
   return (
     <div className="max-w-[1200px] mx-auto px-margin-side space-y-stack-lg">
-      <section>
-        <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-brand-purple mb-4">
-          Support &amp; Resources
-        </h1>
-        <p className="text-statement-text font-statement-text text-on-surface-variant max-w-2xl">
-          We are here to help. You can find easy-read information here or tell us if something is wrong.
-        </p>
-      </section>
+      <PageHeader
+        tone="teal"
+        icon="support_agent"
+        title="Support & Resources"
+        subtitle="We are here to help. You can find easy-read information here or tell us if something is wrong."
+      />
 
       {/* Report + Compliment */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-gutter">

@@ -1,6 +1,7 @@
 import { getPhotos, getVideos } from "@/lib/media";
 import { Icon } from "@/components/Icon";
 import { PhotoGallery } from "@/components/PhotoGallery";
+import { PageHeader } from "@/components/PageHeader";
 
 export default function MediaPage() {
   const videos = getVideos();
@@ -8,14 +9,12 @@ export default function MediaPage() {
 
   return (
     <div className="max-w-[1200px] mx-auto px-margin-side">
-      <section className="mb-stack-lg">
-        <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-brand-purple mb-4">
-          Multimedia Library
-        </h1>
-        <p className="text-statement-text font-statement-text text-on-surface-variant max-w-2xl">
-          Watch videos and look at photos from across our community.
-        </p>
-      </section>
+      <PageHeader
+        tone="teal"
+        icon="play_circle"
+        title="Multimedia Library"
+        subtitle="Watch videos and look at photos from across our community."
+      />
 
       {/* Videos */}
       <section id="videos" className="mb-stack-lg scroll-mt-24">
@@ -28,7 +27,7 @@ export default function MediaPage() {
         )}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
           {videos.map((v) => (
-            <div key={v.id} className="bg-surface-white border-2 border-brand-purple rounded-2xl overflow-hidden easy-read-shadow flex flex-col group">
+            <div key={v.id} className="shadow-offset-purple bg-surface-white border-2 border-brand-purple rounded-2xl overflow-hidden flex flex-col">
               <div className="relative aspect-video w-full overflow-hidden bg-primary">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img className="w-full h-full object-cover opacity-90" alt={v.title} src={v.thumb} loading="lazy" />

@@ -20,6 +20,7 @@ export default async function HomePage() {
       <section className="relative w-full min-h-[66vh] flex items-center justify-center bg-primary px-margin-side pt-stack-lg pb-32 overflow-hidden">
         {/* decorative floating shapes */}
         <div aria-hidden className="pointer-events-none absolute inset-0">
+          <span className="dot-grid absolute inset-0 text-white opacity-[0.07]" />
           <span className="floaty absolute top-12 left-[8%] w-24 h-24 rounded-full bg-brand-teal/30" />
           <span className="floaty-slow absolute top-20 right-[12%] w-32 h-32 rounded-full bg-brand-pink/30" />
           <span className="floaty absolute bottom-36 left-[18%] w-16 h-16 rounded-2xl rotate-12 bg-brand-teal/20" />
