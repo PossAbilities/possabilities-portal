@@ -153,6 +153,45 @@ body {
   box-shadow: 8px 8px 0px 0px #48065a;
 }
 
+/* Coloured "sticker" offset shadows for chunky, friendly depth */
+.shadow-offset-purple {
+  box-shadow: 6px 6px 0 0 #48065a;
+}
+.shadow-offset-pink {
+  box-shadow: 6px 6px 0 0 #ec008c;
+}
+.shadow-offset-teal {
+  box-shadow: 6px 6px 0 0 #004f50;
+}
+.shadow-offset-dark {
+  box-shadow: 4px 4px 0 0 #231f20;
+}
+/* Grows the offset on hover for a tactile "lift" (motion-safe handled below) */
+.lift {
+  transition: transform 0.18s ease-out, box-shadow 0.18s ease-out;
+}
+.lift:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 10px 10px 0 0 #48065a;
+}
+
+/* Gentle floating motion for decorative shapes */
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+.floaty {
+  animation: floaty 6s ease-in-out infinite;
+}
+.floaty-slow {
+  animation: floaty 9s ease-in-out infinite;
+}
+
 input::placeholder,
 textarea::placeholder {
   /* on-surface-variant (~7:1 on white) — outline failed WCAG AA at ~3:1 */
