@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { LibraryItem } from "@/lib/types";
 import { Icon } from "@/components/Icon";
 
@@ -9,6 +9,15 @@ import { Icon } from "@/components/Icon";
  *  flipbook viewer (view-only); policy-fallback items open a reader dialog. */
 export function EasyReadLibrary({ items }: { items: LibraryItem[] }) {
   const [reading, setReading] = useState<LibraryItem | null>(null);
+
+  useEffect(() => {
+    if (!reading) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setReading(null);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [reading]);
 
   if (!items.length) {
     return (
@@ -27,7 +36,7 @@ export function EasyReadLibrary({ items }: { items: LibraryItem[] }) {
             <div className="w-full aspect-video bg-surface-variant rounded-lg mb-4 overflow-hidden">
               {p.image ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img className="w-full h-full object-cover" alt={p.title} src={p.image} />
+                <img className="w-full h-full object-cover" alt={p.title} src={p.image} loading="lazy" />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-brand-purple/40">
                   <Icon name="menu_book" size={48} />
@@ -35,7 +44,7 @@ export function EasyReadLibrary({ items }: { items: LibraryItem[] }) {
               )}
             </div>
             <h3 className="font-label-bold text-label-bold mb-2">{p.title}</h3>
-            <p className="font-body-md text-body-md mb-6 opacity-80 flex-1">{p.description}</p>
+            <p className="font-body-md text-body-md text-on-surface mb-6 flex-1">{p.description}</p>
             {p.pdfUrl ? (
               <Link
                 href={`/easy-reads/${p.id}`}
@@ -67,10 +76,16 @@ export function EasyReadLibrary({ items }: { items: LibraryItem[] }) {
 
       {reading && (
         <div onClick={() => setReading(null)} className="fixed inset-0 bg-primary/50 z-[300] flex items-center justify-center p-5">
-          <div onClick={(e) => e.stopPropagation()} className="bg-white rounded-2xl max-w-lg w-full p-8 border-4 border-brand-purple max-h-[90vh] overflow-y-auto">
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="reader-title"
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-2xl max-w-lg w-full p-8 border-4 border-brand-purple max-h-[90vh] overflow-y-auto"
+          >
             <div className="flex items-start justify-between mb-4">
-              <h3 className="font-headline-md text-headline-md text-brand-purple">{reading.title}</h3>
-              <button onClick={() => setReading(null)} aria-label="Close" className="p-2 hover:bg-surface-container-high rounded-full">
+              <h3 id="reader-title" className="font-headline-md text-headline-md text-brand-purple">{reading.title}</h3>
+              <button onClick={() => setReading(null)} aria-label="Close" className="w-12 h-12 flex items-center justify-center hover:bg-surface-container-high rounded-full">
                 <Icon name="close" size={28} />
               </button>
             </div>

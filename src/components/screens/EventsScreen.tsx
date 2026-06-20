@@ -8,9 +8,9 @@ import { Icon } from "@/components/Icon";
 import { DigitalTicket, type TicketData } from "@/components/DigitalTicket";
 
 const fieldInput =
-  "w-full h-touch-target-min border-2 border-text-rich-black rounded-lg px-4 font-body-md focus:border-brand-pink outline-none";
+  "w-full h-touch-target-min border-2 border-text-rich-black rounded-lg px-4 font-body-md focus:border-brand-pink";
 const payInput =
-  "w-full h-touch-target-min border-2 border-text-rich-black rounded-lg px-4 font-body-md focus:border-brand-teal outline-none";
+  "w-full h-touch-target-min border-2 border-text-rich-black rounded-lg px-4 font-body-md focus:border-brand-teal";
 
 interface Booking {
   title: string;

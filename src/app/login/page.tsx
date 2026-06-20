@@ -1,28 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState, useTransition } from "react";
 import { signIn } from "@/lib/auth-actions";
 import { Icon } from "@/components/Icon";
 
-const inputStyle: React.CSSProperties = {
-  width: "100%",
-  padding: "13px 14px",
-  border: "1px solid #80737f",
-  borderRadius: "4px",
-  background: "#fff",
-  fontSize: "15px",
-  color: "#1e1b1c",
-};
-const labelStyle: React.CSSProperties = {
-  display: "block",
-  fontWeight: 700,
-  color: "#290036",
-  fontSize: "12px",
-  letterSpacing: "0.04em",
-  textTransform: "uppercase",
-  marginBottom: "7px",
-};
+const fieldClass =
+  "w-full h-touch-target-min border-2 border-outline rounded-xl px-4 font-body-md text-body-md text-on-surface bg-surface-white";
 
 function LoginForm() {
   const router = useRouter();
@@ -48,38 +33,27 @@ function LoginForm() {
   }
 
   return (
-    <div style={{ minHeight: "80vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "40px 20px", background: "#fff8f8" }}>
-      <div style={{ width: "100%", maxWidth: "420px" }}>
-        <div style={{ textAlign: "center", marginBottom: "36px" }}>
-          <span style={{ fontSize: "28px", fontWeight: 800, color: "#290036", letterSpacing: "-0.01em" }}>
-            PossAbilities
-          </span>
-          <p style={{ color: "#4e434e", margin: "8px 0 0", fontSize: "15px" }}>Admin access only</p>
+    <div className="min-h-[80vh] flex items-center justify-center px-margin-side py-stack-lg bg-background">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-stack-md">
+          <span className="font-headline-md text-headline-md font-black text-brand-purple">PossAbilities</span>
+          <p className="font-body-md text-body-md text-on-surface-variant mt-1">Admin access only</p>
         </div>
-        <div style={{ background: "#fff", border: "1px solid #d1c2cf", borderRadius: "8px", padding: "36px" }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "56px",
-              height: "56px",
-              borderRadius: "9999px",
-              background: "#48065a",
-              margin: "0 auto 24px",
-            }}
-          >
-            <Icon name="lock" size={28} style={{ color: "#5BC3C3" }} />
+
+        <div className="bg-surface-white border-2 border-brand-purple rounded-2xl easy-read-shadow p-stack-md">
+          <div className="w-16 h-16 rounded-full bg-brand-purple flex items-center justify-center mx-auto mb-stack-sm">
+            <Icon name="lock" size={28} className="text-brand-teal" />
           </div>
-          <h1 style={{ fontSize: "22px", fontWeight: 700, color: "#290036", margin: "0 0 6px", textAlign: "center" }}>
-            Admin Sign In
-          </h1>
-          <p style={{ color: "#4e434e", fontSize: "14px", textAlign: "center", margin: "0 0 28px" }}>
-            Enter your credentials to access the dashboard.
+          <h1 className="font-headline-md text-headline-md text-brand-purple text-center">Admin Sign In</h1>
+          <p className="font-body-md text-body-md text-on-surface-variant text-center mt-2 mb-stack-sm">
+            Enter your details to open the dashboard.
           </p>
-          <form onSubmit={onSubmit} style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+
+          <form onSubmit={onSubmit} className="flex flex-col gap-5">
             <div>
-              <label style={labelStyle} htmlFor="email">Email</label>
+              <label htmlFor="email" className="block font-label-bold text-label-bold text-brand-purple mb-2">
+                Email
+              </label>
               <input
                 id="email"
                 type="email"
@@ -88,11 +62,13 @@ function LoginForm() {
                 placeholder="admin@possabilities.org.uk"
                 autoComplete="username"
                 required
-                style={inputStyle}
+                className={fieldClass}
               />
             </div>
             <div>
-              <label style={labelStyle} htmlFor="password">Password</label>
+              <label htmlFor="password" className="block font-label-bold text-label-bold text-brand-purple mb-2">
+                Password
+              </label>
               <input
                 id="password"
                 type="password"
@@ -101,24 +77,47 @@ function LoginForm() {
                 placeholder="••••••••"
                 autoComplete="current-password"
                 required
-                style={inputStyle}
+                className={fieldClass}
               />
             </div>
+
             {error && (
-              <p style={{ margin: 0, color: "#ba1a1a", fontSize: "14px", fontWeight: 600, background: "#ffdad6", padding: "10px 14px", borderRadius: "4px" }}>
+              <p
+                role="alert"
+                className="flex items-start gap-2 bg-error-container text-on-error-container rounded-xl px-4 py-3 font-label-bold text-label-bold"
+              >
+                <Icon name="error" fill className="shrink-0" />
                 {error}
               </p>
             )}
+
             <button
               type="submit"
               disabled={pending}
-              className="btn btn-pink-deep"
-              style={{ width: "100%", padding: "15px", fontSize: "16px", marginTop: "4px" }}
+              className="w-full min-h-touch-target-min bg-brand-pink text-on-primary rounded-xl px-6 font-label-bold text-label-bold flex items-center justify-center gap-2 hover:bg-secondary active:scale-95 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              {pending ? "Signing in…" : "Sign In"}
+              {pending ? (
+                <>
+                  <span className="w-5 h-5 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+                  Signing in…
+                </>
+              ) : (
+                <>
+                  <Icon name="login" />
+                  Sign In
+                </>
+              )}
             </button>
           </form>
         </div>
+
+        <Link
+          href="/"
+          className="mt-stack-sm flex items-center justify-center gap-2 font-label-bold text-label-bold text-brand-purple hover:underline"
+        >
+          <Icon name="arrow_back" />
+          Back to Community Portal
+        </Link>
       </div>
     </div>
   );

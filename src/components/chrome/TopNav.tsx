@@ -50,21 +50,21 @@ export function TopNav() {
         <Link
           href="/support"
           aria-label="Help"
-          className="text-primary p-2 hover:bg-surface-container-high rounded-full flex"
+          className="text-primary w-12 h-12 hover:bg-surface-container-high rounded-full flex items-center justify-center"
         >
           <Icon name="help" />
         </Link>
         <button
           aria-label="Notifications"
           onClick={() => toast.show("You're all caught up — no new notifications")}
-          className="text-primary p-2 hover:bg-surface-container-high rounded-full flex"
+          className="text-primary w-12 h-12 hover:bg-surface-container-high rounded-full flex items-center justify-center"
         >
           <Icon name="notifications" />
         </button>
         <Link
           href="/admin"
           aria-label="Account"
-          className="w-10 h-10 rounded-full bg-brand-teal flex items-center justify-center overflow-hidden border-2 border-brand-purple"
+          className="w-12 h-12 rounded-full bg-brand-teal flex items-center justify-center overflow-hidden border-2 border-brand-purple"
         >
           <Icon name="person" fill size={22} className="text-on-tertiary-fixed" />
         </Link>

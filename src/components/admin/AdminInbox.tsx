@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { updateRequestStatus } from "@/lib/actions";
 import type { RequestItem, RequestKind, RequestStatus } from "@/lib/types";
 import { useToast } from "@/components/Toast";
@@ -22,6 +22,15 @@ export function AdminInbox({ requests }: { requests: RequestItem[] }) {
   const toast = useToast();
   const [pending, startTransition] = useTransition();
   const [open, setOpen] = useState<RequestItem | null>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && !pending) setOpen(null);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open, pending]);
 
   function setStatus(id: string, status: RequestStatus) {
     startTransition(async () => {
@@ -88,14 +97,20 @@ export function AdminInbox({ requests }: { requests: RequestItem[] }) {
 
       {open && (
         <div onClick={() => setOpen(null)} className="fixed inset-0 bg-primary/50 z-[300] flex items-center justify-center p-5">
-          <div onClick={(e) => e.stopPropagation()} className="bg-white rounded-2xl max-w-lg w-full p-8 border-4 border-brand-teal max-h-[90vh] overflow-y-auto">
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="inbox-modal-title"
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-2xl max-w-lg w-full p-8 border-4 border-brand-teal max-h-[90vh] overflow-y-auto"
+          >
             <div className="flex items-start justify-between mb-4">
               <span className={`font-label-bold px-2 py-1 rounded text-caption border ${KIND_BADGE[open.kind]}`}>{open.kind}</span>
-              <button onClick={() => setOpen(null)} aria-label="Close" className="p-2 hover:bg-surface-container-high rounded-full">
+              <button onClick={() => setOpen(null)} aria-label="Close" className="w-12 h-12 flex items-center justify-center hover:bg-surface-container-high rounded-full">
                 <Icon name="close" size={28} />
               </button>
             </div>
-            <h3 className="font-headline-md text-headline-md text-brand-purple mb-2">{open.subject}</h3>
+            <h3 id="inbox-modal-title" className="font-headline-md text-headline-md text-brand-purple mb-2">{open.subject}</h3>
             <p className="font-body-md text-body-md text-on-surface-variant mb-4">
               From {open.submittedBy}
               {open.createdAt ? ` · ${open.createdAt}` : ""}

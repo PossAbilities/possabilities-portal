@@ -10,6 +10,7 @@ export function NewsThumb({ post }: { post: NewsPost }) {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           alt={post.title}
           src={post.image}
+          loading="lazy"
         />
       ) : (
         <div

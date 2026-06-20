@@ -16,6 +16,13 @@ export default async function NewsPage() {
         </p>
       </section>
 
+      {news.length === 0 && (
+        <div className="bg-surface-container-low border-2 border-dashed border-brand-purple rounded-2xl p-stack-md text-center">
+          <Icon name="newspaper" size={48} className="text-brand-purple/40 mx-auto" />
+          <p className="font-body-lg text-body-lg text-on-surface mt-2">No community news just yet. Check back soon!</p>
+        </div>
+      )}
+
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-stack-md">
         {news.map((n) => (
           <article key={n.id} className="bg-surface-white border-2 border-brand-purple rounded-2xl overflow-hidden group flex flex-col">

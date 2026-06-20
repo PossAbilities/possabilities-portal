@@ -26,12 +26,12 @@ export function MobileNav() {
             href={l.href}
             className={
               active
-                ? "flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl p-2 w-16"
-                : "flex flex-col items-center justify-center text-on-surface-variant p-2 w-16 hover:bg-primary-fixed-dim rounded-xl transition-colors"
+                ? "flex flex-col items-center justify-center gap-0.5 bg-primary-container text-on-primary-container rounded-xl p-2 w-[72px] min-h-touch-target-min"
+                : "flex flex-col items-center justify-center gap-0.5 text-on-surface-variant p-2 w-[72px] min-h-touch-target-min hover:bg-primary-fixed-dim rounded-xl transition-colors"
             }
           >
             <Icon name={l.icon} fill={active} />
-            <span className="font-label-bold text-[10px]">{l.label}</span>
+            <span className="font-label-bold text-[12px] leading-tight">{l.label}</span>
           </Link>
         );
       })}

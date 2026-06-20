@@ -155,7 +155,8 @@ body {
 
 input::placeholder,
 textarea::placeholder {
-  color: var(--color-outline);
+  /* on-surface-variant (~7:1 on white) — outline failed WCAG AA at ~3:1 */
+  color: var(--color-on-surface-variant);
 }
 
 /* High-visibility focus — teal, per the accessibility spec */
@@ -199,10 +200,16 @@ select:focus-visible,
   transform-origin: right center;
   backface-visibility: hidden;
 }
+/* Respect reduced-motion everywhere: hover scales, spinners, bounces,
+   page-turns and transitions can trigger discomfort for some users. */
 @media (prefers-reduced-motion: reduce) {
-  .page-turn-next,
-  .page-turn-prev {
-    animation: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
