@@ -186,7 +186,23 @@ export function EventsScreen({
                 <Icon name="close" size={30} />
               </button>
             </div>
+            {isFree && (
+              <div className="mb-stack-md flex items-center gap-3 bg-brand-teal/15 border-2 border-brand-teal rounded-xl p-4">
+                <Icon name="check_circle" fill className="text-brand-teal shrink-0" size={28} />
+                <p className="font-label-bold text-label-bold text-on-tertiary-fixed">
+                  This event is free — there is no payment to make.
+                </p>
+              </div>
+            )}
             {/* Who is the ticket for */}
+            <p className="font-label-bold text-[20px] text-brand-purple mb-3 flex items-center gap-2">
+              {!isFree && (
+                <span className="w-7 h-7 rounded-full bg-brand-pink text-white text-label-bold flex items-center justify-center shrink-0">
+                  1
+                </span>
+              )}
+              Your details
+            </p>
             <div className="mb-stack-md grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block font-label-bold text-label-bold mb-2 text-on-surface">Name on the ticket</label>
@@ -201,6 +217,9 @@ export function EventsScreen({
               {!isFree && (
                 <div className="space-y-stack-sm">
                   <h3 className="font-label-bold text-[20px] flex items-center gap-2">
+                    <span className="w-7 h-7 rounded-full bg-brand-pink text-white text-label-bold flex items-center justify-center shrink-0">
+                      2
+                    </span>
                     <Icon name="lock" className="text-brand-teal" />
                     Safe Payment
                   </h3>

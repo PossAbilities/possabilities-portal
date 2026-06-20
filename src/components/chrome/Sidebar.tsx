@@ -15,12 +15,12 @@ interface Item {
 }
 
 const items: Item[] = [
-  { label: "Dashboard", icon: "dashboard", href: "/admin" },
-  { label: "Content", icon: "edit_document", href: "/admin#content-library" },
-  { label: "Requests", icon: "feedback", href: "/admin#request-inbox" },
+  { label: "Easy Reads", icon: "menu_book", href: "/easy-reads" },
+  { label: "Watch & Listen", icon: "play_circle", href: "/media" },
+  { label: "Staff Area", icon: "dashboard", href: "/admin" },
+  { label: "Edit Content", icon: "edit_document", href: "/admin#content-library" },
+  { label: "Inbox", icon: "feedback", href: "/admin#request-inbox" },
   { label: "Settings", icon: "settings", href: "/admin/settings" },
-  { label: "Easy Read", icon: "menu_book", href: "/easy-reads" },
-  { label: "Watch", icon: "play_circle", href: "/media" },
 ];
 
 export function Sidebar() {
@@ -52,9 +52,9 @@ export function Sidebar() {
         {items.map((it) => {
           const base = (it.href ?? "").split("#")[0];
           const active =
-            it.label === "Dashboard"
+            base === "/admin"
               ? pathname === "/admin"
-              : !!base && base !== "/admin" && pathname.startsWith(base);
+              : !!base && pathname.startsWith(base);
           const cls = active
             ? "bg-brand-teal text-on-tertiary-fixed font-bold rounded-lg m-2 px-4 py-3 flex items-center gap-3"
             : "text-on-surface-variant hover:bg-surface-container-high rounded-lg m-2 px-4 py-3 flex items-center gap-3 transition-all";
