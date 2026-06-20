@@ -61,13 +61,15 @@ export function TopNav() {
         >
           <Icon name="notifications" />
         </button>
-        <Link
-          href="/admin"
-          aria-label="Account"
-          className="w-12 h-12 rounded-full bg-brand-teal flex items-center justify-center overflow-hidden border-2 border-brand-purple"
-        >
-          <Icon name="person" fill size={22} className="text-on-tertiary-fixed" />
-        </Link>
+        {pathname.startsWith("/admin") && (
+          <Link
+            href="/admin/settings"
+            aria-label="Account"
+            className="w-12 h-12 rounded-full bg-brand-teal flex items-center justify-center overflow-hidden border-2 border-brand-purple"
+          >
+            <Icon name="person" fill size={22} className="text-on-tertiary-fixed" />
+          </Link>
+        )}
       </div>
     </header>
   );
