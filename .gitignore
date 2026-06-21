@@ -51,3 +51,6 @@ next-env.d.ts
 
 # Wallet signing material (never commit)
 .secrets/
+
+# Claude Code local hooks (machine-specific)
+.claude/hooks/
