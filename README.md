@@ -1,4 +1,4 @@
-# PossAbilities Community Portal
+# PossAbilities Portal
 
 An accessible community portal for the people PossAbilities supports — built from the
 Google Stitch "Community Hub" design. Browse news and events, book tickets, find

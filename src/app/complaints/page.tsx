@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Icon } from "@/components/Icon";
 
-export const metadata = { title: "Complaints — PossAbilities Community Portal" };
+export const metadata = { title: "Complaints — PossAbilities Portal" };
 
 const steps = [
   { icon: "chat", heading: "1. Tell us", body: "Tell any member of staff, or use the report button on the Support page. You can ask a friend or family member to help you." },

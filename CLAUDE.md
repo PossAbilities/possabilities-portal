@@ -1,4 +1,4 @@
-# PossAbilities Community Portal
+# PossAbilities Portal
 
 A web portal for the people that **PossAbilities** (UK charity) supports — the
 "Community Hub" designed in Google Stitch ("Easy Read" philosophy, for adults with

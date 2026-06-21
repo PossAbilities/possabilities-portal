@@ -30,7 +30,7 @@ export default async function AdminDashboardPage() {
           Good morning, Admin
         </h1>
         <p className="font-statement-text text-statement-text text-on-surface-variant max-w-2xl">
-          Here is what&apos;s happening in the Community Portal today. You have{" "}
+          Here is what&apos;s happening in the PossAbilities Portal today. You have{" "}
           <span className="text-brand-pink font-bold underline">{pendingCount} pending requests</span> that
           need your attention.
         </p>

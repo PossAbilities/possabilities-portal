@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Icon } from "@/components/Icon";
 
-export const metadata = { title: "Privacy Policy — PossAbilities Community Portal" };
+export const metadata = { title: "Privacy Policy — PossAbilities Portal" };
 
 const sections = [
   {
