@@ -75,6 +75,9 @@
   --font-headline-lg-mobile: "Montserrat", system-ui, sans-serif;
   --font-headline-md: "Montserrat", system-ui, sans-serif;
   --font-label-bold: "Montserrat", system-ui, sans-serif;
+  /* Brand wordmark — Avenir (licensed; present on Apple devices). Falls back to
+     Montserrat where Avenir isn't installed. Use with font-extrabold (800). */
+  --font-brand: "Avenir Next", "Avenir", "Montserrat", system-ui, sans-serif;
   --font-body-lg: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
   --font-body-md: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
   --font-statement-text: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
