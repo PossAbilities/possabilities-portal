@@ -116,7 +116,7 @@ export function DigitalTicket({
     const ics = [
       "BEGIN:VCALENDAR",
       "VERSION:2.0",
-      "PRODID:-//PossAbilities//Community Portal//EN",
+      "PRODID:-//PossAbilities//PossAbilities Portal//EN",
       "BEGIN:VEVENT",
       `UID:${ticket.reference}@possabilities`,
       `DTSTAMP:${toCalStamp(new Date())}`,
@@ -142,7 +142,7 @@ export function DigitalTicket({
         <div className="bg-surface-white rounded-2xl overflow-hidden easy-read-shadow border-2 border-brand-purple">
           {/* Header */}
           <div className="bg-brand-purple text-on-primary px-6 py-5 text-center">
-            <p className="font-label-bold text-label-bold text-brand-teal">PossAbilities Community Portal</p>
+            <p className="font-label-bold text-label-bold text-brand-teal">PossAbilities Portal</p>
             <h2 className="font-headline-md text-headline-md text-on-primary mt-1">Your Ticket</h2>
           </div>
 

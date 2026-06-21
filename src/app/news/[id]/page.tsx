@@ -11,8 +11,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params;
   const post = await getNewsPost(id);
-  if (!post) return { title: "News — PossAbilities Community Portal" };
-  return { title: `${post.title} — PossAbilities Community Portal`, description: post.excerpt };
+  if (!post) return { title: "News — PossAbilities Portal" };
+  return { title: `${post.title} — PossAbilities Portal`, description: post.excerpt };
 }
 
 export default async function NewsArticlePage({

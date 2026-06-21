@@ -22,7 +22,7 @@ export function TopNav() {
     <header className="fixed top-0 w-full z-50 bg-surface-white border-b-2 border-outline-variant flex justify-between items-center px-margin-side h-touch-target-min md:h-20">
       <div className="flex items-center gap-4">
         <Link href="/" className="font-statement-text text-statement-text font-black text-brand-purple">
-          Community Portal
+          PossAbilities Portal
         </Link>
       </div>
       <nav className="hidden md:flex items-center gap-8 h-full">

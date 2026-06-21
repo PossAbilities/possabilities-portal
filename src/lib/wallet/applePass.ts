@@ -41,7 +41,7 @@ export async function buildApplePass(t: PassInput): Promise<Buffer> {
       ],
       backFields: [
         { key: "ref", label: "Reference", value: t.reference },
-        { key: "org", label: "Organiser", value: "PossAbilities Community Portal" },
+        { key: "org", label: "Organiser", value: "PossAbilities Portal" },
         { key: "note", label: "Notes", value: "Show this pass when you arrive. Live The Life You Choose." },
       ],
     },

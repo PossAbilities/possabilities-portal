@@ -4,7 +4,7 @@ import { ToastProvider } from "@/components/Toast";
 import { AppShell } from "@/components/chrome/AppShell";
 
 export const metadata: Metadata = {
-  title: "PossAbilities Community Portal — Live The Life You Choose",
+  title: "PossAbilities Portal — Live The Life You Choose",
   description:
     "Your community, built for you. Access news, events, and support all in one happy, accessible place.",
 };

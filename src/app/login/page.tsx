@@ -116,7 +116,7 @@ function LoginForm() {
           className="mt-stack-sm flex items-center justify-center gap-2 font-label-bold text-label-bold text-brand-purple hover:underline"
         >
           <Icon name="arrow_back" />
-          Back to Community Portal
+          Back to PossAbilities Portal
         </Link>
       </div>
     </div>
