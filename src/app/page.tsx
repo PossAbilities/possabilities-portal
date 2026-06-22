@@ -274,9 +274,9 @@ export default async function HomePage() {
           </p>
           <Link
             href="/events"
-            className="lift relative min-h-[56px] flex items-center gap-2 px-10 bg-brand-teal text-on-tertiary-fixed font-label-bold text-label-bold rounded-2xl shadow-offset-dark"
+            className="lift relative min-h-[56px] flex items-center justify-center gap-2 px-8 md:px-10 bg-brand-teal text-on-tertiary-fixed font-label-bold text-label-bold rounded-2xl shadow-offset-dark whitespace-nowrap"
           >
-            <Icon name="event" fill /> See what&apos;s on
+            <Icon name="event" fill className="shrink-0" /> See what&apos;s on
           </Link>
         </div>
       </section>
