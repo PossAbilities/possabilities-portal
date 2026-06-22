@@ -21,7 +21,7 @@ export function TopNav() {
   return (
     <header className="fixed top-0 w-full z-50 bg-surface-white border-b-2 border-outline-variant flex justify-between items-center px-margin-side h-touch-target-min md:h-20">
       <div className="flex items-center gap-4">
-        <Link href="/" className="font-statement-text text-statement-text font-black text-brand-purple">
+        <Link href="/" className="font-statement-text text-lg md:text-statement-text font-black text-brand-purple whitespace-nowrap leading-tight">
           <span className="font-brand font-extrabold">
             <span className="text-[#EC008C]">Poss</span>
             <span className="text-[#48065A]">Abilities</span>
