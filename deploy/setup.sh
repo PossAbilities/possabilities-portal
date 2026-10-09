@@ -20,6 +20,14 @@ chmod -R a+rX "$DEST/volumes"   # known Kong gotcha: mounted-config perms
 echo "2) Rename container names from the template site to $SITE"
 sed -i "s/easyread-/$SITE-/g; s/easyread_/${SITE}_/g" "$DEST/docker-compose.yml"
 
+echo "2b) Nightly backup: pg_dump the database before the archive (skip extension schemas that break pg_dump)"
+cat > /tmp/portal-db-labels.yml <<'YML'
+    labels:
+      docker-volume-backup.exec-label: portal-backup
+      docker-volume-backup.archive-pre: "/bin/sh -c 'pg_dump -U postgres -d postgres --exclude-schema=cron --exclude-schema=net --exclude-schema=pgmq --exclude-schema=vault --exclude-schema=extensions -f /var/lib/postgresql/data/portal.sql'"
+YML
+sed -i "/container_name: ${SITE}-db/r /tmp/portal-db-labels.yml" "$DEST/docker-compose.yml"
+
 echo "3) Frontend + backup services"
 cat /root/portal-src/deploy/docker-compose.frontend.yml | sed '1,2d' | sed 's/^services://' >> "$DEST/docker-compose.yml"
 
@@ -51,5 +59,6 @@ echo "  b) nano $DEST/app/web/.env -> paste ANON_KEY"
 echo "  c) cd $DEST && docker compose up -d && docker compose ps"
 echo "  d) run the migrations:  docker exec -i ${SITE}-db psql -U postgres -d postgres < $DEST/app/supabase/migrations/0001_schema.sql"
 echo "                          docker exec -i ${SITE}-db psql -U postgres -d postgres < $DEST/app/supabase/migrations/0002_seed.sql"
+echo "                          docker exec -i ${SITE}-db psql -U postgres -d postgres < $DEST/app/supabase/migrations/0003_sounds_motion.sql"
 echo "  e) cd $DEST && docker compose build portal-web && docker compose up -d portal-web"
 echo "  f) cat /root/portal-src/deploy/Caddyfile.portal >> /opt/mhfa/Caddyfile && docker restart mhfa-caddy"
