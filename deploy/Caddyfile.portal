@@ -1,0 +1,11 @@
+# Append to /opt/mhfa/Caddyfile, then: docker restart mhfa-caddy  (full restart issues the tls-internal cert)
+portal.pixelhub.org.uk {
+  tls internal
+  encode gzip
+  reverse_proxy portal-web:80
+}
+portal-api.pixelhub.org.uk {
+  tls internal
+  encode gzip
+  reverse_proxy portal-kong:8000
+}

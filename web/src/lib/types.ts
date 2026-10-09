@@ -1,0 +1,10 @@
+export type Profile = { id: string; first_name: string | null; display_name: string | null; role: 'user' | 'staff' | 'admin'; last_seen_at: string | null }
+export type Settings = { user_id: string; text_size: 'small' | 'medium' | 'large'; theme: 'standard' | 'contrast' | 'calm' | 'dark'; read_aloud: boolean; pictures: boolean; simplified: boolean; sounds: boolean; reduce_motion: boolean }
+export type NewsPost = { id: string; title: string; summary: string | null; body_easy: string | null; image_url: string | null; audio_url: string | null; published_at: string; read_minutes: number | null; easy_read_doc_id: string | null }
+export type EasyReadStep = { text: string; icon?: string | null; image_url?: string | null }
+export type EasyReadDoc = { id: string; title: string; category: string | null; steps: EasyReadStep[]; audio_url: string | null; published_at: string }
+export type WorkshopStep = { id: string; workshop_id: string; position: number; title: string; subtitle: string | null; kind: 'workbook' | 'slides' | 'easyread' | 'video' | 'session'; resource_url: string | null }
+export type Workshop = { id: string; title: string; summary: string | null; next_session_at: string | null; cover_url: string | null; published_at: string; steps?: WorkshopStep[]; done?: Set<string> }
+export type Video = { id: string; title: string; description: string | null; playback_url: string | null; poster_url: string | null; captions_url: string | null; published_at: string }
+export type Group = { id: string; slug: string; name: string; description: string | null; colour: 'purple' | 'pink' | 'teal' | 'lilac'; next_meetup_at: string | null; member?: boolean; latest?: GroupPost | null }
+export type GroupPost = { id: string; group_id: string; title: string; body: string | null; image_url: string | null; created_at: string }
