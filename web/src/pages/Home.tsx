@@ -46,7 +46,7 @@ export function Home() {
           </div>
         </div>
         <div className="tone-char char-float right-4 md:right-10 lg:right-16 hero-float">
-          <Character name={greeter.name} pose={greeter.pose} height={200} className="md:!h-[280px] lg:!h-[340px]" />
+          <Character name={greeter.name} pose={greeter.pose} height={200} className="md:h-[280px]! lg:h-[340px]!" />
         </div>
       </header>
       <Main inner={arrive ? 'arrive-main stagger' : ''}>

@@ -19,7 +19,7 @@ export function ListenButton({ text, className = '', style }: { text: string; cl
 /** Sticky "Reading to you" bar for the Easy Read reader. */
 export function ReadingBar({ step, total, playing, onToggle }: { step: number; total: number; playing: boolean; onToggle: () => void }) {
   return (
-    <div className="fixed float-bar z-30 rounded-[30px] px-4 py-4 flex items-center gap-3 md:!left-[152px] lg:!left-auto lg:!right-8 lg:!bottom-8 lg:w-[420px]" style={{ background: 'var(--glass-ink)', WebkitBackdropFilter: 'blur(var(--glass-blur)) saturate(1.4)', backdropFilter: 'blur(var(--glass-blur)) saturate(1.4)', color: '#fff', boxShadow: 'var(--shadow-glass)' }}>
+    <div className="fixed float-bar z-30 rounded-[30px] px-4 py-4 flex items-center gap-3 md:left-[152px]! lg:left-auto! lg:right-8! lg:bottom-8! lg:w-[420px]" style={{ background: 'var(--glass-ink)', WebkitBackdropFilter: 'blur(var(--glass-blur)) saturate(1.4)', backdropFilter: 'blur(var(--glass-blur)) saturate(1.4)', color: '#fff', boxShadow: 'var(--shadow-glass)' }}>
       <button aria-label={playing ? 'Pause reading' : 'Start reading'} onClick={onToggle} className="flex-none w-14 h-14 rounded-full flex items-center justify-center" style={{ background: 'var(--pink)', color: '#fff' }}>{playing ? <Pause size={28} strokeWidth={2.6} /> : <Volume2 size={28} strokeWidth={2.6} />}</button>
       <div className="flex-1 min-w-0">
         <div className="font-black text-[1.1rem]">{playing ? 'Reading to you' : 'Read to me'}</div>

@@ -22,7 +22,7 @@ export function SectionHeader({ section, title, children, minHeight = 0, hideAva
       </div>
       {character && (title || pose) && SECTION_CHARACTER[section] && (
         <div className="tone-char char-float right-4 md:right-10 lg:right-16">
-          <Character name={SECTION_CHARACTER[section]} pose={pose} height={180} className="md:!h-[240px] lg:!h-[280px]" />
+          <Character name={SECTION_CHARACTER[section]} pose={pose} height={180} className="md:h-[240px]! lg:h-[280px]!" />
         </div>
       )}
     </header>

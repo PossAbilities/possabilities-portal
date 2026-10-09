@@ -1,5 +1,5 @@
 # Build the portal and serve it with nginx. Env is baked at build time (Vite), so the build reads web/.env on the VPS.
-FROM node:20-alpine AS build
+FROM node:22-alpine AS build
 WORKDIR /app
 COPY package.json package-lock.json* ./
 RUN npm ci

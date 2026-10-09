@@ -84,6 +84,6 @@ export function Rail() {
 }
 export function AvatarLink({ initial = 'S', size = 48 }: { initial?: string; size?: number }) {
   return (
-    <NavLink to="/settings" aria-label="My settings" className="rounded-full flex items-center justify-center h-display btn !min-h-0 !p-0" style={{ width: size, height: size, background: 'var(--card)', color: 'var(--purple)', fontSize: size * 0.44, boxShadow: '0 0 0 3px rgba(255,255,255,0.55), 0 6px 16px rgba(36,5,48,0.18)' }}>{initial}</NavLink>
+    <NavLink to="/settings" aria-label="My settings" className="rounded-full flex items-center justify-center h-display btn min-h-0! p-0!" style={{ width: size, height: size, background: 'var(--card)', color: 'var(--purple)', fontSize: size * 0.44, boxShadow: '0 0 0 3px rgba(255,255,255,0.55), 0 6px 16px rgba(36,5,48,0.18)' }}>{initial}</NavLink>
   )
 }

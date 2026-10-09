@@ -1,12 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
+import tailwindcss from '@tailwindcss/vite'
 
 const DEMO = process.env.VITE_DEMO === '1'
 export default defineConfig({
   base: DEMO ? './' : '/',
   plugins: [
     react(),
+    tailwindcss(),
     !DEMO && VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['icon.svg'],
