@@ -1,0 +1,29 @@
+# Append these services to /opt/portal/docker-compose.yml (the self-hosted Supabase stack copied from supabase-easyread).
+# Frontend is served on the internal network; Caddy proxies portal.pixelhub.org.uk -> portal-web:80.
+services:
+  portal-web:
+    build: ./app/web
+    container_name: portal-web
+    restart: unless-stopped
+    networks: [default]
+    labels: [ "ryan-cloud.site=portal" ]
+
+  portal-backup:
+    image: offen/docker-volume-backup:v2
+    container_name: portal-backup
+    restart: unless-stopped
+    environment:
+      BACKUP_CRON_EXPRESSION: "15 3 * * *"
+      BACKUP_FILENAME: "portal-%Y-%m-%dT%H-%M-%S.tar.gz"
+      BACKUP_PRUNING_PREFIX: "portal-"
+      BACKUP_RETENTION_DAYS: "14"
+      AWS_ENDPOINT: ${R2_ENDPOINT}
+      AWS_S3_BUCKET_NAME: ryan-cloud-backups
+      AWS_S3_PATH: portal
+      AWS_ACCESS_KEY_ID: ${R2_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${R2_SECRET_ACCESS_KEY}
+      EXEC_LABEL: portal-backup
+    volumes:
+      - ./volumes/db/data:/backup/db:ro
+      - ./volumes/storage:/backup/storage:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
